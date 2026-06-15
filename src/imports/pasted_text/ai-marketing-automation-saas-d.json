@@ -1,0 +1,320 @@
+Create a modern, professional, AI-powered SaaS web application UI/UX design for a capstone project called:
+
+“AI-Driven Marketing Automation System with Integrated Social Media Publishing”
+
+The system is designed for small businesses and SMEs to automate social media marketing using AI.
+
+STYLE & DESIGN:
+
+Modern SaaS dashboard
+Clean and minimal UI
+Professional but visually engaging
+Responsive web application
+Dark/light mode support
+Rounded cards and smooth shadows
+Use a blue/purple primary palette with clean white surfaces
+Include charts, widgets, and analytics cards
+Use modern typography and spacing
+Design should look like Notion + HubSpot + Canva + Meta Business Suite combined
+
+CORE SYSTEM FLOW:
+
+User Registration
+Industry Selection
+Business Category Selection
+Business Setup Wizard
+Social Media Integration
+Dashboard Access
+
+AUTHENTICATION PAGES:
+
+LOGIN PAGE
+Include:
+Email field
+Password field
+Remember me
+Forgot password
+Login button
+Continue with Google
+Continue with Facebook
+Modern illustration on side
+Split-screen layout
+REGISTER PAGE
+Include:
+Full name
+Email
+Password
+Confirm password
+Create account button
+Progress indicator for onboarding
+ONBOARDING / BUSINESS SETUP WIZARD
+
+STEP 1 — INDUSTRY SELECTION
+Grid cards with icons:
+
+Food & Beverage
+Retail & E-Commerce
+Beauty & Personal Care
+Technology
+Health & Fitness
+Hospitality
+Creative Services
+Education
+Automotive
+Other
+
+STEP 2 — BUSINESS CATEGORY
+Dynamic dropdown/cards based on industry.
+
+Example:
+Food & Beverage:
+
+Coffee Shop
+Bakery
+Restaurant
+Milk Tea Shop
+Fast Food
+
+Retail:
+
+Clothing Store
+Gadget Store
+Shoe Store
+Furniture Shop
+
+STEP 3 — BUSINESS PROFILE
+Fields:
+
+Business Name
+Description
+Location
+Target Audience
+Upload Logo
+
+STEP 4 — BRAND SETTINGS
+Select:
+
+Brand Tone
+Professional
+Friendly
+Luxury
+Trendy
+Fun
+Marketing Goal
+Increase Sales
+Increase Engagement
+Promote Products
+Gain Followers
+
+STEP 5 — SOCIAL MEDIA INTEGRATION
+Connect:
+
+Facebook
+Instagram
+Display connected account cards.
+
+MAIN APPLICATION LAYOUT:
+
+TOP NAVBAR:
+
+Search bar
+Notifications
+AI Assistant button
+User profile dropdown
+Dark/light mode toggle
+
+LEFT SIDEBAR:
+
+Dashboard
+AI Generator
+Content Studio
+Campaigns
+Calendar Scheduler
+Social Media Publishing
+Analytics
+Notifications
+Holiday Marketing
+Missed Post Recovery
+Profile
+Settings
+Logout
+
+DASHBOARD PAGE:
+
+Create a powerful marketing dashboard with:
+
+Welcome card
+AI marketing insights
+Analytics overview cards
+Engagement charts
+Upcoming scheduled posts
+Recent campaigns
+Holiday suggestions
+Missed post alerts
+AI recommendations widget
+Performance statistics
+
+Analytics cards:
+
+Total Posts
+Scheduled Posts
+Engagement Rate
+Reach
+Followers Growth
+Missed Promotions
+
+Add:
+
+Line graphs
+Bar charts
+Activity timeline
+Calendar preview
+
+AI CONTENT GENERATOR PAGE:
+
+Include:
+
+Product/service input
+Product description
+Audience selector
+Tone selector
+Platform selector
+Holiday/event selector
+Generate button
+
+Generated output section:
+
+AI-generated caption
+Suggested hashtags
+Suggested CTA
+Suggested campaign idea
+Suggested image concept
+
+Buttons:
+
+Regenerate
+Save Draft
+Schedule Post
+Publish Now
+
+SOCIAL MEDIA PUBLISHING PAGE:
+
+Include:
+
+Multi-platform posting
+Facebook and Instagram cards
+Media upload section
+Caption editor
+Schedule picker
+Publish now button
+Drafts section
+Posting status indicators
+
+CALENDAR & SCHEDULER PAGE:
+
+Create:
+
+Full monthly calendar
+Drag-and-drop post scheduling
+Color-coded campaigns
+Holiday highlights
+Upcoming campaigns panel
+Missed-post indicators
+
+Colors:
+
+Blue = Scheduled
+Green = Published
+Red = Missed
+Yellow = Upcoming holiday campaign
+
+HOLIDAY MARKETING PAGE:
+
+Include:
+
+Upcoming holidays
+AI-generated campaign suggestions
+Seasonal templates
+Promo recommendations
+Engagement prediction
+“Generate Holiday Campaign” button
+
+MISSED POST RECOVERY PAGE:
+
+Include:
+
+Alert cards for missed campaigns
+AI-generated recovery suggestions
+Suggested repost times
+Recovery analytics
+“Recover Campaign” button
+
+ANALYTICS PAGE:
+
+Include:
+
+Engagement graphs
+Likes/comments/shares tracking
+Best posting time analysis
+Platform comparison
+Audience activity heatmap
+Campaign performance table
+Export report button
+
+USER PROFILE PAGE:
+
+Include:
+
+Business logo
+Business information
+Industry and category
+Connected social accounts
+Brand settings
+Edit profile button
+
+SETTINGS PAGE:
+
+Sections:
+
+Account Settings
+Password & Security
+Notification Preferences
+AI Preferences
+Social Media Integrations
+Theme Customization
+API Management
+
+ADMIN PANEL:
+
+Create separate admin dashboard with:
+
+User management
+Reports
+Holiday database
+AI prompt templates
+Platform monitoring
+Analytics overview
+Activity logs
+
+EXTRA AI FEATURES:
+
+AI assistant chatbot panel
+Smart hashtag suggestions
+Best posting time recommendations
+Engagement prediction
+AI-powered campaign scoring
+Auto-generated marketing templates
+
+DESIGN REQUIREMENTS:
+
+Fully functional-looking UI
+Realistic dashboard spacing
+Interactive card layouts
+Modern SaaS components
+Smooth gradients
+Mobile responsive layouts
+Include modals, dropdowns, tooltips, and notifications
+Use professional UX hierarchy
+Create complete desktop web app interfaces with multiple screens and components
+Ensure all pages are connected logically in user flow
+Make the design look production-ready and startup-level professional

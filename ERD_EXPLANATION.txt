@@ -1,0 +1,246 @@
+The USER entity is the main account holder in the system. It represents the person who logs in and uses the platform. The USER entity is connected to the BUSINESS_PROFILE entity, the SOCIAL_ACCOUNT entity, the SUBSCRIPTION entity, and the NOTIFICATION entity. This means that each account can own a business profile, connect social media accounts, choose a subscription plan, and receive system notifications.
+
+The BUSINESS_PROFILE entity stores the business information needed by the system. It contains details such as business name, description, location, target audience, and logo. This entity is connected to the INDUSTRY entity, the CATEGORY entity, the BRAND_SETTING entity, the CAMPAIGN entity, the CONTENT_ITEM entity, the CALENDAR_POST entity, the ANALYTICS_SNAPSHOT entity, the MISSED_OPPORTUNITY entity, and the HOLIDAY_CAMPAIGN entity. This shows that the business profile is the central record that supports personalization, content generation, scheduling, analytics, and holiday planning.
+
+The INDUSTRY entity represents the broad business field selected during onboarding, such as food and beverage, retail, beauty, technology, health and fitness, hospitality, creative services, education, automotive, or other industries. Each industry can contain multiple categories through the CATEGORY entity. The CATEGORY entity stores more specific business types that belong to a selected industry. This relationship allows the system to suggest appropriate business categories based on the chosen industry.
+
+The BRAND_SETTING entity stores the brand identity of the business. It contains the brand tone, marketing goal, and selected theme. This entity helps the AI understand how the business wants to communicate with its audience, whether the tone is professional, friendly, luxury, trendy, or fun. It is linked directly to the BUSINESS_PROFILE entity because every business profile needs its own branding preferences.
+
+The SOCIAL_ACCOUNT entity stores connected social media accounts such as Facebook and Instagram. It contains the platform name, account handle, and status of the connection. The USER entity is connected to multiple SOCIAL_ACCOUNT records, which means a single user can connect more than one platform. This supports multi-platform publishing from one dashboard.
+
+The SUBSCRIPTION entity manages the plan selected by the user. It stores the plan name, billing cycle, price, status, and dates related to the subscription. This entity is connected to the USER entity because each user can have a subscription record that defines the available features and access level in the system.
+
+The CAMPAIGN entity represents marketing campaigns created by the business. It stores the campaign name, status, start date, and end date. The BUSINESS_PROFILE entity can run multiple campaigns, and each campaign can include multiple content items. This relationship helps organize posts into larger marketing efforts such as promotions, seasonal sales, and launch campaigns.
+
+The CONTENT_ITEM entity stores AI-generated or manually created marketing content. It includes the title, caption, hashtags, call to action, image prompt, and status of the content. This entity is connected to the BUSINESS_PROFILE entity because all content belongs to a specific business. It is also connected to the CAMPAIGN entity, the CALENDAR_POST entity, the PUBLISHED_POST entity, the HOLIDAY_CAMPAIGN entity, and the RECOVERY_PLAN entity. This means content can be created for campaigns, scheduled on the calendar, published to social media, inspired by holiday campaigns, or suggested as part of a recovery plan.
+
+The CALENDAR_POST entity stores scheduled posts in the content calendar. It records the scheduled date and time and the current status of the post. This entity is linked to the BUSINESS_PROFILE entity and the CONTENT_ITEM entity. The relationship shows that each scheduled post belongs to a business and is based on a specific content item.
+
+The PUBLISHED_POST entity stores posts that have already been published to connected social accounts. It includes the publish date, platform post ID, and status. The CONTENT_ITEM entity is connected to the PUBLISHED_POST entity because a content item can eventually become a live post. The SOCIAL_ACCOUNT entity is also connected to PUBLISHED_POST because the same content can be published to one or more social media platforms.
+
+The ANALYTICS_SNAPSHOT entity stores performance data over time. It includes total posts, scheduled posts, engagement rate, reach, followers growth, missed promotions, and the date when the data was captured. This entity is connected to the BUSINESS_PROFILE entity and the CAMPAIGN entity. This allows the system to monitor performance for each business and campaign.
+
+The HOLIDAY_CAMPAIGN entity stores seasonal campaign ideas and holiday-based marketing plans. It includes the holiday name, campaign title, prediction, and event date. This entity is connected to the BUSINESS_PROFILE entity because each business can plan multiple holiday campaigns. Holiday campaigns can also inspire new content items, helping the AI generator create timely promotional material.
+
+The MISSED_OPPORTUNITY entity stores missed promotional posts or delayed marketing opportunities. It includes the title, severity, status, and missed date. This entity is connected to the BUSINESS_PROFILE entity because each business may have its own missed opportunities. It is also connected to the RECOVERY_PLAN entity so the system can suggest corrective actions.
+
+The RECOVERY_PLAN entity stores recommendations that help the business recover from a missed opportunity. It includes the recommendation text, status, and creation date. This entity is connected to the MISSED_OPPORTUNITY entity and can suggest new CONTENT_ITEM records for recovery content.
+
+The NOTIFICATION entity manages reminders, alerts, and system messages. It stores the notification type, title, message, unread status, and creation date. This entity is connected to the USER entity and can reference the CALENDAR_POST entity, the PUBLISHED_POST entity, or the MISSED_OPPORTUNITY entity. This allows the system to notify the user about scheduled posts, published content, and recovery alerts.
+
+Overall, the Entity Relationship Diagram shows the complete database structure of the AI-Driven Marketing Automation System. The diagram explains how the user, business profile, branding, social accounts, content, campaigns, scheduling, publishing, analytics, holiday planning, missed opportunity recovery, and notifications work together to support the full marketing workflow of the system.
+
+Figure 6. Entity Relationship Diagram — AI-Driven Marketing Automation System
+
+Summary:
+The ERD centers on the `USER` and their `BUSINESS_PROFILE`. Each user may own one business profile, subscribe to a `SUBSCRIPTION`, and connect multiple `SOCIAL_ACCOUNT` records for multi-platform publishing. The `BUSINESS_PROFILE` links to branding and classification stores (`BRAND_SETTING`, `INDUSTRY`, `CATEGORY`) that inform AI content generation. Marketing artifacts are represented by `CAMPAIGN` and `CONTENT_ITEM`; content flows from creation (manual or AI-generated) into `CALENDAR_POST` (scheduled) and then into `PUBLISHED_POST` when sent to social platforms. Performance data is captured in `ANALYTICS_SNAPSHOT` tied to both campaigns and the business profile. Operational support entities include `HOLIDAY_CAMPAIGN` (seasonal ideas), `MISSED_OPPORTUNITY` (detected gaps), and `RECOVERY_PLAN` (recommended corrective content), while `NOTIFICATION` stores alerts relating to schedules, publishes, and recovery actions.
+
+Key relationships (short):
+- `USER` 1—* `SOCIAL_ACCOUNT` (multiple platforms per user)
+- `USER` 1—1 `BUSINESS_PROFILE`; `BUSINESS_PROFILE` 1—* `CAMPAIGN` and `CONTENT_ITEM`
+- `CONTENT_ITEM` 0—* `CALENDAR_POST` → `PUBLISHED_POST` (many-to-many via platform publishing)
+- `CAMPAIGN` 1—* `ANALYTICS_SNAPSHOT` (performance over time)
+- `MISSED_OPPORTUNITY` → `RECOVERY_PLAN` → suggested `CONTENT_ITEM`
+
+This concise ERD view highlights ownership (user → profile), content lifecycle (creation → scheduling → publishing), analytics linkage, and recovery workflows — suitable for documentation and database design planning.
+
+Copy-Paste Prompt for Lucidchart DFD Reference
+
+Use this as a reference for creating a DFD in Lucidchart that looks similar to the sample diagram. Keep the visual structure simple and academic: external entities on the left, processes in the middle, and data stores on the right. Use numbered processes like 1.0, 2.0, 3.0, etc., and label data stores as D1, D2, D3, and so on.
+
+Create a Data Flow Diagram for an AI-Driven Marketing Automation System. The diagram should have a Context Diagram and a Level 1 DFD.
+
+Reference Layout:
+- Place the User / Business Owner on the left side as the main external entity.
+- Place Social Media Platforms on the left or lower-left side if needed.
+- Put the main system processes vertically in the center.
+- Put the data stores on the right side in the same style as the reference image.
+- Use arrows to show data moving between entities, processes, and data stores.
+- Keep the design clean, dark-themed if desired, and visually balanced like the sample.
+
+System Scope:
+The system allows the user to register, log in, complete onboarding, set up a business profile, define brand settings, connect social accounts, generate AI marketing content, create campaigns, schedule posts, publish content to social platforms, view analytics, receive notifications, and recover missed promotional opportunities.
+
+External Entities:
+1. User / Business Owner
+2. Social Media Platforms such as Facebook and Instagram
+3. AI Content Generation Engine
+
+Main Processes for the Level 1 DFD:
+1.0 Account Registration and Login
+2.0 Onboarding and Business Profile Setup
+3.0 Brand and Social Account Configuration
+4.0 AI Content Generation
+5.0 Campaign and Content Management
+6.0 Post Scheduling and Publishing
+7.0 Analytics Collection and Reporting
+8.0 Holiday Campaign Planning
+9.0 Missed Opportunity Detection and Recovery
+10.0 Notification Management
+
+Data Stores:
+D1 User Database
+D2 Business Profile Database
+D3 Industry Database
+D4 Category Database
+D5 Brand Settings Database
+D6 Social Account Database
+D7 Subscription Database
+D8 Campaign Database
+D9 Content Item Database
+D10 Calendar Post Database
+D11 Published Post Database
+D12 Analytics Snapshot Database
+D13 Holiday Campaign Database
+D14 Missed Opportunity Database
+D15 Recovery Plan Database
+D16 Notification Database
+
+Required Data Flows:
+- The User sends registration data, login credentials, onboarding answers, business profile details, brand preferences, campaign details, content requests, scheduling data, and recovery actions.
+- The system returns authentication results, onboarding options, generated captions, hashtags, previews, schedule confirmations, publishing results, analytics reports, holiday suggestions, missed-opportunity alerts, recovery recommendations, and notifications.
+- The AI Content Generation Engine receives business profile data, brand settings, selected industry and category, holiday context, tone, theme, description, tagline, price, and reference image details.
+- The AI Content Generation Engine sends back captions, hashtags, preview text, and post ideas to the content management process.
+- Social Media Platforms receive publish requests and return platform post IDs and post status updates.
+- Analytics data flows from published content and platform feedback into analytics reporting and is stored in the analytics snapshot database.
+- Missed opportunities are identified from scheduling gaps or weak campaign performance and passed to the recovery process, which creates recovery plans and suggested content.
+- Notifications are generated from scheduling, publishing, analytics, and missed-opportunity events and then sent to the User.
+
+Accuracy Rules:
+- Keep the User as the primary external entity.
+- Keep the AI Content Generation Engine only for generation-related data flow.
+- Keep Social Media Platforms only for publishing and status feedback.
+- Use Industry and Category as reference data for onboarding and content generation.
+- Show content moving from generation to campaign management, then to scheduling, publishing, analytics, and recovery.
+- Show notifications as a result of different internal processes, not as a separate isolated feature.
+
+Final Output Rules:
+- Make the Context Diagram simple and centered on the system.
+- Make the Level 1 DFD detailed but not crowded.
+- Use standard DFD symbols and clear labels.
+- Make the final result suitable for capstone or research documentation.
+
+Copy-Paste Prompt for GPT Image Generation
+
+Generate a clean academic Data Flow Diagram image for an AI-Driven Marketing Automation System that looks similar to a simple dark-themed DFD reference chart. The image should have a dark background, blue-gray rounded process boxes in the center, external entities on the left, and cylindrical database symbols on the right. Use straight connector lines with arrows and readable labels. Keep the layout balanced, professional, and easy to read.
+
+Use this exact structure:
+
+Left side external entities:
+- User / Business Owner
+- Social Media Platforms
+- AI Content Generation Engine
+
+Center processes arranged vertically:
+1.0 Account Registration and Login
+2.0 Onboarding and Business Profile Setup
+3.0 Brand and Social Account Configuration
+4.0 AI Content Generation
+5.0 Campaign and Content Management
+6.0 Post Scheduling and Publishing
+7.0 Analytics Collection and Reporting
+8.0 Holiday Campaign Planning
+9.0 Missed Opportunity Detection and Recovery
+10.0 Notification Management
+
+Right side data stores as database cylinders:
+D1 User Database
+D2 Business Profile Database
+D3 Industry Database
+D4 Category Database
+D5 Brand Settings Database
+D6 Social Account Database
+D7 Subscription Database
+D8 Campaign Database
+D9 Content Item Database
+D10 Calendar Post Database
+D11 Published Post Database
+D12 Analytics Snapshot Database
+D13 Holiday Campaign Database
+D14 Missed Opportunity Database
+D15 Recovery Plan Database
+D16 Notification Database
+
+Show these main data flows:
+- User data goes to registration, onboarding, profile setup, content requests, scheduling, and recovery.
+- Social media platforms connect only to publishing and status feedback.
+- AI Content Generation Engine connects only to content generation and receives business profile, brand settings, industry, category, tone, theme, description, tagline, price, and reference image details.
+- Generated captions, hashtags, preview text, and post ideas flow into content management.
+- Campaign and content move to scheduling, publishing, analytics, holiday planning, missed-opportunity recovery, and notifications.
+- Analytics and recovery data flow back into reporting and recommendation processes.
+
+Design rules:
+- Use numbered labels like 1.0, 2.0, 3.0, etc.
+- Use D1, D2, D3, etc. for databases.
+- Keep the diagram accurate and not overcrowded.
+- Make it look like a professional capstone or research presentation diagram.
+- Do not add unrelated elements, people, or extra processes.
+
+Copy-Paste Prompt for Lucidchart AI Use Case Diagram
+
+Create a use case diagram that looks similar to a clean textbook-style system diagram: one large system boundary rectangle, actors outside the boundary, a login use case at the top, a logout use case at the bottom, and the main use cases arranged in the middle. Keep the layout simple, balanced, and easy to read. The diagram must be accurate for an AI-Driven Marketing Automation System and must not include any unrelated features.
+
+System Name:
+AI-Driven Marketing Automation System
+
+Actors:
+1. User / Business Owner
+2. Social Media Platforms
+3. AI Content Generation Engine
+4. Authentication / Subscription Service
+
+Suggested Layout:
+- Place the User / Business Owner actor on the left side.
+- Place the Social Media Platforms actor on the right side.
+- Place the AI Content Generation Engine actor near the top or upper side.
+- Place the Authentication / Subscription Service actor near the bottom or lower side.
+- Put Login at the top inside the system boundary.
+- Put Logout at the bottom inside the system boundary.
+- Arrange the remaining use cases in the center like a neat vertical or two-column flow.
+
+Use Cases Inside the System Boundary:
+1. Login
+2. Register Account
+3. Complete Onboarding
+4. Manage Business Profile
+5. Set Brand Preferences
+6. Connect Social Accounts
+7. Generate AI Content
+8. Create Campaign
+9. Schedule Posts
+10. Publish Content
+11. View Analytics
+12. Receive Notifications
+13. Monitor Missed Opportunities
+14. Create Recovery Plan
+15. Review Holiday Campaigns
+16. Logout
+
+Association Rules:
+- The User / Business Owner connects to Register Account, Login, Complete Onboarding, Manage Business Profile, Set Brand Preferences, Connect Social Accounts, Generate AI Content, Create Campaign, Schedule Posts, View Analytics, Receive Notifications, Monitor Missed Opportunities, Create Recovery Plan, Review Holiday Campaigns, and Logout.
+- The Social Media Platforms actor connects only to Publish Content.
+- The AI Content Generation Engine actor connects only to Generate AI Content.
+- The Authentication / Subscription Service actor connects only to Login and Register Account.
+
+Include Relationships:
+- Complete Onboarding includes selecting industry and category.
+- Manage Business Profile includes business name, description, location, target audience, and logo.
+- Set Brand Preferences includes tone, theme, and marketing goal.
+- Connect Social Accounts includes Facebook and Instagram.
+- Generate AI Content includes caption generation, hashtag generation, and preview generation.
+- Create Campaign includes content item creation and holiday campaign planning.
+- Schedule Posts includes calendar scheduling.
+- Publish Content includes sending posts to connected social accounts.
+- View Analytics includes engagement, reach, follower growth, and campaign performance.
+- Receive Notifications includes reminders, alerts, publishing updates, and recovery alerts.
+- Monitor Missed Opportunities includes delayed posts and weak campaign performance.
+- Create Recovery Plan suggests corrective actions and new content.
+- Review Holiday Campaigns supports seasonal and event-based marketing planning.
+
+Diagram Rules:
+- Use standard use case diagram notation only.
+- Keep the system boundary visible and centered.
+- Keep the diagram uncluttered and symmetric like the sample image.
+- Use simple labeled association lines.
+- Use include and extend only when necessary.
+- Do not include database symbols, DFD arrows, or ERD-style elements.
