@@ -32,7 +32,7 @@ export function Settings() {
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+          <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-colors">
             Save Changes
           </button>
         </div>
@@ -70,7 +70,7 @@ export function Settings() {
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+          <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-colors">
             Update Password
           </button>
         </div>
@@ -157,7 +157,7 @@ export function Settings() {
           <h2 className="text-xl font-semibold text-gray-900">Theme Customization</h2>
         </div>
         <div className="grid grid-cols-3 gap-4">
-          <button className="p-4 rounded-lg border-2 border-blue-500 bg-blue-50">
+          <button className="p-4 rounded-lg border-2 border-secondary bg-secondary/10">
             <div className="w-full h-20 bg-white rounded mb-2"></div>
             <p className="text-sm font-medium text-gray-900">Light</p>
           </button>
@@ -166,7 +166,7 @@ export function Settings() {
             <p className="text-sm font-medium text-gray-900">Dark</p>
           </button>
           <button className="p-4 rounded-lg border-2 border-gray-200 hover:border-gray-300">
-            <div className="w-full h-20 bg-gradient-to-br from-gray-900 to-white rounded mb-2"></div>
+            <div className="w-full h-20 bg-card rounded mb-2"></div>
             <p className="text-sm font-medium text-gray-900">Auto</p>
           </button>
         </div>
@@ -181,7 +181,7 @@ export function Settings() {
         <p className="text-sm text-gray-600 mb-4">
           Generate API keys to integrate with third-party tools
         </p>
-        <button className="px-6 py-2 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
+        <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-colors">
           Generate API Key
         </button>
       </div>

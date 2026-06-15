@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Sparkles } from "lucide-react";
+import BrandMark from "../../components/layout/BrandMark";
 
 export function Register() {
   return (
@@ -9,10 +9,10 @@ export function Register() {
         <div className="w-full max-w-md space-y-8">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-secondary rounded-xl flex items-center justify-center">
+              <BrandMark className="icon icon-md icon-on-primary" />
             </div>
-            <span className="text-2xl font-bold text-gray-900">AI Marketing</span>
+            <span className="text-2xl font-bold text-foreground">AI Marketing</span>
           </div>
 
           {/* Header */}
@@ -94,7 +94,7 @@ export function Register() {
             <button
               type="button"
               onClick={() => (window.location.href = "/onboarding/industry")}
-              className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
+              className="w-full py-3 px-4 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity"
             >
               Create account
             </button>
@@ -110,11 +110,11 @@ export function Register() {
       </div>
 
       {/* Right Side - Illustration */}
-      <div className="hidden lg:flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-12">
-        <div className="max-w-lg text-white space-y-6">
-          <Sparkles className="w-16 h-16" />
+      <div className="hidden lg:flex items-center justify-center bg-primary p-12">
+        <div className="max-w-lg text-primary-foreground space-y-6">
+          <BrandMark className="icon icon-lg icon-on-primary" />
           <h2 className="text-4xl font-bold">Join thousands of businesses</h2>
-          <p className="text-lg text-blue-100">
+          <p className="text-lg text-primary-foreground/90">
             Save time and grow faster with AI-powered marketing automation. No technical skills
             required.
           </p>

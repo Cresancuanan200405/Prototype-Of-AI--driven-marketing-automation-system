@@ -8,7 +8,7 @@ export function ContentStudio() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Content Studio</h1>
           <p className="text-gray-600">Manage all your content in one place</p>
         </div>
-        <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90">
+        <button className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90">
           Create New
         </button>
       </div>
@@ -22,19 +22,19 @@ export function ContentStudio() {
         ].map((item, index) => {
           const Icon = item.icon;
           return (
-            <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <Icon className={`w-8 h-8 text-${item.color}-600 mb-3`} />
-              <h3 className="text-2xl font-bold text-gray-900 mb-1">{item.count}</h3>
-              <p className="text-sm text-gray-600">{item.title}</p>
+            <div key={index} className="bg-card rounded-xl shadow-sm border-border p-6">
+              <Icon className="icon icon-lg icon-muted mb-3" />
+              <h3 className="text-2xl font-bold text-foreground mb-1">{item.count}</h3>
+              <p className="text-sm text-muted-foreground">{item.title}</p>
             </div>
           );
         })}
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-        <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">Content Library Coming Soon</h3>
-        <p className="text-gray-600">
+      <div className="bg-card rounded-xl shadow-sm border-border p-12 text-center">
+        <FileText className="icon icon-lg icon-muted mx-auto mb-4" />
+        <h3 className="text-lg font-semibold text-foreground mb-2">Content Library Coming Soon</h3>
+        <p className="text-muted-foreground">
           Organize and manage all your content assets in one centralized location
         </p>
       </div>

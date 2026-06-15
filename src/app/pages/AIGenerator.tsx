@@ -1,5 +1,6 @@
 import { useMemo, useState, type ChangeEvent } from "react";
-import { Calendar, Copy, Image as ImageIcon, Save, Send, Sparkles, Upload, Tag } from "lucide-react";
+import { Calendar, Copy, Image as ImageIcon, Save, Send, Upload, Tag, Cpu, RefreshCw, Lightbulb } from "lucide-react";
+import BrandMark from "../components/layout/BrandMark";
 
 const tones = ["Professional", "Friendly", "Luxury", "Trendy", "Fun"];
 
@@ -248,9 +249,9 @@ export function AIGenerator() {
           <p className="text-gray-600">Create caption and image concepts from your product details, tone, theme, and event.</p>
         </div>
         <div className="flex rounded-xl border border-gray-200 bg-white p-1 shadow-sm">
-          <button type="button" onClick={() => setActiveTab("caption")} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${activeTab === "caption" ? "bg-blue-600 text-white" : "text-gray-600 hover:text-gray-900"}`}>Generator</button>
-          <button type="button" onClick={() => generated && setActiveTab("image")} disabled={!generated} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${activeTab === "image" ? "bg-blue-600 text-white" : "text-gray-600 hover:text-gray-900"} ${!generated ? "cursor-not-allowed opacity-40" : ""}`}>Results</button>
-          <button type="button" onClick={() => generated && setActiveTab("preview")} disabled={!generated} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${activeTab === "preview" ? "bg-blue-600 text-white" : "text-gray-600 hover:text-gray-900"} ${!generated ? "cursor-not-allowed opacity-40" : ""}`}>Preview</button>
+          <button type="button" onClick={() => setActiveTab("caption")} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${activeTab === "caption" ? "bg-secondary text-secondary-foreground" : "text-gray-600 hover:text-gray-900"}`}>Generator</button>
+          <button type="button" onClick={() => generated && setActiveTab("image")} disabled={!generated} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${activeTab === "image" ? "bg-secondary text-secondary-foreground" : "text-gray-600 hover:text-gray-900"} ${!generated ? "cursor-not-allowed opacity-40" : ""}`}>Results</button>
+          <button type="button" onClick={() => generated && setActiveTab("preview")} disabled={!generated} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${activeTab === "preview" ? "bg-secondary text-secondary-foreground" : "text-gray-600 hover:text-gray-900"} ${!generated ? "cursor-not-allowed opacity-40" : ""}`}>Preview</button>
         </div>
       </div>
 
@@ -338,8 +339,8 @@ export function AIGenerator() {
               )}
             </div>
 
-            <button onClick={handleGenerate} disabled={!canGenerate} className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 py-3 font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50">
-              <Sparkles className="h-5 w-5" />
+            <button onClick={handleGenerate} disabled={!canGenerate} className="flex w-full items-center justify-center gap-2 rounded-lg bg-primary text-primary-foreground py-3 font-medium transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50">
+              <Cpu className="h-5 w-5" />
               Generate Content
             </button>
 
@@ -348,9 +349,9 @@ export function AIGenerator() {
         </div>
 
         <div className="space-y-6">
-          {!generated ? (
+            {!generated ? (
             <div className="rounded-xl border border-gray-200 bg-white p-12 text-center shadow-sm">
-              <Sparkles className="mx-auto mb-4 h-16 w-16 text-gray-300" />
+              <BrandMark className="mx-auto mb-4 h-16 w-16 text-gray-200" />
               <h3 className="mb-2 text-lg font-semibold text-gray-900">Ready to create a caption and image concept?</h3>
               <p className="text-gray-600">Fill in the required fields and click Generate Content to see both results.</p>
             </div>
@@ -358,9 +359,9 @@ export function AIGenerator() {
             <>
               <div className="rounded-xl border border-gray-200 bg-white p-2 shadow-sm">
                 <div className="grid grid-cols-3 gap-2">
-                  <button type="button" onClick={() => setActiveTab("caption")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "caption" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Caption Result</button>
-                  <button type="button" onClick={() => setActiveTab("image")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "image" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Image Result</button>
-                  <button type="button" onClick={() => setActiveTab("preview")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "preview" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Preview</button>
+                  <button type="button" onClick={() => setActiveTab("caption")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "caption" ? "bg-secondary text-secondary-foreground" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Caption Result</button>
+                  <button type="button" onClick={() => setActiveTab("image")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "image" ? "bg-secondary text-secondary-foreground" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Image Result</button>
+                  <button type="button" onClick={() => setActiveTab("preview")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "preview" ? "bg-secondary text-secondary-foreground" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Preview</button>
                 </div>
               </div>
 
@@ -371,7 +372,7 @@ export function AIGenerator() {
                     <div className="mb-4 rounded-lg bg-gray-50 p-4"><p className="text-gray-800">{generated.caption}</p></div>
                     <div className="flex flex-wrap gap-3">
                       <button onClick={() => copyText(generated.caption)} className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"><Copy className="h-4 w-4" />Copy Caption</button>
-                      <button onClick={regenerateCaption} className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"><Sparkles className="h-4 w-4" />Generate Another Caption</button>
+                      <button onClick={regenerateCaption} className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"><RefreshCw className="h-4 w-4" />Generate Another Caption</button>
                     </div>
                   </div>
 
@@ -382,23 +383,23 @@ export function AIGenerator() {
                     </div>
                     <div className="flex flex-wrap gap-3">
                       <button onClick={() => copyText(generated.hashtags.join(" "))} className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"><Copy className="h-4 w-4" />Copy All Hashtags</button>
-                      <button onClick={regenerateHashtags} className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"><Sparkles className="h-4 w-4" />Generate Another Hashtags Set</button>
+                      <button onClick={regenerateHashtags} className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"><RefreshCw className="h-4 w-4" />Generate Another Hashtags Set</button>
                     </div>
                   </div>
 
                   <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
                     <h3 className="mb-4 text-lg font-semibold text-gray-900">Call to Action</h3>
-                    <div className="mb-4 rounded-lg bg-gradient-to-r from-orange-50 to-red-50 p-4"><p className="font-medium text-gray-900">{generated.cta}</p></div>
+                    <div className="mb-4 rounded-lg bg-accent p-4"><p className="font-medium text-accent-foreground">{generated.cta}</p></div>
                   </div>
 
-                  <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-50 to-blue-50 p-6">
-                    <div className="mb-3 flex items-center gap-2"><Sparkles className="h-5 w-5 text-purple-600" /><h3 className="text-lg font-semibold text-gray-900">Campaign Idea</h3></div>
-                    <p className="text-sm text-gray-700">{generated.campaignIdea}</p>
+                  <div className="rounded-xl border border-border bg-card p-6">
+                    <div className="mb-3 flex items-center gap-2"><Lightbulb className="h-5 w-5 text-accent-foreground" /><h3 className="text-lg font-semibold text-foreground">Campaign Idea</h3></div>
+                    <p className="text-sm text-muted-foreground">{generated.campaignIdea}</p>
                   </div>
                 </>
               ) : activeTab === "image" ? (
                 <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                  <div className={`rounded-3xl border border-gray-200 bg-gradient-to-br ${selectedTheme?.gradient ?? "from-slate-900 via-slate-700 to-slate-500"} p-10 text-white shadow-lg min-h-[340px] flex flex-col justify-center items-center text-center space-y-8`}>
+                  <div className={`rounded-3xl border border-border bg-primary p-10 text-primary-foreground shadow-lg min-h-[340px] flex flex-col justify-center items-center text-center space-y-8`}>
                     <div className="space-y-3"><p className="text-xs uppercase tracking-[0.2em] text-white/70">Tagline</p><p className="text-2xl font-semibold">{generated.tagline}</p></div>
                     <div className="space-y-3"><p className="text-xs uppercase tracking-[0.2em] text-white/70">Price</p><p className="text-5xl font-black tracking-tight">{price}</p></div>
                   </div>
@@ -410,7 +411,7 @@ export function AIGenerator() {
                     <textarea rows={6} value={previewCaption} onChange={(event) => setPreviewCaption(event.target.value)} className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
                   </div>
 
-                  <div className={`rounded-3xl border border-gray-200 bg-gradient-to-br ${selectedTheme?.gradient ?? "from-slate-900 via-slate-700 to-slate-500"} p-10 text-white shadow-lg min-h-[340px] flex flex-col justify-center items-center text-center space-y-8`}>
+                  <div className={`rounded-3xl border border-border bg-primary p-10 text-primary-foreground shadow-lg min-h-[340px] flex flex-col justify-center items-center text-center space-y-8`}>
                     <div className="space-y-3"><p className="text-xs uppercase tracking-[0.2em] text-white/70">Tagline</p><p className="text-2xl font-semibold">{generated.tagline}</p></div>
                     <div className="space-y-3"><p className="text-xs uppercase tracking-[0.2em] text-white/70">Price</p><p className="text-5xl font-black tracking-tight">{price}</p></div>
                   </div>
@@ -420,8 +421,8 @@ export function AIGenerator() {
               <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm space-y-4">
                 <div className="flex flex-wrap gap-3">
                   <button type="button" onClick={() => setAction("draft")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "draft" ? "bg-gray-900 text-white" : "border border-gray-300 text-gray-700 hover:bg-gray-50"}`}><Save className="h-5 w-5" />Save Draft</button>
-                  <button type="button" onClick={() => setAction("schedule")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "schedule" ? "bg-blue-600 text-white" : "border border-gray-300 text-gray-700 hover:bg-gray-50"}`}><Calendar className="h-5 w-5" />Schedule Post</button>
-                  <button type="button" onClick={() => setAction("publish")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "publish" ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white" : "border border-gray-300 text-gray-700 hover:bg-gray-50"}`}><Send className="h-5 w-5" />Publish Now</button>
+                  <button type="button" onClick={() => setAction("schedule")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "schedule" ? "bg-secondary text-secondary-foreground" : "border border-gray-300 text-gray-700 hover:bg-gray-50"}`}><Calendar className="h-5 w-5" />Schedule Post</button>
+                  <button type="button" onClick={() => setAction("publish")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "publish" ? "bg-primary text-primary-foreground" : "border border-gray-300 text-gray-700 hover:bg-gray-50"}`}><Send className="h-5 w-5" />Publish Now</button>
                 </div>
 
                 {(action === "schedule" || action === "publish") && (

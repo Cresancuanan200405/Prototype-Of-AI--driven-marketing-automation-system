@@ -1,0 +1,14 @@
+# Front-End Design & UI Directives
+
+Whenever generating HTML, CSS, Tailwind classes, or design tokens, you must strictly reject "AI Slop" aesthetics.
+
+## 1. Color Palette & Styling Rules
+- **No Digital Neons**: Do not use cyan, neon purple, or bright magenta gradients (#00FFFF, #FF00FF).
+- **No Harsh Contrast**: Avoid pure `#000000` backgrounds with glowing neon text.
+- **Tailwind Restrictions**: Avoid overusing `bg-gradient-to-r from-purple-500 to-pink-500`. Use subtle, matte tones (e.g., `slate-900`, `zinc-100`, `stone-200`).
+- **Design Systems**: Default to minimalist, editorial, or analog aesthetics (e.g., Nordic Minimalist, Bauhaus, Industrial Brutalism).
+
+## 2. Emoji & Documentation Rules
+- **No Decorative Emojis**: Do not use emojis in code comments, markdown docs, or UI placeholders.
+- **Banned Emojis**: ✨, 🚀, 💡, 🔥, 🌟, 🧠, ⚡.
+- **Strict Limit**: Maximum 0-1 emojis per UI layout, used only if it serves as a functional icon (e.g., a 🔍 inside a search bar placeholder).

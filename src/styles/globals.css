@@ -1,0 +1,61 @@
+@import './theme.css';
+
+/* Semantic utility classes mapped to CSS theme tokens.
+	These allow existing components to use tokenized classnames (bg-primary, text-foreground, etc.)
+	and avoid raw Tailwind color usage across pages. */
+
+/* Backgrounds */
+.bg-background { background-color: var(--color-background); }
+.bg-card { background-color: var(--color-card); }
+.bg-popover { background-color: var(--color-popover); }
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-accent { background-color: var(--color-accent); }
+.bg-input { background-color: var(--color-input-background); }
+
+/* Text */
+.text-foreground { color: var(--color-foreground); }
+.text-card-foreground { color: var(--color-card-foreground); }
+.text-popover-foreground { color: var(--color-popover-foreground); }
+.text-primary-foreground { color: var(--color-primary-foreground); }
+.text-secondary-foreground { color: var(--color-secondary-foreground); }
+.text-accent-foreground { color: var(--color-accent-foreground); }
+.text-muted-foreground { color: var(--color-muted-foreground); }
+
+/* Borders, rings, and inputs */
+.border-border { border-color: var(--color-border); }
+.outline-ring { outline-color: var(--color-ring); }
+.ring-ring { box-shadow: 0 0 0 4px var(--color-ring); }
+.border-input { border-color: var(--color-input); }
+
+/* Utility helpers */
+.shadow-card { box-shadow: 0 1px 4px rgba(11,27,58,0.06); }
+.shadow-elevated { box-shadow: 0 6px 20px rgba(11,27,58,0.08); }
+
+/* Accessibility helpers */
+.focus-visible-ring:focus-visible { box-shadow: 0 0 0 4px var(--color-ring); }
+
+/* Icon utilities: standardize SVG icons to inherit color and sizes to avoid random colorful icons */
+.icon { display: inline-flex; align-items: center; justify-content: center; color: inherit; }
+.icon svg { stroke: currentColor; fill: none; width: 1.25rem; height: 1.25rem; }
+.icon-sm svg { width: 1rem; height: 1rem; }
+.icon-md svg { width: 1.25rem; height: 1.25rem; }
+.icon-lg svg { width: 1.5rem; height: 1.5rem; }
+.icon-muted { color: var(--color-muted-foreground); }
+.icon-primary { color: var(--color-primary); }
+.icon-on-primary { color: var(--color-primary-foreground); }
+
+/* Chart color utilities mapped to theme chart tokens */
+.bg-chart-1 { background-color: var(--color-chart-1); }
+.bg-chart-2 { background-color: var(--color-chart-2); }
+.bg-chart-3 { background-color: var(--color-chart-3); }
+.bg-chart-4 { background-color: var(--color-chart-4); }
+.bg-chart-5 { background-color: var(--color-chart-5); }
+
+.text-chart-1 { color: var(--color-chart-1); }
+.text-chart-2 { color: var(--color-chart-2); }
+.text-chart-3 { color: var(--color-chart-3); }
+.text-chart-4 { color: var(--color-chart-4); }
+.text-chart-5 { color: var(--color-chart-5); }
+
+/* Keep globals minimal — prefer tokenized classes in components. */

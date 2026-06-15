@@ -1,4 +1,5 @@
-import { AlertCircle, Sparkles, Clock, TrendingUp, CheckCircle } from "lucide-react";
+import { AlertCircle, Lightbulb, Clock, TrendingUp, CheckCircle } from "lucide-react";
+import { Link } from "react-router";
 
 const missedOpportunities = [
   {
@@ -90,9 +91,12 @@ export function MissedPostRecovery() {
               Don't worry! AI has analyzed these missed opportunities and generated recovery strategies
               to help you regain potential engagement.
             </p>
-            <button className="px-6 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors">
+            <a
+              href="#recovery-strategies"
+              className="inline-flex px-6 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors"
+            >
               View All Recovery Plans
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -140,9 +144,12 @@ export function MissedPostRecovery() {
                     </div>
                   </div>
                 </div>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                <Link
+                  to="/app/publishing"
+                  className="inline-flex px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-colors"
+                >
                   Recover
-                </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -150,9 +157,9 @@ export function MissedPostRecovery() {
       </div>
 
       {/* AI Recovery Strategies */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div id="recovery-strategies" className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center gap-2 mb-6">
-          <Sparkles className="w-6 h-6 text-purple-600" />
+          <Lightbulb className="icon icon-md icon-muted" />
           <h2 className="text-xl font-semibold text-gray-900">AI-Generated Recovery Strategies</h2>
         </div>
 
@@ -160,14 +167,14 @@ export function MissedPostRecovery() {
           {recoveryStrategies.map((strategy, index) => (
             <div
               key={index}
-              className="p-6 rounded-xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-blue-50"
+              className="p-6 rounded-xl border-2 border-border bg-card"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="font-semibold text-gray-900">{strategy.opportunity}</h3>
                     {strategy.aiGenerated && (
-                      <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
+                      <span className="px-2 py-1 bg-accent text-accent-foreground rounded-full text-xs font-medium">
                         AI Generated
                       </span>
                     )}
@@ -186,12 +193,18 @@ export function MissedPostRecovery() {
                 </div>
               </div>
               <div className="flex gap-3">
-                <button className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
+                <Link
+                  to="/app/publishing"
+                  className="inline-flex px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity"
+                >
                   Schedule Recovery Post
-                </button>
-                <button className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-white transition-colors">
+                </Link>
+                <Link
+                  to="/app/publishing"
+                  className="inline-flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-white transition-colors"
+                >
                   Customize Strategy
-                </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -199,7 +212,7 @@ export function MissedPostRecovery() {
       </div>
 
       {/* Best Practices */}
-      <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200 p-6">
+      <div className="bg-card rounded-xl border border-green-200 p-6">
         <div className="flex items-start gap-4">
           <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
             <CheckCircle className="w-6 h-6 text-green-600" />

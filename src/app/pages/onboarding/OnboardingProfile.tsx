@@ -1,4 +1,5 @@
-import { Sparkles, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
+import BrandMark from "../../components/layout/BrandMark";
 
 export function OnboardingProfile() {
   return (
@@ -7,8 +8,8 @@ export function OnboardingProfile() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-7 h-7 text-white" />
+              <div className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center">
+              <BrandMark className="icon icon-lg icon-on-primary" />
             </div>
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-3">Tell us about your business</h1>
@@ -16,9 +17,9 @@ export function OnboardingProfile() {
 
           {/* Progress */}
           <div className="flex items-center justify-center gap-2 mt-8">
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
+            <div className="w-32 h-2 bg-secondary rounded-full"></div>
+            <div className="w-32 h-2 bg-secondary rounded-full"></div>
+            <div className="w-32 h-2 bg-secondary rounded-full"></div>
             <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
             <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
           </div>
@@ -89,7 +90,7 @@ export function OnboardingProfile() {
           </button>
           <button
             onClick={() => (window.location.href = "/onboarding/brand")}
-            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90"
+            className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90"
           >
             Continue
           </button>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Sparkles, Check, Zap, Building2, Rocket } from "lucide-react";
+import { Check, Zap, Building2, Rocket } from "lucide-react";
+import BrandMark from "../../components/layout/BrandMark";
 
 const plans = [
   {
@@ -10,7 +11,7 @@ const plans = [
     tagline: "Perfect for solopreneurs & small businesses",
     monthlyPrice: 29,
     annualPrice: 23,
-    color: "from-blue-500 to-blue-600",
+    color: "secondary",
     highlight: false,
     features: [
       "3 social media accounts",
@@ -28,7 +29,7 @@ const plans = [
     tagline: "Best for growing teams & agencies",
     monthlyPrice: 79,
     annualPrice: 63,
-    color: "from-blue-500 to-purple-600",
+    color: "secondary",
     highlight: true,
     features: [
       "15 social media accounts",
@@ -48,7 +49,7 @@ const plans = [
     tagline: "For large brands & enterprises",
     monthlyPrice: 199,
     annualPrice: 159,
-    color: "from-purple-600 to-purple-700",
+    color: "secondary",
     highlight: false,
     features: [
       "Unlimited social media accounts",
@@ -71,11 +72,11 @@ export function Subscription() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center gap-2">
-        <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-          <Sparkles className="w-5 h-5 text-white" />
+      <div className="bg-card border-b border-border px-6 py-4 flex items-center gap-2">
+        <div className="w-9 h-9 bg-secondary rounded-xl flex items-center justify-center">
+          <BrandMark className="icon icon-md icon-on-primary" />
         </div>
-        <span className="text-xl font-bold text-gray-900">AI Marketing</span>
+        <span className="text-xl font-bold text-foreground">AI Marketing</span>
       </div>
 
       <div className="max-w-5xl mx-auto px-6 py-12">
@@ -137,7 +138,7 @@ export function Subscription() {
               >
                 {plan.highlight && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold text-white bg-secondary">
                       Most Popular
                     </span>
                   </div>
@@ -145,17 +146,15 @@ export function Subscription() {
 
                 {/* Selection indicator */}
                 {isSelected && (
-                  <div className="absolute top-4 right-4 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <div className="absolute top-4 right-4 w-6 h-6 bg-secondary rounded-full flex items-center justify-center">
                     <Check className="w-3.5 h-3.5 text-white" />
                   </div>
                 )}
 
                 <div className="p-7">
                   {/* Icon + name */}
-                  <div
-                    className={`w-11 h-11 rounded-xl bg-gradient-to-br ${plan.color} flex items-center justify-center mb-4`}
-                  >
-                    <Icon className="w-5 h-5 text-white" />
+                  <div className="w-11 h-11 rounded-xl bg-secondary flex items-center justify-center mb-4">
+                    <Icon className="icon icon-md icon-on-primary" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">
                     {plan.name}
@@ -184,9 +183,7 @@ export function Subscription() {
                   <ul className="space-y-3">
                     {plan.features.map((feat) => (
                       <li key={feat} className="flex items-start gap-2.5">
-                        <div
-                          className={`w-5 h-5 rounded-full bg-gradient-to-br ${plan.color} flex items-center justify-center flex-shrink-0 mt-0.5`}
-                        >
+                        <div className="w-5 h-5 rounded-full bg-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
                           <Check className="w-3 h-3 text-white" />
                         </div>
                         <span className="text-sm text-gray-600">{feat}</span>
@@ -203,7 +200,7 @@ export function Subscription() {
         <div className="mt-10 flex flex-col items-center gap-4">
           <button
             onClick={() => navigate("/onboarding/industry")}
-            className="px-10 py-3.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold text-base hover:opacity-90 transition-opacity shadow-lg shadow-blue-200"
+            className="px-10 py-3.5 bg-primary text-primary-foreground rounded-xl font-semibold text-base hover:opacity-90 transition-opacity shadow-lg"
           >
             Get started with{" "}
             {plans.find((p) => p.id === selected)?.name} —{" "}

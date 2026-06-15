@@ -1,4 +1,4 @@
-import { Gift, Sparkles, Calendar, TrendingUp } from "lucide-react";
+import { Gift, Lightbulb, Calendar, TrendingUp } from "lucide-react";
 
 const upcomingHolidays = [
   {
@@ -69,32 +69,22 @@ export function HolidayMarketing() {
         {upcomingHolidays.map((holiday, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"
+            className="bg-card rounded-xl shadow-sm border-border overflow-hidden"
           >
-            <div className={`h-2 bg-gradient-to-r ${holiday.color}`}></div>
+            <div className="h-2 bg-accent" />
             <div className="p-6">
               <div className="flex items-center gap-2 mb-3">
-                <Gift className="w-5 h-5 text-gray-600" />
-                <h3 className="font-semibold text-gray-900">{holiday.name}</h3>
+                <Gift className="icon icon-md icon-muted" />
+                <h3 className="font-semibold text-foreground">{holiday.name}</h3>
               </div>
-              <p className="text-sm text-gray-600 mb-2">{holiday.date}</p>
+              <p className="text-sm text-muted-foreground mb-2">{holiday.date}</p>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-2xl font-bold text-gray-900">{holiday.daysUntil}</span>
-                <span className="text-sm text-gray-600">days until</span>
+                <span className="text-2xl font-bold text-foreground">{holiday.daysUntil}</span>
+                <span className="text-sm text-muted-foreground">days until</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-gray-600">Expected engagement</span>
-                <span
-                  className={`text-xs font-medium px-2 py-1 rounded-full ${
-                    holiday.engagement === "Very High"
-                      ? "bg-green-100 text-green-700"
-                      : holiday.engagement === "High"
-                      ? "bg-blue-100 text-blue-700"
-                      : "bg-yellow-100 text-yellow-700"
-                  }`}
-                >
-                  {holiday.engagement}
-                </span>
+                <span className="text-xs text-muted-foreground">Expected engagement</span>
+                <span className="text-xs font-medium px-2 py-1 rounded-full bg-accent text-accent-foreground">{holiday.engagement}</span>
               </div>
             </div>
           </div>
@@ -105,10 +95,10 @@ export function HolidayMarketing() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-purple-600" />
+                  <Lightbulb className="icon icon-md icon-muted" />
             <h2 className="text-xl font-semibold text-gray-900">AI-Generated Campaign Ideas</h2>
           </div>
-          <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
+          <button className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity">
             Generate More Ideas
           </button>
         </div>
@@ -121,24 +111,24 @@ export function HolidayMarketing() {
             >
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <span className="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium mb-2">
+                  <span className="inline-block px-3 py-1 bg-accent text-accent-foreground rounded-full text-xs font-medium mb-2">
                     {campaign.holiday}
                   </span>
                   <h3 className="text-lg font-semibold text-gray-900">{campaign.title}</h3>
                 </div>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                <button className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-colors">
                   Use This Campaign
                 </button>
               </div>
               <p className="text-gray-600 mb-4">{campaign.description}</p>
               <div className="flex items-center gap-6">
                 <div className="flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-green-600" />
-                  <span className="text-sm text-gray-700">{campaign.prediction}</span>
+                  <TrendingUp className="icon icon-sm icon-muted" />
+                  <span className="text-sm text-muted-foreground">{campaign.prediction}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-blue-600" />
-                  <span className="text-sm text-gray-700">{campaign.templates} ready-to-use templates</span>
+                  <Calendar className="icon icon-sm icon-muted" />
+                  <span className="text-sm text-muted-foreground">{campaign.templates} ready-to-use templates</span>
                 </div>
               </div>
             </div>
@@ -168,23 +158,23 @@ export function HolidayMarketing() {
       </div>
 
       {/* Promo Recommendations */}
-      <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl border border-purple-200 p-8">
+      <div className="bg-card rounded-xl border-border p-8">
         <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-            <Sparkles className="w-6 h-6 text-white" />
+            <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
+            <Lightbulb className="icon icon-md icon-on-primary" />
           </div>
           <div className="flex-1">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">AI Promo Recommendations</h3>
-            <p className="text-gray-700 mb-4">
+            <h3 className="text-xl font-semibold text-foreground mb-2">AI Promo Recommendations</h3>
+            <p className="text-muted-foreground mb-4">
               Based on your business category and past performance, we recommend a 15-20% discount
               for Mother's Day with a "gift with purchase" incentive. This strategy has shown 40%
               higher conversion rates in similar businesses.
             </p>
             <div className="flex items-center gap-3">
-              <button className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
+              <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity">
                 Create Campaign
               </button>
-              <button className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-white transition-colors">
+              <button className="px-6 py-2 border border-border text-muted-foreground rounded-lg font-medium hover:bg-card transition-colors">
                 View Details
               </button>
             </div>

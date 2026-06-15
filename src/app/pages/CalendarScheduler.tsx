@@ -54,15 +54,15 @@ export function CalendarScheduler() {
   const getPostColor = (type: string) => {
     switch (type) {
       case "scheduled":
-        return "bg-blue-500";
+        return "bg-chart-1";
       case "published":
-        return "bg-green-500";
+        return "bg-chart-2";
       case "missed":
-        return "bg-red-500";
+        return "bg-chart-3";
       case "holiday":
-        return "bg-yellow-500";
+        return "bg-chart-4";
       default:
-        return "bg-gray-500";
+        return "bg-chart-5";
     }
   };
 
@@ -74,26 +74,26 @@ export function CalendarScheduler() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Content Calendar</h1>
           <p className="text-gray-600">Plan and schedule your social media posts</p>
         </div>
-        <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
-          <Plus className="w-5 h-5" />
+        <button className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
+          <Plus className="icon icon-sm icon-on-primary" />
           Schedule Post
         </button>
       </div>
 
       {/* Calendar */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="bg-card rounded-xl shadow-sm border-border p-6">
         {/* Calendar Header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-900">{currentMonth}</h2>
-          <div className="flex items-center gap-2">
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <ChevronLeft className="w-5 h-5 text-gray-600" />
+            <div className="flex items-center gap-2">
+            <button className="p-2 hover:bg-accent rounded-lg transition-colors">
+              <ChevronLeft className="icon icon-sm icon-muted" />
             </button>
-            <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+            <button className="px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-accent rounded-lg transition-colors">
               Today
             </button>
-            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <ChevronRight className="w-5 h-5 text-gray-600" />
+            <button className="p-2 hover:bg-accent rounded-lg transition-colors">
+              <ChevronRight className="icon icon-sm icon-muted" />
             </button>
           </div>
         </div>
@@ -113,8 +113,8 @@ export function CalendarScheduler() {
               key={index}
               className={`min-h-24 p-2 rounded-lg border-2 transition-colors ${
                 dayData.month === "current"
-                  ? "bg-white border-gray-200 hover:border-blue-300"
-                  : "bg-gray-50 border-gray-100"
+                  ? "bg-card border-border hover:border-border"
+                  : "bg-accent border-border"
               }`}
             >
               <div
@@ -141,20 +141,20 @@ export function CalendarScheduler() {
         {/* Legend */}
         <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-gray-200">
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-blue-500"></div>
-            <span className="text-sm text-gray-600">Scheduled</span>
+            <div className="w-4 h-4 rounded bg-chart-1"></div>
+            <span className="text-sm text-muted-foreground">Scheduled</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-green-500"></div>
-            <span className="text-sm text-gray-600">Published</span>
+            <div className="w-4 h-4 rounded bg-chart-2"></div>
+            <span className="text-sm text-muted-foreground">Published</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-red-500"></div>
-            <span className="text-sm text-gray-600">Missed</span>
+            <div className="w-4 h-4 rounded bg-chart-3"></div>
+            <span className="text-sm text-muted-foreground">Missed</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-yellow-500"></div>
-            <span className="text-sm text-gray-600">Holiday Campaign</span>
+            <div className="w-4 h-4 rounded bg-chart-4"></div>
+            <span className="text-sm text-muted-foreground">Holiday Campaign</span>
           </div>
         </div>
       </div>

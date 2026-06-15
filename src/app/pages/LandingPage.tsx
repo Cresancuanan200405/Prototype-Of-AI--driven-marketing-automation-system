@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import {
-  Sparkles,
   Check,
   Zap,
   Rocket,
@@ -18,6 +17,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import BrandMark from "../components/layout/BrandMark";
 
 const features = [
   { icon: Brain, title: "AI Content Generation", description: "Generate captions, posts, and campaigns in seconds tailored to your brand voice." },
@@ -121,8 +121,8 @@ export function LandingPage() {
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 bg-secondary rounded-xl flex items-center justify-center">
+              <BrandMark className="icon icon-md icon-on-primary" />
             </div>
             <span className="text-xl font-bold text-gray-900">AI Marketing</span>
           </div>
@@ -148,7 +148,7 @@ export function LandingPage() {
             </button>
             <button
               onClick={() => navigate("/register")}
-              className="text-sm font-semibold px-5 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+              className="text-sm font-semibold px-5 py-2.5 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
             >
               Get started free
             </button>
@@ -183,7 +183,7 @@ export function LandingPage() {
               </button>
               <button
                 onClick={() => navigate("/register")}
-                className="w-full text-sm font-semibold py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg"
+                className="w-full text-sm font-semibold py-2.5 bg-primary text-primary-foreground rounded-lg"
               >
                 Get started free
               </button>
@@ -193,10 +193,10 @@ export function LandingPage() {
       </header>
 
       {/* ── Hero ── */}
-      <section className="bg-gradient-to-br from-blue-500 to-purple-600 text-white py-24 px-6">
+      <section className="bg-primary text-primary-foreground py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5 mb-6">
-            <Sparkles className="w-4 h-4" />
+            <Star className="w-4 h-4 text-primary-foreground" />
             <span className="text-sm font-medium">Powered by GPT-4</span>
           </div>
           <h1 className="text-5xl font-bold mb-6 leading-tight">
@@ -204,14 +204,14 @@ export function LandingPage() {
             <br />
             for Filipino SMEs
           </h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed">
             Automate your social media marketing with AI. Create engaging content,
             schedule posts, and grow your business effortlessly.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => navigate("/register")}
-              className="flex items-center gap-2 px-8 py-3.5 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-colors shadow-lg"
+              className="flex items-center gap-2 px-8 py-3.5 bg-white text-secondary font-semibold rounded-xl hover:bg-blue-50 transition-colors shadow-lg"
             >
               Start free 14-day trial
               <ArrowRight className="w-4 h-4" />
@@ -232,9 +232,9 @@ export function LandingPage() {
             {["AI-generated content and captions", "Smart scheduling and analytics", "Multi-platform publishing"].map((f) => (
               <div key={f} className="flex items-center gap-2">
                 <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3.5 h-3.5" />
+                  <Check className="w-3.5 h-3.5 text-primary-foreground" />
                 </div>
-                <span className="text-sm text-blue-100">{f}</span>
+                <span className="text-sm text-primary-foreground/80">{f}</span>
               </div>
             ))}
           </div>
@@ -253,8 +253,8 @@ export function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map(({ icon: Icon, title, description }) => (
               <div key={title} className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                <div className="w-11 h-11 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-white" />
+                <div className="w-11 h-11 bg-secondary rounded-xl flex items-center justify-center mb-4">
+                  <Icon className="icon icon-md icon-on-primary" />
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{description}</p>
@@ -306,17 +306,17 @@ export function LandingPage() {
                       : "border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300"
                   }`}
                 >
-                  {plan.highlight && (
+                    {plan.highlight && (
                     <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                      <span className="px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600">
+                      <span className="px-3 py-1 rounded-full text-xs font-bold text-white bg-secondary">
                         Most Popular
                       </span>
                     </div>
                   )}
 
                   <div className="p-7">
-                    <div className="w-11 h-11 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
-                      <Icon className="w-5 h-5 text-white" />
+                    <div className="w-11 h-11 bg-secondary rounded-xl flex items-center justify-center mb-4">
+                      <Icon className="icon icon-md icon-on-primary" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-1">{plan.name}</h3>
                     <p className="text-sm text-gray-500 mb-5">{plan.tagline}</p>
@@ -340,7 +340,7 @@ export function LandingPage() {
                       onClick={() => navigate("/register")}
                       className={`w-full py-3 rounded-xl text-sm font-semibold mb-6 transition-all ${
                         plan.highlight
-                          ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90 shadow-md"
+                          ? "bg-primary text-primary-foreground hover:opacity-90 shadow-md"
                           : "border-2 border-gray-200 text-gray-700 hover:border-blue-300 hover:text-blue-600"
                       }`}
                     >
@@ -375,14 +375,14 @@ export function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map(({ name, role, initials, quote, rating }) => (
               <div key={name} className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                <div className="flex gap-0.5 mb-4">
+                    <div className="flex gap-0.5 mb-4">
                   {Array.from({ length: rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                    <Star key={i} className="w-4 h-4 text-chart-4" />
                   ))}
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed mb-5">"{quote}"</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-bold">
+                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white text-sm font-bold">
                     {initials}
                   </div>
                   <div>
@@ -397,11 +397,11 @@ export function LandingPage() {
       </section>
 
       {/* ── CTA Banner ── */}
-      <section className="py-20 px-6 bg-gradient-to-br from-blue-500 to-purple-600">
+      <section className="py-20 px-6 bg-primary">
         <div className="max-w-3xl mx-auto text-center text-white">
-          <Sparkles className="w-10 h-10 mx-auto mb-5 opacity-80" />
+          <BrandMark className="icon icon-lg icon-on-primary mx-auto mb-5 opacity-80" />
           <h2 className="text-3xl font-bold mb-4">Ready to grow your negosyo?</h2>
-          <p className="text-blue-100 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+          <p className="text-primary-foreground/80 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
             Join thousands of Filipino SMEs using AI Marketing to publish smarter and grow faster.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -427,8 +427,8 @@ export function LandingPage() {
       <footer className="bg-white border-t border-gray-200 px-6 py-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
+            <div className="w-7 h-7 bg-secondary rounded-lg flex items-center justify-center">
+              <BrandMark className="w-4 h-4 text-white" />
             </div>
             <span className="font-bold text-gray-900">AI Marketing</span>
           </div>

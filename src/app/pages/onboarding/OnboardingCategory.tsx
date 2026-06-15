@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import BrandMark from "../../components/layout/BrandMark";
 import { useState } from "react";
 
 const categories = {
@@ -34,8 +34,8 @@ export function OnboardingCategory() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-7 h-7 text-white" />
+            <div className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center">
+              <BrandMark className="icon icon-lg icon-on-primary" />
             </div>
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-3">Select your business category</h1>
@@ -43,8 +43,8 @@ export function OnboardingCategory() {
 
           {/* Progress */}
           <div className="flex items-center justify-center gap-2 mt-8">
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
+            <div className="w-32 h-2 bg-secondary rounded-full"></div>
+            <div className="w-32 h-2 bg-secondary rounded-full"></div>
             <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
             <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
             <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
@@ -58,9 +58,9 @@ export function OnboardingCategory() {
             <button
               key={category}
               onClick={() => setSelected(category)}
-              className={`p-6 rounded-xl border-2 transition-all hover:scale-105 ${
+                className={`p-6 rounded-xl border-2 transition-all hover:scale-105 ${
                 selected === category
-                  ? "border-blue-500 bg-blue-50 shadow-lg"
+                  ? "border-secondary bg-secondary/10 shadow-lg"
                   : "border-gray-200 bg-white hover:border-gray-300"
               }`}
             >
@@ -82,7 +82,7 @@ export function OnboardingCategory() {
             disabled={!selected}
             className={`px-8 py-3 rounded-lg font-medium transition-all ${
               selected
-                ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90"
+                ? "bg-primary text-primary-foreground hover:opacity-90"
                 : "bg-gray-200 text-gray-400 cursor-not-allowed"
             }`}
           >
