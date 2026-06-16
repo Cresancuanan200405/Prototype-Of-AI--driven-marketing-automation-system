@@ -29,6 +29,30 @@ const allContent = [
   { title: "Customer Spotlight", type: "Draft", platform: "Facebook", date: "May 3, 2026" },
 ];
 
+function getStatusClasses(type: string) {
+  switch (type) {
+    case "Published":
+      return "bg-primary/10 text-primary";
+    case "Draft":
+      return "bg-secondary/10 text-secondary";
+    case "Template":
+      return "bg-muted text-muted-foreground";
+    default:
+      return "bg-muted text-muted-foreground";
+  }
+}
+
+function getStatusIcon(type: string) {
+  switch (type) {
+    case "Published":
+      return <Star className="w-4 h-4" />;
+    case "Draft":
+      return <Clock className="w-4 h-4" />;
+    default:
+      return <Folder className="w-4 h-4" />;
+  }
+}
+
 export function ContentStudio() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("All");
@@ -50,10 +74,10 @@ export function ContentStudio() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-foreground mb-2">
             Content Studio
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Manage all your content assets in one place
           </p>
         </div>
@@ -71,7 +95,7 @@ export function ContentStudio() {
         {contentItems.map((item, index) => {
           const Icon = item.icon;
           const CardContent = (
-            <div className="bg-card rounded-xl shadow-sm border-border p-6 hover:border-primary/30 transition-colors h-full">
+            <div className="bg-card rounded-xl shadow-sm border border-border p-6 hover:border-primary/30 transition-colors h-full">
               <div className="w-10 h-10 rounded-lg bg-secondary text-secondary-foreground flex items-center justify-center mb-3">
                 <Icon className="w-5 h-5" />
               </div>
@@ -101,7 +125,7 @@ export function ContentStudio() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by title or platform..."
-            className="w-full rounded-xl border border-border bg-card pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="w-full rounded-xl border border-border bg-card pl-10 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
           />
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -122,7 +146,7 @@ export function ContentStudio() {
       </div>
 
       {/* Content Table */}
-      <div className="bg-card rounded-xl shadow-sm border-border">
+      <div className="bg-card rounded-xl shadow-sm border border-border">
         <div className="p-6 border-b border-border">
           <h3 className="text-lg font-semibold text-foreground">
             {searchQuery
@@ -173,21 +197,9 @@ export function ContentStudio() {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div
-                          className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                            item.type === "Published"
-                              ? "bg-emerald-100 text-emerald-700"
-                              : item.type === "Draft"
-                              ? "bg-amber-100 text-amber-700"
-                              : "bg-blue-100 text-blue-700"
-                          }`}
+                          className={`w-8 h-8 rounded-lg flex items-center justify-center ${getStatusClasses(item.type)}`}
                         >
-                          {item.type === "Published" ? (
-                            <Star className="w-4 h-4" />
-                          ) : item.type === "Draft" ? (
-                            <Clock className="w-4 h-4" />
-                          ) : (
-                            <Folder className="w-4 h-4" />
-                          )}
+                          {getStatusIcon(item.type)}
                         </div>
                         <span className="font-medium text-foreground text-sm">
                           {item.title}
@@ -196,13 +208,7 @@ export function ContentStudio() {
                     </td>
                     <td className="px-6 py-4">
                       <span
-                        className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${
-                          item.type === "Published"
-                            ? "bg-emerald-100 text-emerald-700"
-                            : item.type === "Draft"
-                            ? "bg-amber-100 text-amber-700"
-                            : "bg-blue-100 text-blue-700"
-                        }`}
+                        className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${getStatusClasses(item.type)}`}
                       >
                         {item.type}
                       </span>
@@ -222,7 +228,7 @@ export function ContentStudio() {
                           <Send className="w-4 h-4" />
                         </button>
                         <button
-                          className="p-2 rounded-lg hover:bg-accent text-muted-foreground hover:text-red-600 transition-colors"
+                          className="p-2 rounded-lg hover:bg-accent text-muted-foreground hover:text-destructive transition-colors"
                           aria-label="Delete content"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -243,7 +249,7 @@ export function ContentStudio() {
           to="/app/ai-generator"
           className="bg-card rounded-xl border border-border p-6 hover:border-primary/30 transition-colors flex items-center gap-4"
         >
-          <div className="w-12 h-12 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center flex-shrink-0">
             <Sparkles className="w-6 h-6" />
           </div>
           <div>

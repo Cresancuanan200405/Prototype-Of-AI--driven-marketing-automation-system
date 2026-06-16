@@ -21,6 +21,7 @@
 .text-secondary-foreground { color: var(--color-secondary-foreground); }
 .text-accent-foreground { color: var(--color-accent-foreground); }
 .text-muted-foreground { color: var(--color-muted-foreground); }
+.text-destructive { color: var(--color-destructive); }
 
 /* Borders, rings, and inputs */
 .border-border { border-color: var(--color-border); }
@@ -44,6 +45,14 @@
 .icon-muted { color: var(--color-muted-foreground); }
 .icon-primary { color: var(--color-primary); }
 .icon-on-primary { color: var(--color-primary-foreground); }
+
+/* Alert / Urgency — Red accent (destructive) */
+.bg-alert { background-color: var(--color-destructive); }
+.bg-alert-subtle { background-color: color-mix(in srgb, var(--color-destructive) 5%, transparent); }
+.border-alert { border-color: color-mix(in srgb, var(--color-destructive) 30%, transparent); }
+.border-alert-strong { border-color: color-mix(in srgb, var(--color-destructive) 50%, transparent); }
+.bg-alert-dim { background-color: color-mix(in srgb, var(--color-destructive) 10%, transparent); }
+.text-alert { color: var(--color-destructive); }
 
 /* Chart color utilities mapped to theme chart tokens */
 .bg-chart-1 { background-color: var(--color-chart-1); }

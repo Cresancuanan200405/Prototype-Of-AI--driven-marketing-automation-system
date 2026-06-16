@@ -1,20 +1,15 @@
 import {
   TrendingUp,
   Users,
-  FileText,
   Calendar,
-  AlertCircle,
-  Lightbulb,
   ArrowUp,
-  ArrowDown,
   AlertTriangle,
-  Sparkles,
+  Lightbulb,
+  Clock,
 } from "lucide-react";
 import {
   LineChart,
   Line,
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -23,55 +18,38 @@ import {
 } from "recharts";
 import { Link } from "react-router";
 
+/* ------------------------------------------------------------------ */
+/*  Data                                                              */
+/* ------------------------------------------------------------------ */
+
 const stats = [
-  {
-    name: "Total Posts",
-    value: "247",
-    change: "+12%",
-    trend: "up",
-    icon: FileText,
-    link: "/app/content-studio",
-  },
-  {
-    name: "Scheduled Posts",
-    value: "18",
-    change: "+5",
-    trend: "up",
-    icon: Calendar,
-    link: "/app/calendar",
-  },
   {
     name: "Engagement Rate",
     value: "8.5%",
     change: "+2.3%",
-    trend: "up",
+    trend: "up" as const,
     icon: TrendingUp,
-    link: "/app/analytics",
   },
   {
     name: "Total Reach",
     value: "45.2K",
     change: "+18%",
-    trend: "up",
+    trend: "up" as const,
     icon: Users,
-    link: "/app/analytics",
+  },
+  {
+    name: "Scheduled Posts",
+    value: "18",
+    change: "+5",
+    trend: "up" as const,
+    icon: Calendar,
   },
   {
     name: "Followers Growth",
     value: "+1,234",
     change: "+8%",
-    trend: "up",
+    trend: "up" as const,
     icon: Users,
-    link: "/app/analytics",
-  },
-  {
-    name: "Missed Promotions",
-    value: "3",
-    change: "-2",
-    trend: "down",
-    icon: AlertCircle,
-    link: "/app/missed-posts",
-    highlight: true,
   },
 ];
 
@@ -85,281 +63,179 @@ const engagementData = [
   { name: "Sun", engagement: 110, reach: 200 },
 ];
 
-const postsData = [
-  { name: "Week 1", posts: 12 },
-  { name: "Week 2", posts: 15 },
-  { name: "Week 3", posts: 18 },
-  { name: "Week 4", posts: 20 },
-];
-
 const upcomingPosts = [
   {
     title: "Summer Sale Announcement",
     platform: "Facebook",
     time: "Today, 3:00 PM",
-    status: "scheduled",
   },
   {
     title: "New Product Showcase",
     platform: "Instagram",
     time: "Tomorrow, 10:00 AM",
-    status: "scheduled",
   },
   {
     title: "Customer Testimonial",
     platform: "Facebook",
     time: "May 12, 2:00 PM",
-    status: "scheduled",
   },
 ];
 
-const aiRecommendations = [
-  "Post engagement is highest on weekends. Consider scheduling more content for Saturdays.",
-  "Your audience is most active between 6-8 PM. Optimize posting times.",
-  "Product showcase posts get 40% more engagement. Create more visual content.",
-];
+/* ------------------------------------------------------------------ */
+/*  Component                                                         */
+/* ------------------------------------------------------------------ */
 
 export function Dashboard() {
   return (
     <div className="space-y-6">
-      {/* Missed Opportunities Alert */}
+      {/* Missed Opportunities Alert — Red Urgency */}
       <Link
         to="/app/missed-posts"
-        className="block rounded-xl border-2 border-amber-200 bg-amber-50 p-4 hover:bg-amber-100/80 transition-colors group"
+        className="block rounded-xl border-2 border-red-300 bg-red-50 p-4 hover:bg-red-100 transition-colors duration-200 group"
       >
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-100 flex-shrink-0">
-            <AlertTriangle className="h-5 w-5 text-amber-700" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 flex-shrink-0">
+            <AlertTriangle className="h-5 w-5 text-red-600" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="font-semibold text-amber-900 text-sm">
+            <p className="font-semibold text-red-800 text-sm">
               You have 3 missed promotional opportunities this week
             </p>
-            <p className="text-sm text-amber-700 truncate">
+            <p className="text-sm text-red-600 truncate">
               Recover ~2.5K potential reach with AI-suggested re-scheduling
             </p>
           </div>
-          <div className="hidden sm:flex items-center gap-1 text-sm font-medium text-amber-800 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="hidden sm:flex items-center gap-1 text-sm font-medium text-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             <span>View Recovery Plans</span>
             <span>→</span>
           </div>
         </div>
       </Link>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Hero Stats — 4 key metrics */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat) => {
           const Icon = stat.icon;
-
-          const CardContent = (
+          return (
             <div
-              className={`bg-card text-card-foreground rounded-lg border p-6 transition-all ${
-                stat.highlight
-                  ? "border-amber-200 hover:border-amber-300 hover:shadow-md"
-                  : "border-border hover:border-primary/30 hover:shadow-sm"
-              }`}
+              key={stat.name}
+              className="bg-card rounded-xl border border-border p-5 hover:shadow-[0_6px_20px_rgba(11,27,58,0.08)] hover:border-primary/20 transition-all duration-200"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div
-                  className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                    stat.highlight
-                      ? "bg-amber-100 text-amber-700"
-                      : "bg-secondary text-secondary-foreground"
-                  }`}
-                >
-                  <Icon className="w-6 h-6" />
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
+                  <Icon className="w-5 h-5" />
                 </div>
-
-                <div
-                  className={`flex items-center gap-1 text-sm font-medium ${
-                    stat.trend === "up" ? "text-emerald-700" : "text-destructive"
-                  }`}
-                >
-                  {stat.trend === "up" ? (
-                    <ArrowUp className="w-4 h-4" />
-                  ) : (
-                    <ArrowDown className="w-4 h-4" />
-                  )}
+                <div className="flex items-center gap-1 text-xs font-semibold text-primary">
+                  <ArrowUp className="w-3.5 h-3.5" />
                   {stat.change}
                 </div>
               </div>
-
-              <h3 className="text-2xl font-bold mb-1">{stat.value}</h3>
-              <p className="text-sm text-muted-foreground">{stat.name}</p>
+              <p className="text-2xl font-bold text-foreground tracking-tight">{stat.value}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{stat.name}</p>
             </div>
-          );
-
-          return stat.link ? (
-            <Link key={stat.name} to={stat.link} className="block">
-              {CardContent}
-            </Link>
-          ) : (
-            <div key={stat.name}>{CardContent}</div>
           );
         })}
       </div>
 
-      {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Engagement Chart */}
-        <div className="bg-card text-card-foreground rounded-lg border border-border p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">Engagement & Reach</h3>
-            <Link
-              to="/app/analytics"
-              className="text-sm text-primary hover:underline"
-            >
-              View full analytics →
-            </Link>
+      {/* Engagement & Reach — Full Width Chart */}
+      <div className="bg-card rounded-xl border border-border p-6">
+        <div className="flex items-center justify-between mb-5">
+          <div>
+            <h3 className="text-base font-semibold text-foreground">Engagement & Reach</h3>
+            <p className="text-xs text-muted-foreground mt-0.5">This week's performance overview</p>
           </div>
-          <ResponsiveContainer width="100%" height={250}>
-            <LineChart data={engagementData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.08)" />
-              <XAxis dataKey="name" stroke="rgba(0,0,0,0.55)" />
-              <YAxis stroke="rgba(0,0,0,0.55)" />
-              <Tooltip />
-              <Line
-                name="Engagement"
-                type="monotone"
-                dataKey="engagement"
-                stroke="var(--color-chart-1)"
-                strokeWidth={2}
-              />
-              <Line
-                name="Reach"
-                type="monotone"
-                dataKey="reach"
-                stroke="var(--color-chart-2)"
-                strokeWidth={2}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+          <Link
+            to="/app/analytics"
+            className="text-xs font-medium text-secondary hover:underline"
+          >
+            View analytics →
+          </Link>
         </div>
-
-        {/* Posts Chart */}
-        <div className="bg-card text-card-foreground rounded-lg border border-border p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">Posts Published</h3>
-            <Link
-              to="/app/analytics"
-              className="text-sm text-primary hover:underline"
-            >
-              View full analytics →
-            </Link>
-          </div>
-          <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={postsData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.08)" />
-              <XAxis dataKey="name" stroke="rgba(0,0,0,0.55)" />
-              <YAxis stroke="rgba(0,0,0,0.55)" />
-              <Tooltip />
-              <Bar
-                name="Posts"
-                dataKey="posts"
-                fill="var(--color-chart-1)"
-                radius={[8, 8, 0, 0]}
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={engagementData}>
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
+            <XAxis dataKey="name" stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
+            <YAxis stroke="var(--color-muted-foreground)" tick={{ fontSize: 12 }} />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "var(--color-card)",
+                border: "1px solid var(--color-border)",
+                borderRadius: "0.5rem",
+                fontSize: "0.8rem",
+              }}
+            />
+            <Line
+              name="Engagement"
+              type="monotone"
+              dataKey="engagement"
+              stroke="var(--color-chart-1)"
+              strokeWidth={2.5}
+              dot={{ r: 4, fill: "var(--color-chart-1)" }}
+              activeDot={{ r: 6 }}
+            />
+            <Line
+              name="Reach"
+              type="monotone"
+              dataKey="reach"
+              stroke="var(--color-chart-2)"
+              strokeWidth={2.5}
+              dot={{ r: 4, fill: "var(--color-chart-2)" }}
+              activeDot={{ r: 6 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
 
-      {/* Content Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Upcoming Posts */}
-        <div className="bg-card text-card-foreground rounded-lg border border-border p-6">
+      {/* Bottom Row: Upcoming Posts + Today's Focus */}
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        {/* Upcoming Posts — 3/5 width */}
+        <div className="lg:col-span-3 bg-card rounded-xl border border-border p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">Upcoming Posts</h3>
+            <h3 className="text-base font-semibold text-foreground">Upcoming Posts</h3>
             <Link
               to="/app/calendar"
-              className="text-sm text-primary hover:underline"
+              className="text-xs font-medium text-secondary hover:underline"
             >
-              View all →
+              View calendar →
             </Link>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-0">
             {upcomingPosts.map((post, index) => (
               <div
                 key={index}
-                className="pb-4 border-b border-border/60 last:border-0"
+                className="flex items-center gap-4 py-3 border-b border-border/50 last:border-0"
               >
-                <h4 className="font-medium mb-1">{post.title}</h4>
-                <p className="text-sm text-muted-foreground mb-1">
-                  {post.platform}
-                </p>
-                <p className="text-xs text-muted-foreground/80">{post.time}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Recommendations */}
-        <div className="bg-card text-card-foreground rounded-lg border border-border p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Sparkles className="w-5 h-5 text-amber-500" />
-            <h3 className="text-lg font-semibold">AI Recommendations</h3>
-          </div>
-
-          <div className="space-y-3">
-            {aiRecommendations.map((rec, index) => (
-              <div
-                key={index}
-                className="bg-background rounded-lg p-3 text-sm text-foreground border border-border/60 hover:border-primary/30 transition-colors cursor-pointer"
-              >
-                <div className="flex items-start gap-2">
-                  <Lightbulb className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
-                  <span>{rec}</span>
+                <div className="w-9 h-9 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-4 h-4" />
                 </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-sm text-foreground truncate">{post.title}</p>
+                  <p className="text-xs text-muted-foreground">{post.platform}</p>
+                </div>
+                <span className="text-xs text-muted-foreground whitespace-nowrap">{post.time}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="bg-card text-card-foreground rounded-lg border border-border p-6">
-          <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
-          <div className="space-y-3">
+        {/* Today's Focus — 2/5 width */}
+        <div className="lg:col-span-2 bg-card rounded-xl border border-border p-6 flex flex-col">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-9 h-9 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center flex-shrink-0">
+              <Lightbulb className="w-5 h-5" />
+            </div>
+            <h3 className="text-base font-semibold text-foreground">Today's Focus</h3>
+          </div>
+          <div className="flex-1 flex flex-col justify-between">
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Your audience is most active on <span className="font-semibold text-foreground">Saturdays at 6 PM</span>. Schedule your weekend posts now to maximize engagement.
+            </p>
             <Link
               to="/app/publishing"
-              className="flex items-center gap-3 p-3 rounded-lg bg-background border border-border/60 hover:border-primary/30 transition-colors"
+              className="mt-5 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-secondary text-secondary-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-opacity duration-200"
             >
-              <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
-                <FileText className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="font-medium text-sm">Create New Post</p>
-                <p className="text-xs text-muted-foreground">
-                  Go to Publishing
-                </p>
-              </div>
-            </Link>
-            <Link
-              to="/app/ai-generator"
-              className="flex items-center gap-3 p-3 rounded-lg bg-background border border-border/60 hover:border-primary/30 transition-colors"
-            >
-              <div className="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center">
-                <Sparkles className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="font-medium text-sm">Generate AI Content</p>
-                <p className="text-xs text-muted-foreground">
-                  Open AI Generator
-                </p>
-              </div>
-            </Link>
-            <Link
-              to="/app/missed-posts"
-              className="flex items-center gap-3 p-3 rounded-lg bg-background border border-amber-200 hover:border-amber-300 transition-colors"
-            >
-              <div className="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center">
-                <AlertTriangle className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="font-medium text-sm">Recover Missed Posts</p>
-                <p className="text-xs text-muted-foreground">
-                  3 opportunities waiting
-                </p>
-              </div>
+              Schedule Now
+              <span>→</span>
             </Link>
           </div>
         </div>

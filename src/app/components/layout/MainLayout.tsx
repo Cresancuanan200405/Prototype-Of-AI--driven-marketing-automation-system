@@ -2,7 +2,6 @@ import { Outlet, Link, useLocation } from "react-router";
 import {
   LayoutDashboard,
   Megaphone,
-  Share2,
   BarChart3,
   Bell,
   User,
@@ -34,9 +33,8 @@ const mainNav: NavItem[] = [
   { name: "Dashboard", path: "/app", icon: LayoutDashboard },
 ];
 
-const createNav: NavItem[] = [
+const contentNav: NavItem[] = [
   { name: "AI Generator", path: "/app/ai-generator", icon: Sparkles },
-  { name: "Publishing", path: "/app/publishing", icon: Share2 },
   { name: "Content Studio", path: "/app/content-studio", icon: Library },
 ];
 
@@ -48,7 +46,6 @@ const planNav: NavItem[] = [
 
 const analyzeNav: NavItem[] = [
   { name: "Analytics", path: "/app/analytics", icon: BarChart3 },
-  { name: "Notifications", path: "/app/notifications", icon: Bell },
 ];
 
 const bottomNav: NavItem[] = [
@@ -143,19 +140,6 @@ export function MainLayout() {
             </button>
           </div>
 
-          {/* Quick Create (collapsed only) */}
-          {!sidebarOpen && (
-            <div className="px-3 py-3">
-              <Link
-                to="/app/publishing"
-                className="flex items-center justify-center w-full h-10 rounded-lg bg-sidebar-primary text-sidebar-primary-foreground hover:opacity-90 transition-opacity"
-                aria-label="Quick create post"
-              >
-                <Plus className="w-5 h-5" />
-              </Link>
-            </div>
-          )}
-
           {/* Main Navigation */}
           <nav className="flex-1 overflow-y-auto py-2 px-3 space-y-0.5">
             {/* Dashboard */}
@@ -163,11 +147,11 @@ export function MainLayout() {
               <NavLink key={item.path} item={item} collapsed={!sidebarOpen} />
             ))}
 
-            {/* Create Section */}
-            {createNav.length > 0 && (
+            {/* Content Section */}
+            {contentNav.length > 0 && (
               <>
-                <SectionLabel label="Create" collapsed={!sidebarOpen} />
-                {createNav.map((item) => (
+                <SectionLabel label="Content" collapsed={!sidebarOpen} />
+                {contentNav.map((item) => (
                   <NavLink key={item.path} item={item} collapsed={!sidebarOpen} />
                 ))}
               </>
@@ -193,7 +177,7 @@ export function MainLayout() {
               </>
             )}
 
-            {/* Missed Opportunities — Gold accent */}
+            {/* Missed Opportunities — Red urgency accent */}
             <div className="pt-3 pb-1">
               <div className="border-t border-sidebar-border/50" />
             </div>
@@ -201,25 +185,25 @@ export function MainLayout() {
               to="/app/missed-posts"
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
                 isActive("/app/missed-posts")
-                  ? "bg-sidebar-primary/20 text-sidebar-primary"
-                  : "text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-foreground"
+                  ? "bg-red-900/20 text-red-400"
+                  : "text-red-400/80 hover:bg-red-900/10 hover:text-red-300"
               }`}
             >
               <div className="relative flex-shrink-0">
-                <Target className="w-5 h-5" />
+                <AlertTriangle className="w-5 h-5" />
               </div>
               {sidebarOpen && (
                 <>
                   <span className="text-sm font-medium truncate">
                     Missed Opportunities
                   </span>
-                  <span className="ml-auto bg-sidebar-primary text-sidebar-primary-foreground text-xs font-bold px-2 py-0.5 rounded-full">
+                  <span className="ml-auto bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
                     3
                   </span>
                 </>
               )}
               {!sidebarOpen && (
-                <span className="absolute top-0 right-0 w-2 h-2 bg-sidebar-primary rounded-full" />
+                <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
               )}
             </Link>
           </nav>

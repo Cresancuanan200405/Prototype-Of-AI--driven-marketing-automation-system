@@ -116,76 +116,76 @@ export function MissedPostRecovery() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-foreground mb-2">
           Missed Post Recovery
         </h1>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           Recover from missed opportunities with AI-powered suggestions
         </p>
       </div>
 
       {/* Analytics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-2">Total Missed Posts</p>
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+          <p className="text-sm text-muted-foreground mb-2">Total Missed Posts</p>
           <div className="flex items-end justify-between">
-            <h3 className="text-3xl font-bold text-gray-900">{totalMissed}</h3>
-            <span className="text-sm font-medium text-red-500">↓</span>
+            <h3 className="text-3xl font-bold text-foreground">{totalMissed}</h3>
+            <span className="text-sm font-medium text-destructive">↓</span>
           </div>
         </div>
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-2">Potential Reach Lost</p>
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+          <p className="text-sm text-muted-foreground mb-2">Potential Reach Lost</p>
           <div className="flex items-end justify-between">
-            <h3 className="text-3xl font-bold text-gray-900">
+            <h3 className="text-3xl font-bold text-foreground">
               {(totalImpact / 1000).toFixed(1)}K
             </h3>
-            <span className="text-sm font-medium text-red-500">↓</span>
+            <span className="text-sm font-medium text-destructive">↓</span>
           </div>
         </div>
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-2">Recovery Rate</p>
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+          <p className="text-sm text-muted-foreground mb-2">Recovery Rate</p>
           <div className="flex items-end justify-between">
-            <h3 className="text-3xl font-bold text-gray-900">{recoveryRate}%</h3>
-            <span className="text-sm font-medium text-emerald-600">↑</span>
+            <h3 className="text-3xl font-bold text-foreground">{recoveryRate}%</h3>
+            <span className="text-sm font-medium text-primary">↑</span>
           </div>
         </div>
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <p className="text-sm text-gray-600 mb-2">Recovered</p>
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+          <p className="text-sm text-muted-foreground mb-2">Recovered</p>
           <div className="flex items-end justify-between">
-            <h3 className="text-3xl font-bold text-gray-900">
+            <h3 className="text-3xl font-bold text-foreground">
               {recoveredCount}/{totalMissed}
             </h3>
-            <span className="text-sm font-medium text-emerald-600">↑</span>
+            <span className="text-sm font-medium text-primary">↑</span>
           </div>
         </div>
       </div>
 
       {/* Timeline Heatmap */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="bg-card rounded-xl shadow-sm border border-border p-6">
         <div className="flex items-center gap-2 mb-4">
-          <CalendarDays className="w-5 h-5 text-gray-500" />
-          <h2 className="text-lg font-semibold text-gray-900">
+          <CalendarDays className="w-5 h-5 text-muted-foreground" />
+          <h2 className="text-lg font-semibold text-foreground">
             This Week Overview
           </h2>
         </div>
         <div className="grid grid-cols-7 gap-3">
           {timelineData.map((day, index) => (
             <div key={index} className="text-center">
-              <p className="text-xs font-medium text-gray-500 mb-1">{day.day}</p>
-              <p className="text-[10px] text-gray-400 mb-2">{day.date}</p>
+              <p className="text-xs font-medium text-muted-foreground mb-1">{day.day}</p>
+              <p className="text-[10px] text-muted-foreground/60 mb-2">{day.date}</p>
               <div className="space-y-1">
                 {day.posts > 0 && (
-                  <div className="h-6 rounded bg-emerald-100 flex items-center justify-center text-xs text-emerald-700 font-medium">
+                  <div className="h-6 rounded bg-primary/10 flex items-center justify-center text-xs text-primary font-medium">
                     {day.posts}P
                   </div>
                 )}
                 {day.missed > 0 && (
-                  <div className="h-6 rounded bg-yellow-100 flex items-center justify-center text-xs text-yellow-700 font-medium">
+                  <div className="h-6 rounded bg-red-100 flex items-center justify-center text-xs text-red-600 font-medium">
                     {day.missed}M
                   </div>
                 )}
                 {day.posts === 0 && day.missed === 0 && (
-                  <div className="h-6 rounded bg-gray-50 border border-gray-100" />
+                  <div className="h-6 rounded bg-muted border border-border/50" />
                 )}
               </div>
             </div>
@@ -193,18 +193,18 @@ export function MissedPostRecovery() {
         </div>
       </div>
 
-      {/* Missed Opportunities Alert */}
+      {/* Missed Opportunities Alert — Red Urgency */}
       {totalMissed > 0 && (
-        <div className="rounded-xl border-2 border-yellow-600/20 bg-yellow-50 p-6">
+        <div className="rounded-xl border-2 border-red-300 bg-red-50 p-6">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-yellow-100 flex items-center justify-center flex-shrink-0">
-              <Target className="w-6 h-6 text-yellow-700" />
+            <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
+              <Target className="w-6 h-6 text-red-600" />
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-yellow-900 mb-2">
+              <h3 className="text-xl font-semibold text-red-800 mb-2">
                 {totalMissed} Missed Promotional Opportunities This Week
               </h3>
-              <p className="text-yellow-700 mb-4">
+              <p className="text-red-600 mb-4">
                 Don't worry! AI has analyzed these missed opportunities and
                 generated recovery strategies to help you regain potential
                 engagement.
@@ -219,7 +219,7 @@ export function MissedPostRecovery() {
                 <button
                   onClick={handleRecoverAll}
                   disabled={recovering || recoveredCount === totalMissed}
-                  className="inline-flex items-center gap-2 px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="inline-flex items-center gap-2 px-6 py-2 bg-destructive text-destructive-foreground rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <CheckCircle className="w-4 h-4" />
                   {recovering
@@ -235,9 +235,9 @@ export function MissedPostRecovery() {
       )}
 
       {/* Missed Posts List */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="bg-card rounded-xl shadow-sm border border-border p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-foreground">
             Recent Missed Posts
           </h2>
           {opportunities.filter((o) => o.dismissed).length > 0 && (
@@ -247,7 +247,7 @@ export function MissedPostRecovery() {
                   prev.map((o) => ({ ...o, dismissed: false })),
                 )
               }
-              className="text-sm text-secondary font-medium hover:text-yellow-700"
+              className="text-sm text-secondary font-medium hover:opacity-80"
             >
               Show dismissed ({opportunities.filter((o) => o.dismissed).length})
             </button>
@@ -256,9 +256,9 @@ export function MissedPostRecovery() {
         <div className="space-y-4">
           {visibleOpportunities.length === 0 ? (
             <div className="text-center py-8">
-              <CheckCircle className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
-              <p className="text-gray-500 font-medium">All clear!</p>
-              <p className="text-sm text-gray-400">
+              <CheckCircle className="w-12 h-12 text-primary/40 mx-auto mb-3" />
+              <p className="text-muted-foreground font-medium">All clear!</p>
+              <p className="text-sm text-muted-foreground/60">
                 No missed posts to recover.
               </p>
             </div>
@@ -268,26 +268,26 @@ export function MissedPostRecovery() {
                 key={opportunity.id}
                 className={`p-5 rounded-xl border-2 transition-all ${
                   opportunity.recovered
-                    ? "border-emerald-200 bg-emerald-50"
-                    : "border-yellow-200 bg-yellow-50/60"
+                    ? "border-primary/20 bg-primary/5"
+                    : "border-red-200 bg-red-50/60"
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-2 flex-wrap">
                       {opportunity.recovered ? (
-                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                       ) : (
-                        <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0" />
+                        <AlertTriangle className="w-5 h-5 text-red-500 flex-shrink-0" />
                       )}
-                      <h3 className="font-semibold text-gray-900 truncate">
+                      <h3 className="font-semibold text-foreground truncate">
                         {opportunity.title}
                       </h3>
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${
                           opportunity.recovered
-                            ? "bg-emerald-100 text-emerald-700"
-                            : "bg-yellow-100 text-yellow-700"
+                            ? "bg-primary/10 text-primary"
+                            : "bg-red-100 text-red-600"
                         }`}
                       >
                         {opportunity.recovered
@@ -295,14 +295,14 @@ export function MissedPostRecovery() {
                           : opportunity.status}
                       </span>
                     </div>
-                    <div className="space-y-1 text-sm text-gray-700">
+                    <div className="space-y-1 text-sm text-muted-foreground">
                       <div className="flex items-center gap-2">
                         <Clock className="w-4 h-4" />
                         <span>Missed on {opportunity.missedDate}</span>
                       </div>
                       <p>Reason: {opportunity.reason}</p>
                       <div className="flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-yellow-600" />
+                        <TrendingUp className="w-4 h-4 text-destructive" />
                         <span>{opportunity.impact}</span>
                       </div>
                     </div>
@@ -319,7 +319,7 @@ export function MissedPostRecovery() {
                     ) : (
                       <Link
                         to="/app/publishing"
-                        className="inline-flex items-center gap-1 px-3 py-2 bg-emerald-600 text-white rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors"
+                        className="inline-flex items-center gap-1 px-3 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
                       >
                         <ArrowRight className="w-4 h-4" />
                         Create Post
@@ -327,7 +327,7 @@ export function MissedPostRecovery() {
                     )}
                     <button
                       onClick={() => handleDismiss(opportunity.id)}
-                      className="p-2 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+                      className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                       aria-label={`Dismiss ${opportunity.title}`}
                       title="Dismiss"
                     >
@@ -345,11 +345,11 @@ export function MissedPostRecovery() {
       {recoveryStrategies.length > 0 && (
         <div
           id="recovery-strategies"
-          className="bg-white rounded-xl shadow-sm border border-gray-200 p-6"
+          className="bg-card rounded-xl shadow-sm border border-border p-6"
         >
           <div className="flex items-center gap-2 mb-6">
             <Target className="w-5 h-5 text-secondary" />
-            <h2 className="text-xl font-semibold text-gray-900">
+            <h2 className="text-xl font-semibold text-foreground">
               AI-Generated Recovery Strategies
             </h2>
           </div>
@@ -362,26 +362,26 @@ export function MissedPostRecovery() {
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="font-semibold text-gray-900">
+                      <h3 className="font-semibold text-foreground">
                         {strategy.opportunity}
                       </h3>
                       {strategy.aiGenerated && (
-                        <span className="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-medium">
+                        <span className="px-2 py-1 bg-secondary/10 text-secondary rounded-full text-xs font-medium">
                           AI Generated
                         </span>
                       )}
                     </div>
-                    <p className="text-gray-700 mb-3">{strategy.strategy}</p>
+                    <p className="text-muted-foreground mb-3">{strategy.strategy}</p>
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p className="text-gray-600 mb-1">Suggested Time</p>
-                        <p className="font-medium text-gray-900">
+                        <p className="text-muted-foreground mb-1">Suggested Time</p>
+                        <p className="font-medium text-foreground">
                           {strategy.suggestedTime}
                         </p>
                       </div>
                       <div>
-                        <p className="text-gray-600 mb-1">Expected Impact</p>
-                        <p className="font-medium text-emerald-600">
+                        <p className="text-muted-foreground mb-1">Expected Impact</p>
+                        <p className="font-medium text-primary">
                           {strategy.expectedImpact}
                         </p>
                       </div>
@@ -397,7 +397,7 @@ export function MissedPostRecovery() {
                   </Link>
                   <Link
                     to="/app/publishing"
-                    className="inline-flex px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-white transition-colors"
+                    className="inline-flex px-6 py-2 border border-border text-muted-foreground rounded-lg font-medium hover:bg-muted transition-colors"
                   >
                     Customize Strategy
                   </Link>
@@ -409,36 +409,36 @@ export function MissedPostRecovery() {
       )}
 
       {/* Best Practices */}
-      <div className="bg-card rounded-xl border border-emerald-200 p-6">
+      <div className="bg-card rounded-xl border border-border p-6">
         <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-            <CheckCircle className="w-6 h-6 text-emerald-600" />
+          <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0">
+            <CheckCircle className="w-6 h-6 text-secondary" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">
+            <h3 className="text-lg font-semibold text-foreground mb-3">
               Prevent Future Missed Posts
             </h3>
-            <ul className="space-y-2 text-sm text-gray-700">
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <span className="text-emerald-600">•</span>
+                <span className="text-secondary">•</span>
                 <span>
                   Enable AI auto-scheduling to post during peak engagement times
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-emerald-600">•</span>
+                <span className="text-secondary">•</span>
                 <span>
                   Set up calendar reminders for important holidays and events
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-emerald-600">•</span>
+                <span className="text-secondary">•</span>
                 <span>
                   Maintain a content library with pre-approved posts ready to go
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-emerald-600">•</span>
+                <span className="text-secondary">•</span>
                 <span>
                   Review your content calendar weekly to stay ahead
                 </span>

@@ -142,10 +142,10 @@ export function CalendarScheduler() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-foreground mb-2">
             Content Calendar
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Plan, schedule, and recover your social media posts
           </p>
         </div>
@@ -153,7 +153,7 @@ export function CalendarScheduler() {
           {missedCount > 0 && (
             <Link
               to="/app/missed-posts"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-yellow-600/30 bg-yellow-50 text-yellow-800 text-sm font-medium hover:bg-yellow-100 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-red-300 bg-red-50 text-red-700 text-sm font-medium hover:bg-red-100 transition-colors"
             >
               <AlertTriangle className="w-4 h-4" />
               <span>{missedCount} missed</span>
@@ -170,10 +170,10 @@ export function CalendarScheduler() {
       </div>
 
       {/* Calendar */}
-      <div className="bg-card rounded-xl shadow-sm border-border p-6">
+      <div className="bg-card rounded-xl shadow-sm border border-border p-6">
         {/* Calendar Header */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">
+          <h2 className="text-2xl font-bold text-foreground">
             {monthNames[currentMonth]} {currentYear}
           </h2>
           <div className="flex items-center gap-2">
@@ -206,7 +206,7 @@ export function CalendarScheduler() {
           {daysOfWeek.map((day) => (
             <div
               key={day}
-              className="text-center font-semibold text-gray-700 py-2 text-sm"
+              className="text-center font-semibold text-muted-foreground py-2 text-sm"
             >
               {day}
             </div>
@@ -219,7 +219,7 @@ export function CalendarScheduler() {
               className={`min-h-24 p-2 rounded-lg border-2 transition-colors ${
                 dayData.month === "current"
                   ? "bg-card border-border hover:border-primary/30"
-                  : "bg-accent/50 border-border/50"
+                  : "bg-muted/50 border-border/50"
               } ${
                 dayData.posts.some((p) => p.type === "missed")
                   ? "ring-2 ring-red-200 border-red-200"
@@ -228,7 +228,7 @@ export function CalendarScheduler() {
             >
               <div
                 className={`text-sm font-medium mb-1 ${
-                  dayData.month === "current" ? "text-gray-900" : "text-gray-400"
+                  dayData.month === "current" ? "text-foreground" : "text-muted-foreground/40"
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -239,7 +239,6 @@ export function CalendarScheduler() {
                         : ""
                     }
                   >
-                    {dayData.isToday ? "" : ""}
                     {dayData.day}
                   </span>
                   {dayData.isToday && (
@@ -274,7 +273,7 @@ export function CalendarScheduler() {
         </div>
 
         {/* Legend */}
-        <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-gray-200 flex-wrap">
+        <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-border flex-wrap">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded bg-chart-1"></div>
             <span className="text-sm text-muted-foreground">Scheduled</span>

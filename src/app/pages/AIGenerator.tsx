@@ -5,11 +5,11 @@ import BrandMark from "../components/layout/BrandMark";
 const tones = ["Professional", "Friendly", "Luxury", "Trendy", "Fun"];
 
 const themes = [
-  { id: "modern-minimal", name: "Modern Minimal", gradient: "from-slate-900 via-slate-700 to-slate-500" },
-  { id: "bold-promo", name: "Bold Promo", gradient: "from-orange-500 via-red-500 to-pink-500" },
-  { id: "warm-seasonal", name: "Warm Seasonal", gradient: "from-rose-500 via-orange-500 to-amber-400" },
-  { id: "luxury-premium", name: "Luxury Premium", gradient: "from-amber-700 via-stone-800 to-slate-900" },
-  { id: "playful-social", name: "Playful Social", gradient: "from-cyan-500 via-sky-500 to-indigo-500" },
+  { id: "modern-minimal", name: "Modern Minimal" },
+  { id: "bold-promo", name: "Bold Promo" },
+  { id: "warm-seasonal", name: "Warm Seasonal" },
+  { id: "luxury-premium", name: "Luxury Premium" },
+  { id: "playful-social", name: "Playful Social" },
 ];
 
 const holidays = ["None", "Mother's Day", "Memorial Day", "Summer Sale", "Back to School", "Father's Day", "Holiday Season", "Grand Opening"];
@@ -253,31 +253,31 @@ export function AIGenerator() {
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <div>
-        <h1 className="mb-2 text-3xl font-bold text-gray-900">AI Content Generator</h1>
-        <p className="text-gray-600">Create caption and image concepts from your product details, tone, theme, and event.</p>
+        <h1 className="mb-2 text-3xl font-bold text-foreground">AI Content Generator</h1>
+        <p className="text-muted-foreground">Create caption and image concepts from your product details, tone, theme, and event.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="space-y-6">
-          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm space-y-6">
+          <div className="rounded-xl border border-border bg-card p-6 shadow-sm space-y-6">
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">Product/Service Name</label>
-              <input type="text" value={productName} onChange={(event) => setProductName(event.target.value)} placeholder="e.g., Caramel Macchiato" className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <label className="mb-2 block text-sm font-medium text-foreground/70">Product/Service Name</label>
+              <input type="text" value={productName} onChange={(event) => setProductName(event.target.value)} placeholder="e.g., Caramel Macchiato" className="w-full rounded-lg border border-border bg-background px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ring" />
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">Description</label>
-              <textarea rows={4} value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Describe the product visually. This will guide the image generation only." className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <label className="mb-2 block text-sm font-medium text-foreground/70">Description</label>
+              <textarea rows={4} value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Describe the product visually. This will guide the image generation only." className="w-full rounded-lg border border-border bg-background px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ring" />
             </div>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
-                <label className="mb-2 block text-sm font-medium text-gray-700">Price</label>
-                <input type="text" value={price} onChange={(event) => setPrice(event.target.value)} placeholder="e.g., $12.99" className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <label className="mb-2 block text-sm font-medium text-foreground/70">Price</label>
+                <input type="text" value={price} onChange={(event) => setPrice(event.target.value)} placeholder="e.g., $12.99" className="w-full rounded-lg border border-border bg-background px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ring" />
               </div>
               <div>
-                <label className="mb-2 block text-sm font-medium text-gray-700">Holiday/Event</label>
-                <select value={holiday} onChange={(event) => setHoliday(event.target.value)} className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <label className="mb-2 block text-sm font-medium text-foreground/70">Holiday/Event</label>
+                <select value={holiday} onChange={(event) => setHoliday(event.target.value)} className="w-full rounded-lg border border-border bg-background px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ring">
                   {holidays.map((option) => (
                     <option key={option} value={option}>{option}</option>
                   ))}
@@ -287,26 +287,26 @@ export function AIGenerator() {
 
             <div>
               <div className="mb-2 flex items-center justify-between gap-3">
-                <label className="block text-sm font-medium text-gray-700">Tagline</label>
-                <div className="flex items-center gap-3 text-sm text-gray-600">
+                <label className="block text-sm font-medium text-foreground/70">Tagline</label>
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" checked={generateTaglineFromHoliday} onChange={(event) => setGenerateTaglineFromHoliday(event.target.checked)} className="h-4 w-4 rounded border-gray-300 text-blue-600" />
+                    <input type="checkbox" checked={generateTaglineFromHoliday} onChange={(event) => setGenerateTaglineFromHoliday(event.target.checked)} className="h-4 w-4 rounded border-border accent-[var(--color-secondary)]" />
                     Generate from holiday event
                   </label>
-                  <button type="button" onClick={regenerateTagline} disabled={holiday === "None"} className="rounded-md border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 transition-colors hover:bg-blue-100 disabled:cursor-not-allowed disabled:opacity-50">
+                  <button type="button" onClick={regenerateTagline} disabled={holiday === "None"} className="rounded-md border border-secondary/30 bg-secondary/10 px-3 py-1 text-xs font-medium text-secondary transition-colors hover:bg-secondary/20 disabled:cursor-not-allowed disabled:opacity-50">
                     Generate another tagline
                   </button>
                 </div>
               </div>
-              <input type="text" value={tagline} onChange={(event) => setTagline(event.target.value)} placeholder="Write a short tagline for the generated image" className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              {generateTaglineFromHoliday && holiday !== "None" && <p className="mt-2 text-sm text-gray-500">Holiday-based tagline mode is on, but you can still edit the text manually.</p>}
+              <input type="text" value={tagline} onChange={(event) => setTagline(event.target.value)} placeholder="Write a short tagline for the generated image" className="w-full rounded-lg border border-border bg-background px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ring" />
+              {generateTaglineFromHoliday && holiday !== "None" && <p className="mt-2 text-sm text-muted-foreground">Holiday-based tagline mode is on, but you can still edit the text manually.</p>}
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">Brand Tone</label>
+              <label className="mb-2 block text-sm font-medium text-foreground/70">Brand Tone</label>
               <div className="flex flex-wrap gap-2">
                 {tones.map((tone) => (
-                  <button key={tone} type="button" onClick={() => setBrandTone(tone)} className={`rounded-lg border px-4 py-2 transition-colors ${brandTone === tone ? "border-blue-500 bg-blue-50 text-blue-700" : "border-gray-300 hover:border-blue-500 hover:bg-blue-50"}`}>
+                  <button key={tone} type="button" onClick={() => setBrandTone(tone)} className={`rounded-lg border px-4 py-2 transition-colors ${brandTone === tone ? "border-secondary bg-secondary/10 text-secondary" : "border-border hover:border-secondary/30 hover:bg-secondary/5"}`}>
                     {tone}
                   </button>
                 ))}
@@ -314,10 +314,10 @@ export function AIGenerator() {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">Theme</label>
+              <label className="mb-2 block text-sm font-medium text-foreground/70">Theme</label>
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {themes.map((themeOption) => (
-                  <button key={themeOption.id} type="button" onClick={() => setTheme(themeOption.id)} className={`rounded-lg border px-4 py-3 text-left transition-colors ${theme === themeOption.id ? "border-blue-500 bg-blue-50 text-blue-700" : "border-gray-300 hover:border-blue-500 hover:bg-blue-50"}`}>
+                  <button key={themeOption.id} type="button" onClick={() => setTheme(themeOption.id)} className={`rounded-lg border px-4 py-3 text-left transition-colors ${theme === themeOption.id ? "border-secondary bg-secondary/10 text-secondary" : "border-border hover:border-secondary/30 hover:bg-secondary/5"}`}>
                     {themeOption.name}
                   </button>
                 ))}
@@ -325,16 +325,16 @@ export function AIGenerator() {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">Reference Image (Optional)</label>
-              <label className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-gray-300 p-6 text-center transition-colors hover:border-blue-500 hover:bg-blue-50">
-                <Upload className="h-5 w-5 text-gray-500" />
-                <span className="text-sm text-gray-700">Upload an image to use as a visual reference</span>
+              <label className="mb-2 block text-sm font-medium text-foreground/70">Reference Image (Optional)</label>
+              <label className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-border p-6 text-center transition-colors hover:border-secondary hover:bg-secondary/5">
+                <Upload className="h-5 w-5 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">Upload an image to use as a visual reference</span>
                 <input type="file" accept="image/*" className="hidden" onChange={handleReferenceImageChange} />
               </label>
               {referenceImageName && (
-                <div className="mt-3 rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-700">
+                <div className="mt-3 rounded-lg border border-border bg-muted p-3 text-sm text-foreground">
                   <div className="flex items-center gap-2">
-                    <ImageIcon className="h-4 w-4 text-blue-600" />
+                    <ImageIcon className="h-4 w-4 text-secondary" />
                     <span className="font-medium">{referenceImageName}</span>
                   </div>
                 </div>
@@ -346,104 +346,104 @@ export function AIGenerator() {
               Generate Content
             </button>
 
-            {!canGenerate && <p className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-700">Fill in the product name, description, price, brand tone, theme, and holiday/event before generating.</p>}
+            {!canGenerate && <p className="rounded-lg border border-secondary/30 bg-secondary/5 px-4 py-3 text-sm text-secondary">Fill in the product name, description, price, brand tone, theme, and holiday/event before generating.</p>}
           </div>
         </div>
 
         <div className="space-y-6">
             {!generated ? (
-            <div className="rounded-xl border border-gray-200 bg-white p-12 text-center shadow-sm">
-              <BrandMark className="mx-auto mb-4 h-16 w-16 text-gray-200" />
-              <h3 className="mb-2 text-lg font-semibold text-gray-900">Ready to create a caption and image concept?</h3>
-              <p className="text-gray-600">Fill in the required fields and click Generate Content to see both results.</p>
+            <div className="rounded-xl border border-border bg-card p-12 text-center shadow-sm">
+              <BrandMark className="mx-auto mb-4 h-16 w-16 text-muted-foreground/30" />
+              <h3 className="mb-2 text-lg font-semibold text-foreground">Ready to create a caption and image concept?</h3>
+              <p className="text-muted-foreground">Fill in the required fields and click Generate Content to see both results.</p>
             </div>
           ) : (
             <>
-              <div className="rounded-xl border border-gray-200 bg-white p-2 shadow-sm">
+              <div className="rounded-xl border border-border bg-card p-2 shadow-sm">
                 <div className="grid grid-cols-3 gap-2">
-                  <button type="button" onClick={() => setActiveTab("caption")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "caption" ? "bg-secondary text-secondary-foreground" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Caption Result</button>
-                  <button type="button" onClick={() => setActiveTab("image")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "image" ? "bg-secondary text-secondary-foreground" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Image Result</button>
-                  <button type="button" onClick={() => setActiveTab("preview")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "preview" ? "bg-secondary text-secondary-foreground" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>Preview</button>
+                  <button type="button" onClick={() => setActiveTab("caption")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "caption" ? "bg-secondary text-secondary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80"}`}>Caption Result</button>
+                  <button type="button" onClick={() => setActiveTab("image")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "image" ? "bg-secondary text-secondary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80"}`}>Image Result</button>
+                  <button type="button" onClick={() => setActiveTab("preview")} className={`rounded-lg px-4 py-3 text-sm font-medium transition-colors ${activeTab === "preview" ? "bg-secondary text-secondary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80"}`}>Preview</button>
                 </div>
               </div>
 
               {activeTab === "caption" ? (
                 <>
-                  <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                    <h3 className="mb-4 text-lg font-semibold text-gray-900">AI-Generated Caption</h3>
-                    <div className="mb-4 rounded-lg bg-gray-50 p-4"><p className="text-gray-800">{generated.caption}</p></div>
+                  <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                    <h3 className="mb-4 text-lg font-semibold text-foreground">AI-Generated Caption</h3>
+                    <div className="mb-4 rounded-lg bg-muted p-4"><p className="text-foreground">{generated.caption}</p></div>
                     <div className="flex flex-wrap gap-3">
-                      <button onClick={() => copyText(generated.caption)} className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"><Copy className="h-4 w-4" />Copy Caption</button>
-                      <button onClick={regenerateCaption} className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"><RefreshCw className="h-4 w-4" />Generate Another Caption</button>
+                      <button onClick={() => copyText(generated.caption)} className="flex items-center gap-1 text-sm text-secondary hover:opacity-80"><Copy className="h-4 w-4" />Copy Caption</button>
+                      <button onClick={regenerateCaption} className="flex items-center gap-1 text-sm text-secondary hover:opacity-80"><RefreshCw className="h-4 w-4" />Generate Another Caption</button>
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                    <h3 className="mb-4 text-lg font-semibold text-gray-900">Suggested Hashtags</h3>
+                  <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                    <h3 className="mb-4 text-lg font-semibold text-foreground">Suggested Hashtags</h3>
                     <div className="mb-4 flex flex-wrap gap-2">
-                      {generated.hashtags.map((tag) => (<span key={tag} className="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-700">{tag}</span>))}
+                      {generated.hashtags.map((tag) => (<span key={tag} className="rounded-full bg-secondary/10 px-3 py-1 text-sm text-secondary">{tag}</span>))}
                     </div>
                     <div className="flex flex-wrap gap-3">
-                      <button onClick={() => copyText(generated.hashtags.join(" "))} className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"><Copy className="h-4 w-4" />Copy All Hashtags</button>
-                      <button onClick={regenerateHashtags} className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700"><RefreshCw className="h-4 w-4" />Generate Another Hashtags Set</button>
+                      <button onClick={() => copyText(generated.hashtags.join(" "))} className="flex items-center gap-1 text-sm text-secondary hover:opacity-80"><Copy className="h-4 w-4" />Copy All Hashtags</button>
+                      <button onClick={regenerateHashtags} className="flex items-center gap-1 text-sm text-secondary hover:opacity-80"><RefreshCw className="h-4 w-4" />Generate Another Hashtags Set</button>
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                    <h3 className="mb-4 text-lg font-semibold text-gray-900">Call to Action</h3>
+                  <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                    <h3 className="mb-4 text-lg font-semibold text-foreground">Call to Action</h3>
                     <div className="mb-4 rounded-lg bg-accent p-4"><p className="font-medium text-accent-foreground">{generated.cta}</p></div>
                   </div>
 
                   <div className="rounded-xl border border-border bg-card p-6">
-                    <div className="mb-3 flex items-center gap-2"><Lightbulb className="h-5 w-5 text-accent-foreground" /><h3 className="text-lg font-semibold text-foreground">Campaign Idea</h3></div>
+                    <div className="mb-3 flex items-center gap-2"><Lightbulb className="h-5 w-5 text-secondary" /><h3 className="text-lg font-semibold text-foreground">Campaign Idea</h3></div>
                     <p className="text-sm text-muted-foreground">{generated.campaignIdea}</p>
                   </div>
                 </>
               ) : activeTab === "image" ? (
-                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-                  <div className={`rounded-3xl border border-border bg-primary p-10 text-primary-foreground shadow-lg min-h-[340px] flex flex-col justify-center items-center text-center space-y-8`}>
+                <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+                  <div className="rounded-3xl border border-border bg-primary p-10 text-primary-foreground shadow-lg min-h-[340px] flex flex-col justify-center items-center text-center space-y-8">
                     <div className="space-y-3"><p className="text-xs uppercase tracking-[0.2em] text-white/70">Tagline</p><p className="text-2xl font-semibold">{generated.tagline}</p></div>
                     <div className="space-y-3"><p className="text-xs uppercase tracking-[0.2em] text-white/70">Price</p><p className="text-5xl font-black tracking-tight">{price}</p></div>
                   </div>
                 </div>
               ) : (
-                <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm space-y-6">
+                <div className="rounded-xl border border-border bg-card p-6 shadow-sm space-y-6">
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-gray-700">Editable Caption Preview</label>
-                    <textarea rows={6} value={previewCaption} onChange={(event) => setPreviewCaption(event.target.value)} className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <label className="mb-2 block text-sm font-medium text-foreground/70">Editable Caption Preview</label>
+                    <textarea rows={6} value={previewCaption} onChange={(event) => setPreviewCaption(event.target.value)} className="w-full rounded-lg border border-border bg-background px-4 py-3 focus:outline-none focus:ring-2 focus:ring-ring" />
                   </div>
 
-                  <div className={`rounded-3xl border border-border bg-primary p-10 text-primary-foreground shadow-lg min-h-[340px] flex flex-col justify-center items-center text-center space-y-8`}>
+                  <div className="rounded-3xl border border-border bg-primary p-10 text-primary-foreground shadow-lg min-h-[340px] flex flex-col justify-center items-center text-center space-y-8">
                     <div className="space-y-3"><p className="text-xs uppercase tracking-[0.2em] text-white/70">Tagline</p><p className="text-2xl font-semibold">{generated.tagline}</p></div>
                     <div className="space-y-3"><p className="text-xs uppercase tracking-[0.2em] text-white/70">Price</p><p className="text-5xl font-black tracking-tight">{price}</p></div>
                   </div>
                 </div>
               )}
 
-              <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm space-y-4">
+              <div className="rounded-xl border border-border bg-card p-6 shadow-sm space-y-4">
                 <div className="flex flex-wrap gap-3">
-                  <button type="button" onClick={() => setAction("draft")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "draft" ? "bg-gray-900 text-white" : "border border-gray-300 text-gray-700 hover:bg-gray-50"}`}><Save className="h-5 w-5" />Save Draft</button>
-                  <button type="button" onClick={() => setAction("schedule")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "schedule" ? "bg-secondary text-secondary-foreground" : "border border-gray-300 text-gray-700 hover:bg-gray-50"}`}><Calendar className="h-5 w-5" />Schedule Post</button>
-                  <button type="button" onClick={() => setAction("publish")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "publish" ? "bg-primary text-primary-foreground" : "border border-gray-300 text-gray-700 hover:bg-gray-50"}`}><Send className="h-5 w-5" />Publish Now</button>
+                  <button type="button" onClick={() => setAction("draft")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "draft" ? "bg-primary text-primary-foreground" : "border border-border text-muted-foreground hover:bg-muted"}`}><Save className="h-5 w-5" />Save Draft</button>
+                  <button type="button" onClick={() => setAction("schedule")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "schedule" ? "bg-secondary text-secondary-foreground" : "border border-border text-muted-foreground hover:bg-muted"}`}><Calendar className="h-5 w-5" />Schedule Post</button>
+                  <button type="button" onClick={() => setAction("publish")} className={`flex items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium transition-colors ${action === "publish" ? "bg-primary text-primary-foreground" : "border border-border text-muted-foreground hover:bg-muted"}`}><Send className="h-5 w-5" />Publish Now</button>
                 </div>
 
                 {(action === "schedule" || action === "publish") && (
-                  <div className="rounded-xl border border-blue-100 bg-blue-50 p-4">
+                  <div className="rounded-xl border border-secondary/20 bg-secondary/5 p-4">
                     <div className="mb-3 flex items-center justify-between gap-4">
                       <div>
-                        <h4 className="font-semibold text-gray-900">Choose platform</h4>
-                        <p className="text-sm text-gray-600">This appears only when you choose to schedule or publish.</p>
+                        <h4 className="font-semibold text-foreground">Choose platform</h4>
+                        <p className="text-sm text-muted-foreground">This appears only when you choose to schedule or publish.</p>
                       </div>
-                      <span className="rounded-full bg-white px-3 py-1 text-xs font-medium text-blue-700">{action === "publish" ? "Publish now" : "Schedule post"}</span>
+                      <span className="rounded-full bg-card px-3 py-1 text-xs font-medium text-secondary border border-secondary/20">{action === "publish" ? "Publish now" : "Schedule post"}</span>
                     </div>
                     <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                       {platforms.map((platform) => (
-                        <button key={platform} type="button" onClick={() => setSelectedPlatform(platform)} className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${selectedPlatform === platform ? "border-blue-500 bg-white text-blue-700" : "border-gray-300 bg-white text-gray-700 hover:border-blue-400"}`}>
+                        <button key={platform} type="button" onClick={() => setSelectedPlatform(platform)} className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${selectedPlatform === platform ? "border-secondary bg-card text-secondary" : "border-border bg-card text-muted-foreground hover:border-secondary/30"}`}>
                           {platform}
                         </button>
                       ))}
                     </div>
-                    <p className="mt-3 text-sm text-gray-600">Selected platform: <span className="font-semibold text-gray-900">{selectedPlatform}</span></p>
+                    <p className="mt-3 text-sm text-muted-foreground">Selected platform: <span className="font-semibold text-foreground">{selectedPlatform}</span></p>
                   </div>
                 )}
               </div>
