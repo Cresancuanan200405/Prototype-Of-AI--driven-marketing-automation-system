@@ -1,5 +1,6 @@
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, AlertTriangle } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -41,13 +42,6 @@ const calendarDays = [
   { day: 1, month: "next", posts: [] },
 ];
 
-const upcomingCampaigns = [
-  { title: "Mother's Day Campaign", date: "May 11", status: "scheduled", color: "bg-yellow-100 text-yellow-700" },
-  { title: "Summer Collection Launch", date: "May 15", status: "draft", color: "bg-gray-100 text-gray-700" },
-  { title: "Memorial Day Sale", date: "May 26", status: "scheduled", color: "bg-yellow-100 text-yellow-700" },
-  { title: "End of Month Recap", date: "May 31", status: "draft", color: "bg-gray-100 text-gray-700" },
-];
-
 export function CalendarScheduler() {
   const [currentMonth] = useState("May 2026");
 
@@ -58,7 +52,7 @@ export function CalendarScheduler() {
       case "published":
         return "bg-chart-2";
       case "missed":
-        return "bg-chart-3";
+        return "bg-red-500";
       case "holiday":
         return "bg-chart-4";
       default:
@@ -66,18 +60,37 @@ export function CalendarScheduler() {
     }
   };
 
+  const missedCount = calendarDays.filter((d) =>
+    d.posts.some((p) => p.type === "missed"),
+  ).length;
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Content Calendar</h1>
-          <p className="text-gray-600">Plan and schedule your social media posts</p>
+          <p className="text-gray-600">Plan, schedule, and recover your social media posts</p>
         </div>
-        <button className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
-          <Plus className="icon icon-sm icon-on-primary" />
-          Schedule Post
-        </button>
+        <div className="flex items-center gap-3">
+          {/* Missed posts indicator */}
+          {missedCount > 0 && (
+            <Link
+              to="/app/missed-posts"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-amber-200 bg-amber-50 text-amber-800 text-sm font-medium hover:bg-amber-100 transition-colors"
+            >
+              <AlertTriangle className="w-4 h-4" />
+              <span>{missedCount} missed</span>
+            </Link>
+          )}
+          <Link
+            to="/app/publishing"
+            className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            Schedule Post
+          </Link>
+        </div>
       </div>
 
       {/* Calendar */}
@@ -85,15 +98,15 @@ export function CalendarScheduler() {
         {/* Calendar Header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-900">{currentMonth}</h2>
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <button className="p-2 hover:bg-accent rounded-lg transition-colors">
-              <ChevronLeft className="icon icon-sm icon-muted" />
+              <ChevronLeft className="w-5 h-5 text-muted-foreground" />
             </button>
             <button className="px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-accent rounded-lg transition-colors">
               Today
             </button>
             <button className="p-2 hover:bg-accent rounded-lg transition-colors">
-              <ChevronRight className="icon icon-sm icon-muted" />
+              <ChevronRight className="w-5 h-5 text-muted-foreground" />
             </button>
           </div>
         </div>
@@ -102,7 +115,7 @@ export function CalendarScheduler() {
         <div className="grid grid-cols-7 gap-2">
           {/* Day Headers */}
           {daysOfWeek.map((day) => (
-            <div key={day} className="text-center font-semibold text-gray-700 py-2">
+            <div key={day} className="text-center font-semibold text-gray-700 py-2 text-sm">
               {day}
             </div>
           ))}
@@ -113,8 +126,12 @@ export function CalendarScheduler() {
               key={index}
               className={`min-h-24 p-2 rounded-lg border-2 transition-colors ${
                 dayData.month === "current"
-                  ? "bg-card border-border hover:border-border"
-                  : "bg-accent border-border"
+                  ? "bg-card border-border hover:border-primary/30"
+                  : "bg-accent/50 border-border/50"
+              } ${
+                dayData.posts.some((p) => p.type === "missed")
+                  ? "ring-2 ring-red-200 border-red-200"
+                  : ""
               }`}
             >
               <div
@@ -122,16 +139,22 @@ export function CalendarScheduler() {
                   dayData.month === "current" ? "text-gray-900" : "text-gray-400"
                 }`}
               >
-                {dayData.day}
+                <div className="flex items-center justify-between">
+                  <span>{dayData.day}</span>
+                  {dayData.posts.some((p) => p.type === "missed") && (
+                    <AlertTriangle className="w-3 h-3 text-red-500" />
+                  )}
+                </div>
               </div>
               <div className="space-y-1">
                 {dayData.posts.map((post, idx) => (
-                  <div
+                  <Link
                     key={idx}
-                    className={`text-xs px-2 py-1 rounded ${getPostColor(post.type)} text-white truncate`}
+                    to={post.type === "missed" ? "/app/missed-posts" : "/app/publishing"}
+                    className={`text-xs px-2 py-1 rounded ${getPostColor(post.type)} text-white truncate block hover:opacity-80 transition-opacity`}
                   >
                     {post.title}
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -139,7 +162,7 @@ export function CalendarScheduler() {
         </div>
 
         {/* Legend */}
-        <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-gray-200">
+        <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-gray-200 flex-wrap">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded bg-chart-1"></div>
             <span className="text-sm text-muted-foreground">Scheduled</span>
@@ -149,34 +172,13 @@ export function CalendarScheduler() {
             <span className="text-sm text-muted-foreground">Published</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-chart-3"></div>
+            <div className="w-4 h-4 rounded bg-red-500"></div>
             <span className="text-sm text-muted-foreground">Missed</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded bg-chart-4"></div>
             <span className="text-sm text-muted-foreground">Holiday Campaign</span>
           </div>
-        </div>
-      </div>
-
-      {/* Upcoming Campaigns */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Upcoming Campaigns</h3>
-        <div className="space-y-3">
-          {upcomingCampaigns.map((campaign, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors"
-            >
-              <div>
-                <h4 className="font-medium text-gray-900">{campaign.title}</h4>
-                <p className="text-sm text-gray-600">{campaign.date}</p>
-              </div>
-              <span className={`px-3 py-1 rounded-full text-xs font-medium ${campaign.color}`}>
-                {campaign.status}
-              </span>
-            </div>
-          ))}
         </div>
       </div>
     </div>

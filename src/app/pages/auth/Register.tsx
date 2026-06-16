@@ -21,23 +21,6 @@ export function Register() {
             <p className="mt-2 text-gray-600">Start automating your marketing today</p>
           </div>
 
-          {/* Progress Indicator */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-medium">
-                1
-              </div>
-              <span className="text-sm text-gray-600">Account</span>
-            </div>
-            <div className="h-px flex-1 bg-gray-200 mx-2"></div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center text-sm font-medium">
-                2
-              </div>
-              <span className="text-sm text-gray-400">Setup</span>
-            </div>
-          </div>
-
           {/* Form */}
           <form className="space-y-6">
             <div>

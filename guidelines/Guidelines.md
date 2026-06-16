@@ -17,7 +17,21 @@ For example:
 * Refactor code as you go to keep code clean
 * Keep file sizes small and put helper functions and components in their own files.
 
---------------
+## Anti-AI-Slop Design Skill
+Triggered when working on UI components, pages, or design suggestions. Enforces polished, human-quality design.
+
+### Rules
+- **Design Consistency**: Use existing design tokens (`--color-*`, `--radius-*`, `--spacing-*`). No ad-hoc sizes/colors/fonts.
+- **Accessibility (WCAG AA)**: Contrast ≥ 4.5:1, visible keyboard focus, descriptive alt text, associated form labels, semantic HTML.
+- **Intentional Layout**: Meaningful hierarchy, consistent alignment, no filler placeholders or repetitive generic cards.
+- **Visual Refinement**: Polished variants from design system, consistent icon sizing, designed empty/loading/error states.
+- **Avoid Excessive Gradients**: Minimize heavy gradients (especially purple→pink). Prefer tokenized solid colors.
+- **Performance & Size**: SVG/optimized images, purposeful animations with `prefers-reduced-motion` respect, lazy-load below-fold.
+- **Content Quality**: Realistic copy or `// TODO:` comments, action-oriented button labels, human-readable error messages.
+
+### Compliance Checklist
+Include with each UI change: [ ] Design tokens used  [ ] Contrast OK  [ ] Alt text present  [ ] Focus indicators  [ ] Semantic HTML  [ ] No excessive gradients  [ ] No filler content  [ ] Performance note  [ ] Consistent spacing
+
 
 # Design system guidelines
 Rules for how the AI should make generations look like your company's design system

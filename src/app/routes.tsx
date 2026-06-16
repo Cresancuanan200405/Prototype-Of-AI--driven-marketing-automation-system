@@ -3,7 +3,6 @@ import { MainLayout } from "./components/layout/MainLayout";
 import { LandingPage } from "./pages/LandingPage";
 import { Login } from "./pages/auth/Login";
 import { Register } from "./pages/auth/Register";
-import { Subscription } from "./pages/auth/Subscription";
 import { OnboardingIndustry } from "./pages/onboarding/OnboardingIndustry";
 import { OnboardingCategory } from "./pages/onboarding/OnboardingCategory";
 import { OnboardingProfile } from "./pages/onboarding/OnboardingProfile";
@@ -30,10 +29,6 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     Component: Login,
-  },
-  {
-    path: "/subscribe",
-    Component: Subscription,
   },
   {
     path: "/register",

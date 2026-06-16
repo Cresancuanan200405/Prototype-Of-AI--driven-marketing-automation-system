@@ -8,24 +8,51 @@ import {
   User,
   Settings,
   LogOut,
-  Search,
   Moon,
   Sun,
   Menu,
+  Sparkles,
+  Calendar,
+  FileText,
+  AlertTriangle,
+  Zap,
+  Library,
+  PartyPopper,
+  Plus,
 } from "lucide-react";
 import BrandMark from "./BrandMark";
 import { AppBreadcrumbs } from "./AppBreadcrumbs";
 import { useState } from "react";
 
-const navigation = [
+interface NavItem {
+  name: string;
+  path: string;
+  icon: React.ComponentType<{ className?: string }>;
+  badge?: number;
+}
+
+const mainNav: NavItem[] = [
   { name: "Dashboard", path: "/app", icon: LayoutDashboard },
-  { name: "Publish", path: "/app/publishing", icon: Share2 },
+];
+
+const createNav: NavItem[] = [
+  { name: "AI Generator", path: "/app/ai-generator", icon: Sparkles },
+  { name: "Publishing", path: "/app/publishing", icon: Share2 },
+  { name: "Content Studio", path: "/app/content-studio", icon: Library },
+];
+
+const planNav: NavItem[] = [
+  { name: "Calendar", path: "/app/calendar", icon: Calendar },
   { name: "Campaigns", path: "/app/campaigns", icon: Megaphone },
+  { name: "Holiday Marketing", path: "/app/holiday-marketing", icon: PartyPopper },
+];
+
+const analyzeNav: NavItem[] = [
   { name: "Analytics", path: "/app/analytics", icon: BarChart3 },
   { name: "Notifications", path: "/app/notifications", icon: Bell },
 ];
 
-const bottomNavigation = [
+const bottomNav: NavItem[] = [
   { name: "Profile", path: "/app/profile", icon: User },
   { name: "Settings", path: "/app/settings", icon: Settings },
 ];
@@ -42,92 +69,170 @@ export function MainLayout() {
     return location.pathname.startsWith(path);
   };
 
+  const NavLink = ({ item, collapsed }: { item: NavItem; collapsed: boolean }) => {
+    const Icon = item.icon;
+    const active = isActive(item.path);
+
+    return (
+      <Link
+        to={item.path}
+        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors group ${
+          active
+            ? "bg-primary text-primary-foreground"
+            : "text-muted-foreground hover:bg-accent hover:text-foreground"
+        }`}
+      >
+        <div className="relative flex-shrink-0">
+          <Icon className="w-5 h-5" />
+          {item.badge && item.badge > 0 && (
+            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-destructive text-destructive-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
+              {item.badge}
+            </span>
+          )}
+        </div>
+        {!collapsed && (
+          <span className="text-sm font-medium truncate">{item.name}</span>
+        )}
+        {item.badge && item.badge > 0 && !collapsed && (
+          <span className="ml-auto bg-destructive text-destructive-foreground text-xs font-bold px-2 py-0.5 rounded-full">
+            {item.badge}
+          </span>
+        )}
+      </Link>
+    );
+  };
+
+  const SectionLabel = ({ label, collapsed }: { label: string; collapsed: boolean }) => (
+    <div className={`px-3 pt-4 pb-1 ${collapsed ? "text-center" : ""}`}>
+      <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/50">
+        {collapsed ? label.charAt(0) : label}
+      </span>
+    </div>
+  );
+
   return (
-    <div className={`min-h-screen ${darkMode ? "dark bg-background" : "bg-background text-foreground"}`}>
+    <div
+      className={`min-h-screen ${
+        darkMode ? "dark bg-background" : "bg-background text-foreground"
+      }`}
+    >
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 z-40 h-screen transition-transform ${
+        className={`fixed left-0 top-0 z-40 h-screen transition-all ${
           sidebarOpen ? "w-64" : "w-20"
         } ${darkMode ? "bg-card border-border" : "bg-card border-border"} border-r`}
       >
         <div className="flex h-full flex-col">
           {/* Logo */}
-          <div className="flex h-16 items-center justify-between px-6 border-b border-border">
+          <div className="flex h-16 items-center justify-between px-4 border-b border-border">
             {sidebarOpen && (
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-secondary text-secondary-foreground rounded-lg flex items-center justify-center">
-                  <BrandMark className="w-5 h-5 text-primary-foreground" />
+              <Link to="/app" className="flex items-center gap-2 min-w-0">
+                <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center flex-shrink-0">
+                  <BrandMark className="w-5 h-5" />
                 </div>
-                <span className={`font-semibold text-foreground`}>AI Marketing</span>
-              </div>
+                <span className="font-semibold text-foreground text-sm truncate">
+                  AI Marketing
+                </span>
+              </Link>
             )}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 rounded-lg hover:bg-accent text-foreground"
+              className="p-2 rounded-lg hover:bg-accent text-foreground flex-shrink-0"
+              aria-label={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
             >
               <Menu className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-            {navigation.map((item) => {
-              const Icon = item.icon;
-              const active = isActive(item.path);
+          {/* Quick Create (collapsed only) */}
+          {!sidebarOpen && (
+            <div className="px-3 py-3">
+              <Link
+                to="/app/publishing"
+                className="flex items-center justify-center w-full h-10 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                aria-label="Quick create post"
+              >
+                <Plus className="w-5 h-5" />
+              </Link>
+            </div>
+          )}
 
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                    active
-                      ? "bg-primary text-primary-foreground"
-                      : darkMode
-                      ? "text-muted-foreground hover:bg-accent hover:text-foreground"
-                      : "text-muted-foreground hover:bg-accent hover:text-foreground"
-                  }`}
-                >
-                  <Icon className="w-5 h-5 flex-shrink-0" />
-                  {sidebarOpen && (
-                    <span className="text-sm font-medium">{item.name}</span>
-                  )}
-                </Link>
-              );
-            })}
+          {/* Main Navigation */}
+          <nav className="flex-1 overflow-y-auto py-2 px-3 space-y-0.5">
+            {/* Dashboard */}
+            {mainNav.map((item) => (
+              <NavLink key={item.path} item={item} collapsed={!sidebarOpen} />
+            ))}
+
+            {/* Create Section */}
+            {createNav.length > 0 && (
+              <>
+                <SectionLabel label="Create" collapsed={!sidebarOpen} />
+                {createNav.map((item) => (
+                  <NavLink key={item.path} item={item} collapsed={!sidebarOpen} />
+                ))}
+              </>
+            )}
+
+            {/* Plan Section */}
+            {planNav.length > 0 && (
+              <>
+                <SectionLabel label="Plan" collapsed={!sidebarOpen} />
+                {planNav.map((item) => (
+                  <NavLink key={item.path} item={item} collapsed={!sidebarOpen} />
+                ))}
+              </>
+            )}
+
+            {/* Analyze Section */}
+            {analyzeNav.length > 0 && (
+              <>
+                <SectionLabel label="Analyze" collapsed={!sidebarOpen} />
+                {analyzeNav.map((item) => (
+                  <NavLink key={item.path} item={item} collapsed={!sidebarOpen} />
+                ))}
+              </>
+            )}
+
+            {/* Missed Opportunities — prominent separator */}
+            <div className="pt-3 pb-1">
+              <div className="border-t border-border/50" />
+            </div>
+            <Link
+              to="/app/missed-posts"
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+                isActive("/app/missed-posts")
+                  ? "bg-amber-100 text-amber-900 dark:bg-amber-900/30 dark:text-amber-200"
+                  : "text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20"
+              }`}
+            >
+              <div className="relative flex-shrink-0">
+                <AlertTriangle className="w-5 h-5" />
+              </div>
+              {sidebarOpen && (
+                <>
+                  <span className="text-sm font-medium truncate">
+                    Missed Opportunities
+                  </span>
+                  <span className="ml-auto bg-amber-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                    3
+                  </span>
+                </>
+              )}
+              {!sidebarOpen && (
+                <span className="absolute top-0 right-0 w-2 h-2 bg-amber-500 rounded-full" />
+              )}
+            </Link>
           </nav>
 
           {/* Bottom Navigation */}
           <div className="border-t border-border p-3 space-y-1">
-            {bottomNavigation.map((item) => {
-              const Icon = item.icon;
-              const active = isActive(item.path);
-
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                    active
-                      ? "bg-primary text-primary-foreground"
-                      : darkMode
-                      ? "text-muted-foreground hover:bg-accent hover:text-foreground"
-                      : "text-muted-foreground hover:bg-accent hover:text-foreground"
-                  }`}
-                >
-                  <Icon className="w-5 h-5 flex-shrink-0" />
-                  {sidebarOpen && (
-                    <span className="text-sm font-medium">{item.name}</span>
-                  )}
-                </Link>
-              );
-            })}
+            {bottomNav.map((item) => (
+              <NavLink key={item.path} item={item} collapsed={!sidebarOpen} />
+            ))}
             <button
               onClick={() => (window.location.href = "/login")}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                darkMode
-                  ? "text-muted-foreground hover:bg-accent hover:text-foreground"
-                  : "text-muted-foreground hover:bg-accent hover:text-foreground"
-              }`}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-muted-foreground hover:bg-accent hover:text-foreground`}
             >
               <LogOut className="w-5 h-5 flex-shrink-0" />
               {sidebarOpen && <span className="text-sm font-medium">Logout</span>}
@@ -137,23 +242,38 @@ export function MainLayout() {
       </aside>
 
       {/* Main Content */}
-      <div className={`${sidebarOpen ? "ml-64" : "ml-20"} transition-transform`}>
+      <div
+        className={`${sidebarOpen ? "ml-64" : "ml-20"} transition-all`}
+      >
         {/* Top Navbar */}
-        <header className="sticky top-0 z-30 border-b border-border bg-background">
-          <div className="flex flex-col gap-3 px-6 py-3 lg:flex-row lg:items-center lg:justify-between">
-            <div className="min-w-0 flex-1 space-y-2">
+        <header className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+          <div className="flex items-center justify-between px-6 py-3">
+            <div className="min-w-0 flex-1">
               <AppBreadcrumbs />
             </div>
 
             {/* Right Section */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              {/* Quick Create Button */}
+              <Link
+                to="/app/publishing"
+                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Create Post</span>
+              </Link>
+
               {/* Dark Mode Toggle */}
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="p-2 rounded-lg hover:bg-accent text-foreground"
                 aria-label="Toggle dark mode"
               >
-                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                {darkMode ? (
+                  <Sun className="w-5 h-5" />
+                ) : (
+                  <Moon className="w-5 h-5" />
+                )}
               </button>
 
               {/* Notifications */}

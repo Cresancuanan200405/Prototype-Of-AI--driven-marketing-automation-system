@@ -93,24 +93,33 @@ function buildHashtags(productName: string, themeName: string, holiday: string) 
 }
 
 export function AIGenerator() {
-  const [productName, setProductName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [brandTone, setBrandTone] = useState("");
-  const [theme, setTheme] = useState("");
+  const [productName, setProductName] = useState("Caramel Macchiato");
+  const [description, setDescription] = useState("Rich, creamy caramel coffee with latte art — our signature drink that customers love.");
+  const [price, setPrice] = useState("₱180");
+  const [brandTone, setBrandTone] = useState("Friendly");
+  const [theme, setTheme] = useState("modern-minimal");
   const [holiday, setHoliday] = useState("None");
-  const [tagline, setTagline] = useState("");
+  const [tagline, setTagline] = useState("Your daily moment of caramel bliss.");
   const [generateTaglineFromHoliday, setGenerateTaglineFromHoliday] = useState(false);
   const [referenceImageName, setReferenceImageName] = useState("");
   const [referenceImagePreview, setReferenceImagePreview] = useState("");
   const [activeTab, setActiveTab] = useState<ResultTab>("caption");
   const [action, setAction] = useState<ActionType>(null);
-  const [generated, setGenerated] = useState<GeneratedState | null>(null);
+  const [generated, setGenerated] = useState<GeneratedState | null>({
+    caption: "Caramel Macchiato is here to make your day better. Built for everyday conversions. Your daily moment of caramel bliss. Experience a friendly way to market your brand.",
+    hashtags: ["#CaramelMacchiato", "#ModernMinimal", "#Marketing", "#AIContent", "#SocialMediaMarketing"],
+    cta: "Use now and get ₱180 value from Caramel Macchiato.",
+    campaignIdea: "Run a modern minimal launch campaign centered on Caramel Macchiato and its price point.",
+    imagePrompt: "Create a modern minimal marketing image for Caramel Macchiato. Use this description as the visual direction: Rich, creamy caramel coffee with latte art — our signature drink that customers love.. Show the price clearly as ₱180. Use a friendly visual tone. Keep it versatile for evergreen use. No reference image provided.",
+    imageHeadline: "Your daily moment of caramel bliss.",
+    imageStyle: "Modern Minimal / Friendly",
+    tagline: "Your daily moment of caramel bliss.",
+  });
   const [selectedPlatform, setSelectedPlatform] = useState("Facebook");
   const [taglineVariant, setTaglineVariant] = useState(0);
   const [captionVariant, setCaptionVariant] = useState(0);
   const [hashtagVariant, setHashtagVariant] = useState(0);
-  const [previewCaption, setPreviewCaption] = useState("");
+  const [previewCaption, setPreviewCaption] = useState("Caramel Macchiato is here to make your day better. Built for everyday conversions. Your daily moment of caramel bliss. Experience a friendly way to market your brand.");
 
   const selectedTheme = useMemo(() => themes.find((item) => item.id === theme), [theme]);
 
@@ -243,16 +252,9 @@ export function AIGenerator() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
-      <div className="flex items-end justify-between gap-4">
-        <div>
-          <h1 className="mb-2 text-3xl font-bold text-gray-900">AI Content Generator</h1>
-          <p className="text-gray-600">Create caption and image concepts from your product details, tone, theme, and event.</p>
-        </div>
-        <div className="flex rounded-xl border border-gray-200 bg-white p-1 shadow-sm">
-          <button type="button" onClick={() => setActiveTab("caption")} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${activeTab === "caption" ? "bg-secondary text-secondary-foreground" : "text-gray-600 hover:text-gray-900"}`}>Generator</button>
-          <button type="button" onClick={() => generated && setActiveTab("image")} disabled={!generated} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${activeTab === "image" ? "bg-secondary text-secondary-foreground" : "text-gray-600 hover:text-gray-900"} ${!generated ? "cursor-not-allowed opacity-40" : ""}`}>Results</button>
-          <button type="button" onClick={() => generated && setActiveTab("preview")} disabled={!generated} className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${activeTab === "preview" ? "bg-secondary text-secondary-foreground" : "text-gray-600 hover:text-gray-900"} ${!generated ? "cursor-not-allowed opacity-40" : ""}`}>Preview</button>
-        </div>
+      <div>
+        <h1 className="mb-2 text-3xl font-bold text-gray-900">AI Content Generator</h1>
+        <p className="text-gray-600">Create caption and image concepts from your product details, tone, theme, and event.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

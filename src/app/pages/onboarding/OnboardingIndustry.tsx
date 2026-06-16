@@ -3,16 +3,16 @@ import BrandMark from "../../components/layout/BrandMark";
 import { useState } from "react";
 
 const industries = [
-  { id: "food", name: "Food & Beverage", icon: Coffee, color: "from-orange-400 to-red-500" },
-  { id: "retail", name: "Retail & E-Commerce", icon: ShoppingBag, color: "from-blue-400 to-cyan-500" },
-  { id: "beauty", name: "Beauty & Personal Care", icon: Heart, color: "from-pink-400 to-purple-500" },
-  { id: "technology", name: "Technology", icon: Cpu, color: "from-indigo-400 to-blue-500" },
-  { id: "fitness", name: "Health & Fitness", icon: Dumbbell, color: "from-green-400 to-emerald-500" },
-  { id: "hospitality", name: "Hospitality", icon: Hotel, color: "from-yellow-400 to-orange-500" },
-  { id: "creative", name: "Creative Services", icon: Palette, color: "from-purple-400 to-pink-500" },
-  { id: "education", name: "Education", icon: GraduationCap, color: "from-teal-400 to-cyan-500" },
-  { id: "automotive", name: "Automotive", icon: Car, color: "from-gray-400 to-slate-500" },
-  { id: "other", name: "Other", icon: MoreHorizontal, color: "from-slate-400 to-gray-500" },
+  { id: "food", name: "Food & Beverage", icon: Coffee },
+  { id: "retail", name: "Retail & E-Commerce", icon: ShoppingBag },
+  { id: "beauty", name: "Beauty & Personal Care", icon: Heart },
+  { id: "technology", name: "Technology", icon: Cpu },
+  { id: "fitness", name: "Health & Fitness", icon: Dumbbell },
+  { id: "hospitality", name: "Hospitality", icon: Hotel },
+  { id: "creative", name: "Creative Services", icon: Palette },
+  { id: "education", name: "Education", icon: GraduationCap },
+  { id: "automotive", name: "Automotive", icon: Car },
+  { id: "other", name: "Other", icon: MoreHorizontal },
 ];
 
 export function OnboardingIndustry() {
