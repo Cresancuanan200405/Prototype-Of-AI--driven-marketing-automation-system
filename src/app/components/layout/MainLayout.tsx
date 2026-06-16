@@ -17,6 +17,7 @@ import {
   Library,
   PartyPopper,
   Plus,
+  Brain,
 } from "lucide-react";
 import BrandMark from "./BrandMark";
 import { AppBreadcrumbs } from "./AppBreadcrumbs";
@@ -47,6 +48,7 @@ const planNav: NavItem[] = [
 
 const analyzeNav: NavItem[] = [
   { name: "Analytics", path: "/app/analytics", icon: BarChart3 },
+  { name: "Sales Intelligence", path: "/app/sales-intelligence", icon: Brain },
 ];
 
 

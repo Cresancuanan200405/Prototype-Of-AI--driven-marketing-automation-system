@@ -18,6 +18,7 @@ import { Analytics } from "./pages/Analytics";
 import { Notifications } from "./pages/Notifications";
 import { HolidayMarketing } from "./pages/HolidayMarketing";
 import { MissedPostRecovery } from "./pages/MissedPostRecovery";
+import { SalesIntelligence } from "./pages/SalesIntelligence";
 import { Profile } from "./pages/Profile";
 
 export const router = createBrowserRouter([
@@ -54,6 +55,7 @@ export const router = createBrowserRouter([
       { path: "calendar", Component: CalendarScheduler },
       { path: "publishing", Component: SocialPublishing },
       { path: "analytics", Component: Analytics },
+      { path: "sales-intelligence", Component: SalesIntelligence },
       { path: "notifications", Component: Notifications },
       { path: "holiday-marketing", Component: HolidayMarketing },
       { path: "missed-posts", Component: MissedPostRecovery },
