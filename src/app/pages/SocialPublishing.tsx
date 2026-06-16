@@ -14,11 +14,21 @@ import {
   Clock,
   Loader2,
   Trash2,
-  MoreHorizontal,
-  Sparkles,
+  BrainCircuit,
   AlertTriangle,
 } from "lucide-react";
 import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "../components/ui/alert-dialog";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                             */
@@ -592,7 +602,7 @@ export function SocialPublishing() {
                 {isGenerating ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
-                  <Sparkles className="h-4 w-4" />
+                  <BrainCircuit className="h-4 w-4" />
                 )}
                 {isGenerating ? "Generating..." : "Generate Caption"}
               </button>
@@ -743,14 +753,36 @@ export function SocialPublishing() {
                 <Calendar className="h-5 w-5" />
                 Schedule
               </button>
-              <button
-                type="button"
-                onClick={handlePublish}
-                className="flex items-center justify-center gap-2 rounded-xl bg-primary py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition-opacity"
-              >
-                <Send className="h-5 w-5" />
-                Publish
-              </button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <button
+                    type="button"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-primary py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition-opacity"
+                  >
+                    <Send className="h-5 w-5" />
+                    Publish
+                  </button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Confirm Publish</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This post will be published immediately
+                      {platformKey ? ` to ${platformKey === "both" ? "Facebook & Instagram" : platformKey}` : ""}.
+                      {scheduledDate && scheduledTime
+                        ? ` It is scheduled for ${scheduledDate} at ${scheduledTime}.`
+                        : " No date/time is set — it will post now."}
+                      Are you sure you want to proceed?
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handlePublish}>
+                      Publish Now
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
         </div>

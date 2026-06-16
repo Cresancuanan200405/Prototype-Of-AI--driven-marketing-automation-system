@@ -1,49 +1,126 @@
 import { ChevronLeft, ChevronRight, Plus, AlertTriangle } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router";
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-const calendarDays = [
-  { day: 28, month: "prev", posts: [] },
-  { day: 29, month: "prev", posts: [] },
-  { day: 30, month: "prev", posts: [] },
-  { day: 1, month: "current", posts: [] },
-  { day: 2, month: "current", posts: [] },
-  { day: 3, month: "current", posts: [{ title: "Summer Sale", type: "scheduled" }] },
-  { day: 4, month: "current", posts: [] },
-  { day: 5, month: "current", posts: [{ title: "Product Launch", type: "published" }] },
-  { day: 6, month: "current", posts: [] },
-  { day: 7, month: "current", posts: [] },
-  { day: 8, month: "current", posts: [] },
-  { day: 9, month: "current", posts: [{ title: "Mother's Day Campaign", type: "holiday" }] },
-  { day: 10, month: "current", posts: [] },
-  { day: 11, month: "current", posts: [{ title: "Mother's Day", type: "holiday" }] },
-  { day: 12, month: "current", posts: [{ title: "Customer Testimonial", type: "scheduled" }] },
-  { day: 13, month: "current", posts: [] },
-  { day: 14, month: "current", posts: [] },
-  { day: 15, month: "current", posts: [] },
-  { day: 16, month: "current", posts: [] },
-  { day: 17, month: "current", posts: [{ title: "Weekend Special", type: "scheduled" }] },
-  { day: 18, month: "current", posts: [] },
-  { day: 19, month: "current", posts: [] },
-  { day: 20, month: "current", posts: [] },
-  { day: 21, month: "current", posts: [{ title: "Flash Sale Alert", type: "missed" }] },
-  { day: 22, month: "current", posts: [] },
-  { day: 23, month: "current", posts: [] },
-  { day: 24, month: "current", posts: [] },
-  { day: 25, month: "current", posts: [] },
-  { day: 26, month: "current", posts: [{ title: "Memorial Day Sale", type: "holiday" }] },
-  { day: 27, month: "current", posts: [] },
-  { day: 28, month: "current", posts: [] },
-  { day: 29, month: "current", posts: [] },
-  { day: 30, month: "current", posts: [] },
-  { day: 31, month: "current", posts: [] },
-  { day: 1, month: "next", posts: [] },
+const monthNames = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
 ];
 
+interface CalendarPost {
+  title: string;
+  type: "scheduled" | "published" | "missed" | "holiday";
+}
+
+interface CalendarDay {
+  day: number;
+  month: "prev" | "current" | "next";
+  posts: CalendarPost[];
+  isToday: boolean;
+}
+
+// Mock posts keyed by date string "YYYY-MM-DD"
+const MOCK_POSTS: Record<string, CalendarPost[]> = {
+  "2026-05-03": [{ title: "Summer Sale", type: "scheduled" }],
+  "2026-05-05": [{ title: "Product Launch", type: "published" }],
+  "2026-05-09": [{ title: "Mother's Day Campaign", type: "holiday" }],
+  "2026-05-11": [{ title: "Mother's Day", type: "holiday" }],
+  "2026-05-12": [{ title: "Customer Testimonial", type: "scheduled" }],
+  "2026-05-17": [{ title: "Weekend Special", type: "scheduled" }],
+  "2026-05-21": [{ title: "Flash Sale Alert", type: "missed" }],
+  "2026-05-26": [{ title: "Memorial Day Sale", type: "holiday" }],
+};
+
+function generateCalendarDays(year: number, month: number): CalendarDay[] {
+  const today = new Date();
+  const firstDayOfMonth = new Date(year, month, 1);
+  const lastDayOfMonth = new Date(year, month + 1, 0);
+  const startDayOfWeek = firstDayOfMonth.getDay();
+  const daysInMonth = lastDayOfMonth.getDate();
+  const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+  const days: CalendarDay[] = [];
+
+  // Previous month days
+  for (let i = startDayOfWeek - 1; i >= 0; i--) {
+    const day = daysInPrevMonth - i;
+    const dateStr = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    days.push({
+      day,
+      month: "prev",
+      posts: MOCK_POSTS[dateStr] || [],
+      isToday: false,
+    });
+  }
+
+  // Current month days
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const isToday =
+      year === today.getFullYear() &&
+      month === today.getMonth() &&
+      day === today.getDate();
+    days.push({
+      day,
+      month: "current",
+      posts: MOCK_POSTS[dateStr] || [],
+      isToday,
+    });
+  }
+
+  // Next month days to fill 6 rows (42 cells)
+  const remaining = 42 - days.length;
+  for (let day = 1; day <= remaining; day++) {
+    const dateStr = `${year}-${String(month + 2).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    days.push({
+      day,
+      month: "next",
+      posts: MOCK_POSTS[dateStr] || [],
+      isToday: false,
+    });
+  }
+
+  return days;
+}
+
 export function CalendarScheduler() {
-  const [currentMonth] = useState("May 2026");
+  const today = new Date();
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+
+  const calendarDays = useMemo(
+    () => generateCalendarDays(currentYear, currentMonth),
+    [currentYear, currentMonth],
+  );
+
+  const missedCount = calendarDays.filter((d) =>
+    d.posts.some((p) => p.type === "missed"),
+  ).length;
+
+  const goToPrevMonth = () => {
+    if (currentMonth === 0) {
+      setCurrentYear((y) => y - 1);
+      setCurrentMonth(11);
+    } else {
+      setCurrentMonth((m) => m - 1);
+    }
+  };
+
+  const goToNextMonth = () => {
+    if (currentMonth === 11) {
+      setCurrentYear((y) => y + 1);
+      setCurrentMonth(0);
+    } else {
+      setCurrentMonth((m) => m + 1);
+    }
+  };
+
+  const goToToday = () => {
+    setCurrentYear(today.getFullYear());
+    setCurrentMonth(today.getMonth());
+  };
 
   const getPostColor = (type: string) => {
     switch (type) {
@@ -60,24 +137,23 @@ export function CalendarScheduler() {
     }
   };
 
-  const missedCount = calendarDays.filter((d) =>
-    d.posts.some((p) => p.type === "missed"),
-  ).length;
-
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Content Calendar</h1>
-          <p className="text-gray-600">Plan, schedule, and recover your social media posts</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Content Calendar
+          </h1>
+          <p className="text-gray-600">
+            Plan, schedule, and recover your social media posts
+          </p>
         </div>
         <div className="flex items-center gap-3">
-          {/* Missed posts indicator */}
           {missedCount > 0 && (
             <Link
               to="/app/missed-posts"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-amber-200 bg-amber-50 text-amber-800 text-sm font-medium hover:bg-amber-100 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-yellow-600/30 bg-yellow-50 text-yellow-800 text-sm font-medium hover:bg-yellow-100 transition-colors"
             >
               <AlertTriangle className="w-4 h-4" />
               <span>{missedCount} missed</span>
@@ -97,15 +173,28 @@ export function CalendarScheduler() {
       <div className="bg-card rounded-xl shadow-sm border-border p-6">
         {/* Calendar Header */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">{currentMonth}</h2>
+          <h2 className="text-2xl font-bold text-gray-900">
+            {monthNames[currentMonth]} {currentYear}
+          </h2>
           <div className="flex items-center gap-2">
-            <button className="p-2 hover:bg-accent rounded-lg transition-colors">
+            <button
+              onClick={goToPrevMonth}
+              className="p-2 hover:bg-accent rounded-lg transition-colors"
+              aria-label="Previous month"
+            >
               <ChevronLeft className="w-5 h-5 text-muted-foreground" />
             </button>
-            <button className="px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-accent rounded-lg transition-colors">
+            <button
+              onClick={goToToday}
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-accent rounded-lg transition-colors"
+            >
               Today
             </button>
-            <button className="p-2 hover:bg-accent rounded-lg transition-colors">
+            <button
+              onClick={goToNextMonth}
+              className="p-2 hover:bg-accent rounded-lg transition-colors"
+              aria-label="Next month"
+            >
               <ChevronRight className="w-5 h-5 text-muted-foreground" />
             </button>
           </div>
@@ -115,7 +204,10 @@ export function CalendarScheduler() {
         <div className="grid grid-cols-7 gap-2">
           {/* Day Headers */}
           {daysOfWeek.map((day) => (
-            <div key={day} className="text-center font-semibold text-gray-700 py-2 text-sm">
+            <div
+              key={day}
+              className="text-center font-semibold text-gray-700 py-2 text-sm"
+            >
               {day}
             </div>
           ))}
@@ -140,7 +232,21 @@ export function CalendarScheduler() {
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span>{dayData.day}</span>
+                  <span
+                    className={
+                      dayData.isToday
+                        ? "flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs font-bold"
+                        : ""
+                    }
+                  >
+                    {dayData.isToday ? "" : ""}
+                    {dayData.day}
+                  </span>
+                  {dayData.isToday && (
+                    <span className="text-[10px] font-bold text-primary uppercase">
+                      Today
+                    </span>
+                  )}
                   {dayData.posts.some((p) => p.type === "missed") && (
                     <AlertTriangle className="w-3 h-3 text-red-500" />
                   )}
@@ -150,8 +256,14 @@ export function CalendarScheduler() {
                 {dayData.posts.map((post, idx) => (
                   <Link
                     key={idx}
-                    to={post.type === "missed" ? "/app/missed-posts" : "/app/publishing"}
-                    className={`text-xs px-2 py-1 rounded ${getPostColor(post.type)} text-white truncate block hover:opacity-80 transition-opacity`}
+                    to={
+                      post.type === "missed"
+                        ? "/app/missed-posts"
+                        : "/app/publishing"
+                    }
+                    className={`text-xs px-2 py-1 rounded ${getPostColor(
+                      post.type,
+                    )} text-white truncate block hover:opacity-80 transition-opacity`}
                   >
                     {post.title}
                   </Link>
@@ -177,7 +289,9 @@ export function CalendarScheduler() {
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded bg-chart-4"></div>
-            <span className="text-sm text-muted-foreground">Holiday Campaign</span>
+            <span className="text-sm text-muted-foreground">
+              Holiday Campaign
+            </span>
           </div>
         </div>
       </div>

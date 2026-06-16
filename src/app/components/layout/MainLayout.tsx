@@ -13,9 +13,8 @@ import {
   Menu,
   Sparkles,
   Calendar,
-  FileText,
   AlertTriangle,
-  Zap,
+  Target,
   Library,
   PartyPopper,
   Plus,
@@ -78,14 +77,14 @@ export function MainLayout() {
         to={item.path}
         className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors group ${
           active
-            ? "bg-primary text-primary-foreground"
-            : "text-muted-foreground hover:bg-accent hover:text-foreground"
+            ? "bg-sidebar-accent text-sidebar-accent-foreground"
+            : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
         }`}
       >
         <div className="relative flex-shrink-0">
           <Icon className="w-5 h-5" />
           {item.badge && item.badge > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-destructive text-destructive-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
+            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-sidebar-primary text-sidebar-primary-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
               {item.badge}
             </span>
           )}
@@ -94,7 +93,7 @@ export function MainLayout() {
           <span className="text-sm font-medium truncate">{item.name}</span>
         )}
         {item.badge && item.badge > 0 && !collapsed && (
-          <span className="ml-auto bg-destructive text-destructive-foreground text-xs font-bold px-2 py-0.5 rounded-full">
+          <span className="ml-auto bg-sidebar-primary text-sidebar-primary-foreground text-xs font-bold px-2 py-0.5 rounded-full">
             {item.badge}
           </span>
         )}
@@ -104,7 +103,7 @@ export function MainLayout() {
 
   const SectionLabel = ({ label, collapsed }: { label: string; collapsed: boolean }) => (
     <div className={`px-3 pt-4 pb-1 ${collapsed ? "text-center" : ""}`}>
-      <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/50">
+      <span className="text-[10px] font-semibold uppercase tracking-widest text-sidebar-foreground/40">
         {collapsed ? label.charAt(0) : label}
       </span>
     </div>
@@ -120,24 +119,24 @@ export function MainLayout() {
       <aside
         className={`fixed left-0 top-0 z-40 h-screen transition-all ${
           sidebarOpen ? "w-64" : "w-20"
-        } ${darkMode ? "bg-card border-border" : "bg-card border-border"} border-r`}
+        } bg-sidebar text-sidebar-foreground border-r border-sidebar-border`}
       >
         <div className="flex h-full flex-col">
           {/* Logo */}
-          <div className="flex h-16 items-center justify-between px-4 border-b border-border">
+          <div className="flex h-16 items-center justify-between px-4 border-b border-sidebar-border">
             {sidebarOpen && (
               <Link to="/app" className="flex items-center gap-2 min-w-0">
-                <div className="w-8 h-8 bg-primary text-primary-foreground rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 bg-sidebar-primary text-sidebar-primary-foreground rounded-lg flex items-center justify-center flex-shrink-0">
                   <BrandMark className="w-5 h-5" />
                 </div>
-                <span className="font-semibold text-foreground text-sm truncate">
+                <span className="font-semibold text-sidebar-foreground text-sm truncate">
                   AI Marketing
                 </span>
               </Link>
             )}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 rounded-lg hover:bg-accent text-foreground flex-shrink-0"
+              className="p-2 rounded-lg hover:bg-sidebar-accent text-sidebar-foreground flex-shrink-0"
               aria-label={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
             >
               <Menu className="w-5 h-5" />
@@ -149,7 +148,7 @@ export function MainLayout() {
             <div className="px-3 py-3">
               <Link
                 to="/app/publishing"
-                className="flex items-center justify-center w-full h-10 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                className="flex items-center justify-center w-full h-10 rounded-lg bg-sidebar-primary text-sidebar-primary-foreground hover:opacity-90 transition-opacity"
                 aria-label="Quick create post"
               >
                 <Plus className="w-5 h-5" />
@@ -194,45 +193,45 @@ export function MainLayout() {
               </>
             )}
 
-            {/* Missed Opportunities — prominent separator */}
+            {/* Missed Opportunities — Gold accent */}
             <div className="pt-3 pb-1">
-              <div className="border-t border-border/50" />
+              <div className="border-t border-sidebar-border/50" />
             </div>
             <Link
               to="/app/missed-posts"
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
                 isActive("/app/missed-posts")
-                  ? "bg-amber-100 text-amber-900 dark:bg-amber-900/30 dark:text-amber-200"
-                  : "text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20"
+                  ? "bg-sidebar-primary/20 text-sidebar-primary"
+                  : "text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-foreground"
               }`}
             >
               <div className="relative flex-shrink-0">
-                <AlertTriangle className="w-5 h-5" />
+                <Target className="w-5 h-5" />
               </div>
               {sidebarOpen && (
                 <>
                   <span className="text-sm font-medium truncate">
                     Missed Opportunities
                   </span>
-                  <span className="ml-auto bg-amber-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                  <span className="ml-auto bg-sidebar-primary text-sidebar-primary-foreground text-xs font-bold px-2 py-0.5 rounded-full">
                     3
                   </span>
                 </>
               )}
               {!sidebarOpen && (
-                <span className="absolute top-0 right-0 w-2 h-2 bg-amber-500 rounded-full" />
+                <span className="absolute top-0 right-0 w-2 h-2 bg-sidebar-primary rounded-full" />
               )}
             </Link>
           </nav>
 
           {/* Bottom Navigation */}
-          <div className="border-t border-border p-3 space-y-1">
+          <div className="border-t border-sidebar-border p-3 space-y-1">
             {bottomNav.map((item) => (
               <NavLink key={item.path} item={item} collapsed={!sidebarOpen} />
             ))}
             <button
               onClick={() => (window.location.href = "/login")}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-muted-foreground hover:bg-accent hover:text-foreground`}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground`}
             >
               <LogOut className="w-5 h-5 flex-shrink-0" />
               {sidebarOpen && <span className="text-sm font-medium">Logout</span>}
@@ -257,7 +256,7 @@ export function MainLayout() {
               {/* Quick Create Button */}
               <Link
                 to="/app/publishing"
-                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
               >
                 <Plus className="w-4 h-4" />
                 <span>Create Post</span>
