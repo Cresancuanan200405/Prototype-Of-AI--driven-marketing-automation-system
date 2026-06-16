@@ -6,6 +6,7 @@ import {
   AlertTriangle,
   Lightbulb,
   Clock,
+  TrendingDown,
 } from "lucide-react";
 import {
   LineChart,
@@ -81,6 +82,27 @@ const upcomingPosts = [
   },
 ];
 
+const missedPosts = [
+  {
+    title: "Mother's Day Weekend Post",
+    missedDate: "May 9, 2026",
+    reachLost: "1.2K",
+    platform: "Facebook",
+  },
+  {
+    title: "Friday Happy Hour Promo",
+    missedDate: "May 8, 2026",
+    reachLost: "800",
+    platform: "Instagram",
+  },
+  {
+    title: "Midweek Motivation Post",
+    missedDate: "May 7, 2026",
+    reachLost: "500",
+    platform: "Facebook",
+  },
+];
+
 /* ------------------------------------------------------------------ */
 /*  Component                                                         */
 /* ------------------------------------------------------------------ */
@@ -88,29 +110,66 @@ const upcomingPosts = [
 export function Dashboard() {
   return (
     <div className="space-y-6">
-      {/* Missed Opportunities Alert — Red Urgency */}
-      <Link
-        to="/app/missed-posts"
-        className="block rounded-xl border-2 border-red-300 bg-red-50 p-4 hover:bg-red-100 transition-colors duration-200 group"
-      >
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100 flex-shrink-0">
-            <AlertTriangle className="h-5 w-5 text-red-600" />
+      {/* Missed Post Card — Red Urgency */}
+      <div className="bg-card rounded-xl border border-border overflow-hidden hover:shadow-[0_6px_20px_rgba(239,68,68,0.12)] hover:border-red-300/40 transition-all duration-200">
+        <div className="flex flex-col md:flex-row">
+          {/* Left: Summary */}
+          <div className="flex items-center gap-4 p-5 md:p-6 md:border-r border-border/60 md:w-72 flex-shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
+              <AlertTriangle className="w-6 h-6 text-red-500" />
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">Missed Posts</h3>
+              <p className="text-xs text-muted-foreground mt-0.5">This week</p>
+              <div className="flex items-center gap-1.5 mt-1.5">
+                <span className="text-lg font-bold text-red-600">3</span>
+                <span className="text-xs text-red-500/80 font-medium">posts</span>
+              </div>
+            </div>
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="font-semibold text-red-800 text-sm">
-              You have 3 missed promotional opportunities this week
-            </p>
-            <p className="text-sm text-red-600 truncate">
-              Recover ~2.5K potential reach with AI-suggested re-scheduling
-            </p>
-          </div>
-          <div className="hidden sm:flex items-center gap-1 text-sm font-medium text-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-            <span>View Recovery Plans</span>
-            <span>→</span>
+
+          {/* Right: Missed Post List */}
+          <div className="flex-1 divide-y divide-border/50">
+            {missedPosts.map((post, index) => (
+              <Link
+                key={index}
+                to="/app/missed-posts"
+                className="flex items-center gap-4 px-5 md:px-6 py-3.5 hover:bg-red-50/40 transition-colors duration-150 group/item"
+              >
+                <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-4 h-4 text-red-500" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-foreground truncate group-hover/item:text-red-700 transition-colors">
+                    {post.title}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {post.platform} · {post.missedDate}
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 flex-shrink-0">
+                  <TrendingDown className="w-3.5 h-3.5 text-red-400" />
+                  <span className="text-xs font-semibold text-red-500">-{post.reachLost}</span>
+                  <span className="text-xs text-red-400/70">reach</span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
-      </Link>
+
+        {/* Footer */}
+        <div className="flex items-center justify-between px-5 md:px-6 py-3 bg-red-50/30 border-t border-border/50">
+          <p className="text-xs text-muted-foreground">
+            Recover ~2.5K potential reach with AI-suggested re-scheduling
+          </p>
+          <Link
+            to="/app/missed-posts"
+            className="text-xs font-medium text-red-600 hover:text-red-700 transition-colors"
+          >
+            Recover Now →
+          </Link>
+        </div>
+      </div>
 
       {/* Hero Stats — 4 key metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

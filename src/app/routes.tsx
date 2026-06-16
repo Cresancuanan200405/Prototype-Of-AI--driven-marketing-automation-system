@@ -19,7 +19,6 @@ import { Notifications } from "./pages/Notifications";
 import { HolidayMarketing } from "./pages/HolidayMarketing";
 import { MissedPostRecovery } from "./pages/MissedPostRecovery";
 import { Profile } from "./pages/Profile";
-import { Settings } from "./pages/Settings";
 
 export const router = createBrowserRouter([
   {
@@ -59,7 +58,7 @@ export const router = createBrowserRouter([
       { path: "holiday-marketing", Component: HolidayMarketing },
       { path: "missed-posts", Component: MissedPostRecovery },
       { path: "profile", Component: Profile },
-      { path: "settings", Component: Settings },
+      { path: "settings", Component: Profile },
     ],
   },
 ]);
