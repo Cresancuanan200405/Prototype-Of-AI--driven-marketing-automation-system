@@ -21,7 +21,7 @@ export function Settings() {
             <input
               type="text"
               defaultValue="John Doe"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
           <div>
@@ -29,10 +29,10 @@ export function Settings() {
             <input
               type="email"
               defaultValue="john@example.com"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+          <button className="px-6 py-2 bg-[#1e3a8a] text-white rounded-lg font-medium hover:bg-[#172f71] transition-colors">
             Save Changes
           </button>
         </div>
@@ -51,14 +51,14 @@ export function Settings() {
             </label>
             <input
               type="password"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">New Password</label>
             <input
               type="password"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
           <div>
@@ -67,10 +67,10 @@ export function Settings() {
             </label>
             <input
               type="password"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+          <button className="px-6 py-2 bg-[#1e3a8a] text-white rounded-lg font-medium hover:bg-[#172f71] transition-colors">
             Update Password
           </button>
         </div>
@@ -87,14 +87,14 @@ export function Settings() {
             { label: "Email notifications for new posts", checked: true },
             { label: "Push notifications for engagement milestones", checked: true },
             { label: "Weekly performance reports", checked: true },
-            { label: "Holiday marketing reminders", checked: true },
+            { label: "Campaign deadline reminders", checked: true },
             { label: "Missed post alerts", checked: false },
           ].map((item, index) => (
             <label key={index} className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 defaultChecked={item.checked}
-                className="w-5 h-5 text-blue-600 rounded"
+                className="w-5 h-5 text-[#1e3a8a] rounded"
               />
               <span className="text-gray-700">{item.label}</span>
             </label>
@@ -124,7 +124,7 @@ export function Settings() {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Default Hashtag Count
             </label>
-            <select className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]">
               <option>3-5 hashtags</option>
               <option>5-7 hashtags</option>
               <option>7-10 hashtags</option>
@@ -157,7 +157,7 @@ export function Settings() {
           <h2 className="text-xl font-semibold text-gray-900">Theme Customization</h2>
         </div>
         <div className="grid grid-cols-3 gap-4">
-          <button className="p-4 rounded-lg border-2 border-blue-500 bg-blue-50">
+          <button className="p-4 rounded-lg border-2 border-[#1e3a8a] bg-[#1e3a8a]/5">
             <div className="w-full h-20 bg-white rounded mb-2"></div>
             <p className="text-sm font-medium text-gray-900">Light</p>
           </button>
@@ -188,3 +188,4 @@ export function Settings() {
     </div>
   );
 }
+

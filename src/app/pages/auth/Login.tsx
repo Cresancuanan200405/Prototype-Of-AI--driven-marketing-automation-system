@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Sparkles } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 
 export function Login() {
   return (
@@ -9,10 +9,10 @@ export function Login() {
         <div className="w-full max-w-md space-y-8">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-br from-[#1e3a8a] to-[#6b21a8] rounded-xl flex items-center justify-center">
+              <span className="text-sm font-bold text-white">AM</span>
             </div>
-            <span className="text-2xl font-bold text-gray-900">AI Marketing</span>
+            <span className="text-2xl font-bold text-gray-900">AdMatrix</span>
           </div>
 
           {/* Header */}
@@ -31,7 +31,7 @@ export function Login() {
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
               />
             </div>
 
@@ -43,16 +43,16 @@ export function Login() {
                 id="password"
                 type="password"
                 placeholder="Enter your password"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
               />
             </div>
 
             <div className="flex items-center justify-between">
               <label className="flex items-center gap-2">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 rounded" />
+                <input type="checkbox" className="w-4 h-4 text-[#1e3a8a] rounded" />
                 <span className="text-sm text-gray-600">Remember me</span>
               </label>
-              <a href="#" className="text-sm text-blue-600 hover:text-blue-700">
+              <a href="#" className="text-sm text-[#1e3a8a] hover:text-[#172f71]">
                 Forgot password?
               </a>
             </div>
@@ -60,7 +60,7 @@ export function Login() {
             <button
               type="button"
               onClick={() => (window.location.href = "/app")}
-              className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
+              className="w-full py-3 px-4 bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
             >
               Sign in
             </button>
@@ -112,7 +112,7 @@ export function Login() {
 
             <p className="text-center text-sm text-gray-600">
               Don't have an account?{" "}
-              <Link to="/register" className="text-blue-600 hover:text-blue-700 font-medium">
+              <Link to="/register" className="text-[#1e3a8a] hover:text-[#172f71] font-medium">
                 Sign up
               </Link>
             </p>
@@ -121,20 +121,20 @@ export function Login() {
       </div>
 
       {/* Right Side - Illustration */}
-      <div className="hidden lg:flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-12">
+      <div className="hidden lg:flex items-center justify-center bg-gradient-to-br from-[#1e3a8a] via-[#6b21a8] to-[#059669] p-12">
         <div className="max-w-lg text-white space-y-6">
-          <Sparkles className="w-16 h-16" />
-          <h2 className="text-4xl font-bold">AI-Powered Marketing Automation</h2>
+          <BadgeCheck className="w-16 h-16" />
+          <h2 className="text-4xl font-bold">Marketing Workflow Platform</h2>
           <p className="text-lg text-blue-100">
-            Automate your social media marketing with AI. Create engaging content, schedule posts,
-            and grow your business effortlessly.
+            Organize social media planning with one workspace to create content, schedule posts,
+            and track results clearly.
           </p>
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
                 ✓
               </div>
-              <span>AI-generated content and captions</span>
+              <span>Content planning and caption drafting</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
@@ -154,3 +154,4 @@ export function Login() {
     </div>
   );
 }
+

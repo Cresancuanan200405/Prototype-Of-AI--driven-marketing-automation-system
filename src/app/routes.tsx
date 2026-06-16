@@ -3,7 +3,6 @@ import { MainLayout } from "./components/layout/MainLayout";
 import { LandingPage } from "./pages/LandingPage";
 import { Login } from "./pages/auth/Login";
 import { Register } from "./pages/auth/Register";
-import { Subscription } from "./pages/auth/Subscription";
 import { OnboardingIndustry } from "./pages/onboarding/OnboardingIndustry";
 import { OnboardingCategory } from "./pages/onboarding/OnboardingCategory";
 import { OnboardingProfile } from "./pages/onboarding/OnboardingProfile";
@@ -17,7 +16,6 @@ import { CalendarScheduler } from "./pages/CalendarScheduler";
 import { SocialPublishing } from "./pages/SocialPublishing";
 import { Analytics } from "./pages/Analytics";
 import { Notifications } from "./pages/Notifications";
-import { HolidayMarketing } from "./pages/HolidayMarketing";
 import { MissedPostRecovery } from "./pages/MissedPostRecovery";
 import { Profile } from "./pages/Profile";
 import { Settings } from "./pages/Settings";
@@ -30,10 +28,6 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     Component: Login,
-  },
-  {
-    path: "/subscribe",
-    Component: Subscription,
   },
   {
     path: "/register",
@@ -55,13 +49,13 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: Dashboard },
       { path: "ai-generator", Component: AIGenerator },
+      { path: "content-generator", Component: AIGenerator },
       { path: "content-studio", Component: ContentStudio },
       { path: "campaigns", Component: Campaigns },
       { path: "calendar", Component: CalendarScheduler },
       { path: "publishing", Component: SocialPublishing },
       { path: "analytics", Component: Analytics },
       { path: "notifications", Component: Notifications },
-      { path: "holiday-marketing", Component: HolidayMarketing },
       { path: "missed-posts", Component: MissedPostRecovery },
       { path: "profile", Component: Profile },
       { path: "settings", Component: Settings },

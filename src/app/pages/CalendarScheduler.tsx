@@ -54,7 +54,7 @@ export function CalendarScheduler() {
   const getPostColor = (type: string) => {
     switch (type) {
       case "scheduled":
-        return "bg-blue-500";
+        return "bg-[#1e3a8a]/50";
       case "published":
         return "bg-green-500";
       case "missed":
@@ -74,7 +74,7 @@ export function CalendarScheduler() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Content Calendar</h1>
           <p className="text-gray-600">Plan and schedule your social media posts</p>
         </div>
-        <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
+        <button className="px-6 py-3 bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
           <Plus className="w-5 h-5" />
           Schedule Post
         </button>
@@ -141,7 +141,7 @@ export function CalendarScheduler() {
         {/* Legend */}
         <div className="flex items-center justify-center gap-6 mt-6 pt-6 border-t border-gray-200">
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-blue-500"></div>
+            <div className="w-4 h-4 rounded bg-[#1e3a8a]/50"></div>
             <span className="text-sm text-gray-600">Scheduled</span>
           </div>
           <div className="flex items-center gap-2">
@@ -182,3 +182,4 @@ export function CalendarScheduler() {
     </div>
   );
 }
+

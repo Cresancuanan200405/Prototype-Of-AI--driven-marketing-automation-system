@@ -8,7 +8,7 @@ export function ContentStudio() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Content Studio</h1>
           <p className="text-gray-600">Manage all your content in one place</p>
         </div>
-        <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90">
+        <button className="px-6 py-3 bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] text-white rounded-lg font-medium hover:opacity-90">
           Create New
         </button>
       </div>
@@ -41,3 +41,4 @@ export function ContentStudio() {
     </div>
   );
 }
+

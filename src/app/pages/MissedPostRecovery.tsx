@@ -1,4 +1,4 @@
-import { AlertCircle, Sparkles, Clock, TrendingUp, CheckCircle } from "lucide-react";
+import { AlertCircle, Wand2, Clock, TrendingUp, CheckCircle } from "lucide-react";
 
 const missedOpportunities = [
   {
@@ -54,7 +54,7 @@ export function MissedPostRecovery() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Missed Post Recovery</h1>
-        <p className="text-gray-600">Recover from missed opportunities with AI-powered suggestions</p>
+        <p className="text-gray-600">Recover from missed opportunities with data-backed suggestions</p>
       </div>
 
       {/* Analytics Cards */}
@@ -87,7 +87,7 @@ export function MissedPostRecovery() {
               3 Missed Promotional Opportunities This Week
             </h3>
             <p className="text-red-700 mb-4">
-              Don't worry! AI has analyzed these missed opportunities and generated recovery strategies
+              Don't worry! AdMatrix has analyzed these missed opportunities and generated recovery strategies
               to help you regain potential engagement.
             </p>
             <button className="px-6 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors">
@@ -140,7 +140,7 @@ export function MissedPostRecovery() {
                     </div>
                   </div>
                 </div>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                <button className="px-4 py-2 bg-[#1e3a8a] text-white rounded-lg text-sm font-medium hover:bg-[#172f71] transition-colors">
                   Recover
                 </button>
               </div>
@@ -152,8 +152,8 @@ export function MissedPostRecovery() {
       {/* AI Recovery Strategies */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center gap-2 mb-6">
-          <Sparkles className="w-6 h-6 text-purple-600" />
-          <h2 className="text-xl font-semibold text-gray-900">AI-Generated Recovery Strategies</h2>
+          <Wand2 className="w-6 h-6 text-purple-600" />
+          <h2 className="text-xl font-semibold text-gray-900">Recovery Strategy Suggestions</h2>
         </div>
 
         <div className="space-y-4">
@@ -168,7 +168,7 @@ export function MissedPostRecovery() {
                     <h3 className="font-semibold text-gray-900">{strategy.opportunity}</h3>
                     {strategy.aiGenerated && (
                       <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
-                        AI Generated
+                        Auto Suggested
                       </span>
                     )}
                   </div>
@@ -186,7 +186,7 @@ export function MissedPostRecovery() {
                 </div>
               </div>
               <div className="flex gap-3">
-                <button className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
+                <button className="px-6 py-2 bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] text-white rounded-lg font-medium hover:opacity-90 transition-opacity">
                   Schedule Recovery Post
                 </button>
                 <button className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-white transition-colors">
@@ -230,3 +230,4 @@ export function MissedPostRecovery() {
     </div>
   );
 }
+

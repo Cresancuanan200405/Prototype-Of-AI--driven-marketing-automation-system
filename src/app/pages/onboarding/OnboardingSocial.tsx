@@ -1,11 +1,11 @@
-import { Sparkles, Check } from "lucide-react";
+import { BadgeCheck, Check } from "lucide-react";
 import { useState } from "react";
 
 const platforms = [
   {
     id: "facebook",
     name: "Facebook",
-    color: "from-blue-600 to-blue-700",
+    color: "from-[#1e3a8a] to-[#172f71]",
     icon: (
       <svg className="w-6 h-6" fill="white" viewBox="0 0 24 24">
         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -43,8 +43,8 @@ export function OnboardingSocial() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-7 h-7 text-white" />
+            <div className="w-12 h-12 bg-gradient-to-br from-[#1e3a8a] to-[#6b21a8] rounded-xl flex items-center justify-center">
+              <BadgeCheck className="w-7 h-7 text-white" />
             </div>
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-3">Connect your social accounts</h1>
@@ -52,11 +52,11 @@ export function OnboardingSocial() {
 
           {/* Progress */}
           <div className="flex items-center justify-center gap-2 mt-8">
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
+            <div className="w-32 h-2 bg-[#1e3a8a]/50 rounded-full"></div>
+            <div className="w-32 h-2 bg-[#1e3a8a]/50 rounded-full"></div>
+            <div className="w-32 h-2 bg-[#1e3a8a]/50 rounded-full"></div>
+            <div className="w-32 h-2 bg-[#1e3a8a]/50 rounded-full"></div>
+            <div className="w-32 h-2 bg-[#1e3a8a]/50 rounded-full"></div>
           </div>
           <p className="text-sm text-gray-500 mt-3">Step 5 of 5</p>
         </div>
@@ -90,7 +90,7 @@ export function OnboardingSocial() {
                   className={`px-6 py-2.5 rounded-lg font-medium transition-all ${
                     connected.has(platform.id)
                       ? "border-2 border-gray-300 text-gray-700 hover:bg-gray-50"
-                      : "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90"
+                      : "bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] text-white hover:opacity-90"
                   }`}
                 >
                   {connected.has(platform.id) ? "Disconnect" : "Connect"}
@@ -101,7 +101,7 @@ export function OnboardingSocial() {
         </div>
 
         {/* Skip Option */}
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8">
+        <div className="bg-[#1e3a8a]/5 border border-blue-200 rounded-xl p-4 mb-8">
           <p className="text-sm text-blue-900">
             You can connect more platforms later in Settings
           </p>
@@ -117,7 +117,7 @@ export function OnboardingSocial() {
           </button>
           <button
             onClick={() => (window.location.href = "/")}
-            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90"
+            className="px-8 py-3 bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] text-white rounded-lg font-medium hover:opacity-90"
           >
             Complete Setup
           </button>
@@ -126,3 +126,4 @@ export function OnboardingSocial() {
     </div>
   );
 }
+

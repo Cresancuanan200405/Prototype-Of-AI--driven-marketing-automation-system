@@ -1,4 +1,4 @@
-import { Sparkles, Upload } from "lucide-react";
+import { BadgeCheck, Upload } from "lucide-react";
 
 export function OnboardingProfile() {
   return (
@@ -7,8 +7,8 @@ export function OnboardingProfile() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-7 h-7 text-white" />
+            <div className="w-12 h-12 bg-gradient-to-br from-[#1e3a8a] to-[#6b21a8] rounded-xl flex items-center justify-center">
+              <BadgeCheck className="w-7 h-7 text-white" />
             </div>
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-3">Tell us about your business</h1>
@@ -16,9 +16,9 @@ export function OnboardingProfile() {
 
           {/* Progress */}
           <div className="flex items-center justify-center gap-2 mt-8">
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
-            <div className="w-32 h-2 bg-blue-500 rounded-full"></div>
+            <div className="w-32 h-2 bg-[#1e3a8a]/50 rounded-full"></div>
+            <div className="w-32 h-2 bg-[#1e3a8a]/50 rounded-full"></div>
+            <div className="w-32 h-2 bg-[#1e3a8a]/50 rounded-full"></div>
             <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
             <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
           </div>
@@ -32,7 +32,7 @@ export function OnboardingProfile() {
             <input
               type="text"
               placeholder="e.g., Sunrise Coffee Shop"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
 
@@ -43,7 +43,7 @@ export function OnboardingProfile() {
             <textarea
               rows={4}
               placeholder="Tell us what makes your business unique..."
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
 
@@ -52,7 +52,7 @@ export function OnboardingProfile() {
             <input
               type="text"
               placeholder="e.g., New York, NY"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
 
@@ -63,13 +63,13 @@ export function OnboardingProfile() {
             <input
               type="text"
               placeholder="e.g., Young professionals, college students"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Business Logo</label>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 transition-colors cursor-pointer">
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-[#1e3a8a] transition-colors cursor-pointer">
               <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
               <p className="text-sm text-gray-600 mb-1">
                 Click to upload or drag and drop
@@ -89,7 +89,7 @@ export function OnboardingProfile() {
           </button>
           <button
             onClick={() => (window.location.href = "/onboarding/brand")}
-            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90"
+            className="px-8 py-3 bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] text-white rounded-lg font-medium hover:opacity-90"
           >
             Continue
           </button>
@@ -98,3 +98,4 @@ export function OnboardingProfile() {
     </div>
   );
 }
+

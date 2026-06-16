@@ -14,7 +14,7 @@ export function Campaigns() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Campaigns</h1>
           <p className="text-gray-600">Organize your marketing into strategic campaigns</p>
         </div>
-        <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 flex items-center gap-2">
+        <button className="px-6 py-3 bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] text-white rounded-lg font-medium hover:opacity-90 flex items-center gap-2">
           <Plus className="w-5 h-5" />
           New Campaign
         </button>
@@ -25,7 +25,7 @@ export function Campaigns() {
           <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#1e3a8a] to-[#6b21a8] flex items-center justify-center">
                   <Megaphone className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -67,3 +67,4 @@ export function Campaigns() {
     </div>
   );
 }
+

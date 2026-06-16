@@ -1,89 +1,32 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import {
-  Sparkles,
-  Check,
-  Zap,
-  Rocket,
-  Building2,
+  ArrowRight,
   BarChart3,
   Calendar,
-  Share2,
-  Brain,
-  Target,
-  Gift,
-  ArrowRight,
-  CheckCircle2,
-  Star,
+  Check,
   Menu,
+  Megaphone,
+  Target,
+  TrendingUp,
+  Users,
   X,
+  Share2,
 } from "lucide-react";
 
 const features = [
-  { icon: Brain, title: "AI Content Generation", description: "Generate captions, posts, and campaigns in seconds tailored to your brand voice." },
-  { icon: Calendar, title: "Smart Scheduling", description: "Schedule content at peak engagement times across all your platforms automatically." },
-  { icon: BarChart3, title: "Performance Analytics", description: "Track reach, engagement, and growth with easy-to-read reports and insights." },
-  { icon: Share2, title: "Multi-Platform Publishing", description: "Publish to Facebook, Instagram, Twitter, LinkedIn, and TikTok from one place." },
-  { icon: Target, title: "Campaign Manager", description: "Plan and track full marketing campaigns with A/B testing built in." },
-  { icon: Gift, title: "Holiday Marketing", description: "Never miss a seasonal opportunity with automated holiday campaign suggestions." },
+  { icon: Megaphone, title: "Content Generation", description: "Create captions, campaign ideas, and post-ready copy in one workspace." },
+  { icon: Calendar, title: "Smart Scheduling", description: "Plan content across your calendar and keep the posting flow organized." },
+  { icon: Share2, title: "Multi-Platform Publishing", description: "Send approved content to Facebook and Instagram from a single dashboard." },
+  { icon: BarChart3, title: "Cross-Platform Analytics", description: "Compare platform performance and measure what content drives results." },
+  { icon: Target, title: "Campaign Planning", description: "Organize campaigns by business goals, promotions, and seasonal moments." },
+  { icon: TrendingUp, title: "Optimization Engine", description: "Use insights to refine posting time, content type, and strategy." },
 ];
 
-const plans = [
-  {
-    id: "starter",
-    name: "Starter",
-    icon: Zap,
-    tagline: "For solopreneurs & small businesses",
-    monthlyPrice: 29,
-    annualPrice: 23,
-    highlight: false,
-    features: [
-      "3 social media accounts",
-      "50 AI-generated posts/month",
-      "Basic analytics dashboard",
-      "Content calendar",
-      "Holiday marketing suggestions",
-      "Email support",
-    ],
-  },
-  {
-    id: "growth",
-    name: "Growth",
-    icon: Rocket,
-    tagline: "For growing teams & agencies",
-    monthlyPrice: 79,
-    annualPrice: 63,
-    highlight: true,
-    features: [
-      "15 social media accounts",
-      "Unlimited AI-generated content",
-      "Advanced analytics & reporting",
-      "Full calendar scheduling",
-      "Campaign manager",
-      "Missed post recovery",
-      "Custom brand voice training",
-      "Priority chat support",
-    ],
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    icon: Building2,
-    tagline: "For large brands & enterprises",
-    monthlyPrice: 199,
-    annualPrice: 159,
-    highlight: false,
-    features: [
-      "Unlimited social media accounts",
-      "Unlimited AI content + custom models",
-      "White-label reporting",
-      "Dedicated account manager",
-      "API access & webhooks",
-      "SSO & team permissions",
-      "Onboarding & training sessions",
-      "SLA uptime guarantee",
-    ],
-  },
+const workflowSteps = [
+  { step: "01", title: "Set up your business", description: "Register, onboard, and define your brand profile." },
+  { step: "02", title: "Create and schedule", description: "Generate content and place it on the publishing calendar." },
+  { step: "03", title: "Publish and optimize", description: "Review analytics, adjust strategy, and keep improving." },
 ];
 
 const testimonials = [
@@ -91,303 +34,218 @@ const testimonials = [
     name: "Maria Santos",
     role: "Owner, Kape ni Maria",
     initials: "MS",
-    quote: "Our Facebook engagement tripled in just 2 months. The AI writes better captions than I ever could!",
-    rating: 5,
+    quote: "AdMatrix keeps our posting process organized and makes it easier to stay consistent.",
   },
   {
     name: "Carlo Reyes",
     role: "Founder, GrowthPH Agency",
     initials: "CR",
-    quote: "Managing 20+ client accounts from one dashboard saves us hours every week. Game changer for our agency.",
-    rating: 5,
+    quote: "We can manage content, publishing, and reports from one clean workspace.",
   },
   {
     name: "Ana Villanueva",
     role: "Marketing Head, NovaBrand PH",
     initials: "AV",
-    quote: "The holiday marketing calendar alone is worth the subscription. We haven't missed a campaign since.",
-    rating: 5,
+    quote: "The dashboard is simple to understand and the analytics are easy to compare.",
   },
 ];
 
 export function LandingPage() {
   const navigate = useNavigate();
-  const [annual, setAnnual] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
-      {/* ── Navbar ── */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-white" />
+      <header className="sticky top-0 z-50 border-b border-[#1e3a8a]/10 bg-white/95 backdrop-blur">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1e3a8a] text-sm font-bold text-white">
+              AM
             </div>
-            <span className="text-xl font-bold text-gray-900">AI Marketing</span>
+            <div>
+              <span className="text-xl font-bold text-slate-900">AdMatrix</span>
+            </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8">
-            {["Features", "Pricing", "Testimonials"].map((item) => (
+          <nav className="hidden items-center gap-8 md:flex">
+            {["Features", "Workflow", "Testimonials"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-sm font-medium text-slate-600 transition-colors hover:text-[#1e3a8a]"
               >
                 {item}
               </a>
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden items-center gap-3 md:flex">
             <button
               onClick={() => navigate("/login")}
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 px-4 py-2 transition-colors"
+              className="rounded-xl px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:text-[#1e3a8a]"
             >
               Sign in
             </button>
             <button
               onClick={() => navigate("/register")}
-              className="text-sm font-semibold px-5 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+              className="rounded-xl bg-[#1e3a8a] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#172f71]"
             >
-              Get started free
+              Get started
             </button>
           </div>
 
-          <button
-            className="md:hidden p-2 text-gray-600"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          <button className="p-2 text-slate-600 md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
         {menuOpen && (
-          <div className="md:hidden border-t border-gray-100 px-6 py-4 space-y-3 bg-white">
-            {["Features", "Pricing", "Testimonials"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="block text-sm font-medium text-gray-700"
-                onClick={() => setMenuOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-            <div className="pt-3 border-t border-gray-100 space-y-2">
-              <button
-                onClick={() => navigate("/login")}
-                className="w-full text-sm font-medium text-gray-700 py-2 text-left"
-              >
-                Sign in
-              </button>
-              <button
-                onClick={() => navigate("/register")}
-                className="w-full text-sm font-semibold py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg"
-              >
-                Get started free
-              </button>
+          <div className="border-t border-slate-100 bg-white px-6 py-4 md:hidden">
+            <div className="space-y-3">
+              {["Features", "Workflow", "Testimonials"].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="block text-sm font-medium text-slate-700"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item}
+                </a>
+              ))}
+              <div className="border-t border-slate-100 pt-3 space-y-2">
+                <button
+                  onClick={() => navigate("/login")}
+                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700"
+                >
+                  Sign in
+                </button>
+                <button
+                  onClick={() => navigate("/register")}
+                  className="w-full rounded-xl bg-[#1e3a8a] px-4 py-2.5 text-sm font-semibold text-white"
+                >
+                  Get started
+                </button>
+              </div>
             </div>
           </div>
         )}
       </header>
 
-      {/* ── Hero ── */}
-      <section className="bg-gradient-to-br from-blue-500 to-purple-600 text-white py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-1.5 mb-6">
-            <Sparkles className="w-4 h-4" />
-            <span className="text-sm font-medium">Powered by GPT-4</span>
-          </div>
-          <h1 className="text-5xl font-bold mb-6 leading-tight">
-            AI-Powered Marketing
-            <br />
-            for Filipino SMEs
-          </h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Automate your social media marketing with AI. Create engaging content,
-            schedule posts, and grow your business effortlessly.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => navigate("/register")}
-              className="flex items-center gap-2 px-8 py-3.5 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-colors shadow-lg"
-            >
-              Start free 14-day trial
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => navigate("/login")}
-              className="flex items-center gap-2 px-8 py-3.5 border-2 border-white/40 text-white font-medium rounded-xl hover:bg-white/10 transition-colors"
-            >
-              Sign in
-            </button>
-          </div>
-          <p className="text-blue-200 text-sm mt-5">
-            No credit card required · Cancel anytime · Setup in 2 minutes
-          </p>
-
-          {/* Feature bullets */}
-          <div className="flex flex-wrap justify-center gap-6 mt-12">
-            {["AI-generated content and captions", "Smart scheduling and analytics", "Multi-platform publishing"].map((f) => (
-              <div key={f} className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-                  <Check className="w-3.5 h-3.5" />
-                </div>
-                <span className="text-sm text-blue-100">{f}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Features ── */}
-      <section id="features" className="py-20 px-6 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Everything you need to grow</h2>
-            <p className="text-gray-500 max-w-xl mx-auto">
-              One platform to create, schedule, publish, and analyze all your social media marketing.
+      <section className="bg-gradient-to-br from-[#1e3a8a] via-[#6b21a8] to-[#0f766e] px-6 py-24 text-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+          <div>
+            <p className="mb-4 inline-flex rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.35em] text-white/80">
+              Marketing automation for SMEs
             </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                <div className="w-11 h-11 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-white" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Pricing ── */}
-      <section id="pricing" className="py-20 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Simple, transparent pricing</h2>
-            <p className="text-gray-500 max-w-xl mx-auto mb-8">
-              Start free for 14 days. No credit card required. Upgrade or cancel anytime.
+            <h1 className="mb-6 text-5xl font-bold leading-tight">
+              Grow your brand with a clear, organized marketing workspace
+            </h1>
+            <p className="max-w-2xl text-lg leading-relaxed text-white/80">
+              AdMatrix helps businesses plan content, schedule posts, publish across platforms, and review analytics from a single system.
             </p>
-            {/* Billing toggle */}
-            <div className="inline-flex items-center gap-1 bg-gray-100 rounded-xl p-1">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <button
-                onClick={() => setAnnual(false)}
-                className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
-                  !annual ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
-                }`}
+                onClick={() => navigate("/register")}
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-3.5 font-semibold text-[#1e3a8a] transition-colors hover:bg-[#f8fafc]"
               >
-                Monthly
+                Get started free
+                <ArrowRight className="h-4 w-4" />
               </button>
               <button
-                onClick={() => setAnnual(true)}
-                className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
-                  annual ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
-                }`}
+                onClick={() => navigate("/login")}
+                className="rounded-xl border border-white/30 px-8 py-3.5 font-medium text-white transition-colors hover:bg-white/10"
               >
-                Annual
-                <span className="ml-2 text-xs font-semibold text-green-600">Save 20%</span>
+                Sign in
               </button>
+            </div>
+            <div className="mt-10 flex flex-wrap gap-6">
+              {["Content planning", "Cross-platform publishing", "Analytics and optimization"].map((item) => (
+                <div key={item} className="flex items-center gap-2">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
+                    <Check className="h-3.5 w-3.5" />
+                  </div>
+                  <span className="text-sm text-white/80">{item}</span>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-            {plans.map((plan) => {
-              const Icon = plan.icon;
-              return (
-                <div
-                  key={plan.id}
-                  className={`relative rounded-2xl border-2 transition-all bg-white ${
-                    plan.highlight
-                      ? "border-blue-500 shadow-xl shadow-blue-100 scale-105"
-                      : "border-gray-200 shadow-sm hover:shadow-md hover:border-gray-300"
-                  }`}
-                >
-                  {plan.highlight && (
-                    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                      <span className="px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600">
-                        Most Popular
-                      </span>
-                    </div>
-                  )}
-
-                  <div className="p-7">
-                    <div className="w-11 h-11 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
-                      <Icon className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{plan.name}</h3>
-                    <p className="text-sm text-gray-500 mb-5">{plan.tagline}</p>
-
-                    <div className="flex items-end gap-1 mb-1">
-                      <span className="text-gray-400 text-lg font-medium">$</span>
-                      <span className="text-5xl font-bold text-gray-900 leading-none">
-                        {annual ? plan.annualPrice : plan.monthlyPrice}
-                      </span>
-                      <span className="text-gray-400 text-sm mb-1">/mo</span>
-                    </div>
-                    {annual ? (
-                      <p className="text-green-600 text-xs font-semibold mb-5">
-                        Save ${(plan.monthlyPrice - plan.annualPrice) * 12}/year
-                      </p>
-                    ) : (
-                      <div className="mb-5" />
-                    )}
-
-                    <button
-                      onClick={() => navigate("/register")}
-                      className={`w-full py-3 rounded-xl text-sm font-semibold mb-6 transition-all ${
-                        plan.highlight
-                          ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90 shadow-md"
-                          : "border-2 border-gray-200 text-gray-700 hover:border-blue-300 hover:text-blue-600"
-                      }`}
-                    >
-                      {plan.id === "enterprise" ? "Contact Sales" : "Start free trial"}
-                    </button>
-
-                    <div className="border-t border-gray-100 mb-5" />
-
-                    <ul className="space-y-3">
-                      {plan.features.map((feat) => (
-                        <li key={feat} className="flex items-start gap-2.5">
-                          <CheckCircle2 className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.highlight ? "text-blue-500" : "text-gray-400"}`} />
-                          <span className="text-sm text-gray-600">{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+          <div className="grid gap-4 rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur">
+            <div className="rounded-2xl bg-white p-5 text-slate-900 shadow-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#1e3a8a]/60">AdMatrix Overview</p>
+              <h2 className="mt-2 text-2xl font-bold">A clean workflow from setup to reporting</h2>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                Build your profile, create content, publish on schedule, and compare performance without switching tools.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {workflowSteps.map((step) => (
+                <div key={step.step} className="rounded-2xl bg-white/15 p-4 text-white">
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">{step.step}</p>
+                  <h3 className="mt-2 font-semibold">{step.title}</h3>
+                  <p className="mt-1 text-sm text-white/75">{step.description}</p>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Testimonials ── */}
-      <section id="testimonials" className="py-20 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Loved by Filipino businesses</h2>
-            <p className="text-gray-500">Thousands of SMEs trust us to grow their online presence.</p>
+      <section id="features" className="bg-slate-50 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold text-slate-900">Everything you need in one workspace</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-slate-500">
+              AdMatrix focuses on content operations, platform publishing, analytics, and brand consistency.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map(({ name, role, initials, quote, rating }) => (
-              <div key={name} className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                <div className="flex gap-0.5 mb-4">
-                  {Array.from({ length: rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                  ))}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {features.map(({ icon: Icon, title, description }) => (
+              <div key={title} className="rounded-2xl border border-[#1e3a8a]/10 bg-white p-6 shadow-sm">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1e3a8a]/10 text-[#1e3a8a]">
+                  <Icon className="h-5 w-5" />
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed mb-5">"{quote}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-bold">
-                    {initials}
+                <h3 className="mb-2 font-semibold text-slate-900">{title}</h3>
+                <p className="text-sm leading-relaxed text-slate-500">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" className="px-6 py-20 bg-white">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-6 lg:grid-cols-3">
+            {workflowSteps.map((step) => (
+              <div key={step.step} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="mb-4 inline-flex rounded-full bg-[#d4af37]/15 px-3 py-1 text-xs font-semibold text-[#1e3a8a]">
+                  {step.step}
+                </div>
+                <h3 className="mb-2 text-xl font-semibold text-slate-900">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-slate-500">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" className="bg-slate-50 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold text-slate-900">Trusted by growing businesses</h2>
+            <p className="mt-3 text-slate-500">Simple tools, clear analytics, and a smoother workflow for every team.</p>
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {testimonials.map((item) => (
+              <div key={item.name} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <p className="text-sm leading-relaxed text-slate-600">"{item.quote}"</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1e3a8a] text-sm font-bold text-white">
+                    {item.initials}
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900 text-sm">{name}</div>
-                    <div className="text-gray-500 text-xs">{role}</div>
+                    <div className="font-semibold text-slate-900">{item.name}</div>
+                    <div className="text-xs text-slate-500">{item.role}</div>
                   </div>
                 </div>
               </div>
@@ -396,47 +254,38 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* ── CTA Banner ── */}
-      <section className="py-20 px-6 bg-gradient-to-br from-blue-500 to-purple-600">
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <Sparkles className="w-10 h-10 mx-auto mb-5 opacity-80" />
-          <h2 className="text-3xl font-bold mb-4">Ready to grow your negosyo?</h2>
-          <p className="text-blue-100 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-            Join thousands of Filipino SMEs using AI Marketing to publish smarter and grow faster.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <section className="bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] px-6 py-20 text-white">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl font-bold">Ready to organize your marketing workflow?</h2>
+          <p className="mt-4 text-white/80">Create your account and start planning content, publishing posts, and tracking results in AdMatrix.</p>
+          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <button
               onClick={() => navigate("/register")}
-              className="flex items-center gap-2 px-8 py-3.5 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-colors shadow-lg"
+              className="rounded-xl bg-white px-8 py-3.5 font-semibold text-[#1e3a8a] transition-colors hover:bg-[#f8fafc]"
             >
-              Start free trial
-              <ArrowRight className="w-4 h-4" />
+              Create account
             </button>
             <button
               onClick={() => navigate("/login")}
-              className="px-8 py-3.5 border-2 border-white/40 text-white font-medium rounded-xl hover:bg-white/10 transition-colors"
+              className="rounded-xl border border-white/30 px-8 py-3.5 font-medium text-white transition-colors hover:bg-white/10"
             >
               Sign in
             </button>
           </div>
-          <p className="text-blue-200 text-sm mt-5">No credit card required · Cancel anytime</p>
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer className="bg-white border-t border-gray-200 px-6 py-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-bold text-gray-900">AI Marketing</span>
+      <footer className="border-t border-slate-200 bg-white px-6 py-6">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1e3a8a] text-xs font-bold text-white">AM</div>
+            <span className="font-bold text-slate-900">AdMatrix</span>
           </div>
-          <p className="text-gray-400 text-sm">© 2026 AI Marketing · Privacy · Terms</p>
+          <p className="text-sm text-slate-400">© 2026 AdMatrix</p>
           <div className="flex gap-6">
-            {["Features", "Pricing", "Testimonials"].map((l) => (
-              <a key={l} href={`#${l.toLowerCase()}`} className="text-sm text-gray-500 hover:text-gray-900 transition-colors">
-                {l}
+            {["Features", "Workflow", "Testimonials"].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="text-sm text-slate-500 transition-colors hover:text-[#1e3a8a]">
+                {item}
               </a>
             ))}
           </div>

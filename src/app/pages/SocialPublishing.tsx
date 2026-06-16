@@ -19,10 +19,10 @@ export function SocialPublishing() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Select Platforms</h3>
         <div className="grid grid-cols-2 gap-4">
-          <div className="flex items-center gap-4 p-4 border-2 border-blue-500 bg-blue-50 rounded-xl">
-            <input type="checkbox" checked className="w-5 h-5 text-blue-600 rounded" readOnly />
+          <div className="flex items-center gap-4 p-4 border-2 border-[#1e3a8a] bg-[#1e3a8a]/5 rounded-xl">
+            <input type="checkbox" checked className="w-5 h-5 text-[#1e3a8a] rounded" readOnly />
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#1e3a8a] to-[#172f71] flex items-center justify-center">
                 <svg className="w-5 h-5" fill="white" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
@@ -34,8 +34,8 @@ export function SocialPublishing() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 p-4 border-2 border-blue-500 bg-blue-50 rounded-xl">
-            <input type="checkbox" checked className="w-5 h-5 text-blue-600 rounded" readOnly />
+          <div className="flex items-center gap-4 p-4 border-2 border-[#1e3a8a] bg-[#1e3a8a]/5 rounded-xl">
+            <input type="checkbox" checked className="w-5 h-5 text-[#1e3a8a] rounded" readOnly />
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500 via-purple-500 to-orange-500 flex items-center justify-center">
                 <svg className="w-5 h-5" fill="white" viewBox="0 0 24 24">
@@ -54,7 +54,7 @@ export function SocialPublishing() {
       {/* Media Upload */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Media</h3>
-        <div className="border-2 border-dashed border-gray-300 rounded-xl p-12 text-center hover:border-blue-500 transition-colors cursor-pointer">
+        <div className="border-2 border-dashed border-gray-300 rounded-xl p-12 text-center hover:border-[#1e3a8a] transition-colors cursor-pointer">
           <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
           <p className="text-gray-900 font-medium mb-1">Click to upload or drag and drop</p>
           <p className="text-sm text-gray-500 mb-4">
@@ -79,11 +79,11 @@ export function SocialPublishing() {
         <textarea
           rows={6}
           placeholder="Write your caption here... Use AI Generator to create engaging content!"
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3"
+          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] mb-3"
         />
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-500">0 / 2,200 characters</p>
-          <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+          <button className="text-sm text-[#1e3a8a] hover:text-[#172f71] font-medium">
             Use AI Generator
           </button>
         </div>
@@ -97,18 +97,18 @@ export function SocialPublishing() {
             <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
             <input
               type="date"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Time</label>
             <input
               type="time"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
             />
           </div>
         </div>
-        <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mt-4 p-3 bg-[#1e3a8a]/5 border border-blue-200 rounded-lg">
           <p className="text-sm text-blue-900">
             Best time to post: 6:00 PM - 8:00 PM (Peak engagement)
           </p>
@@ -121,11 +121,11 @@ export function SocialPublishing() {
           <Save className="w-5 h-5" />
           Save Draft
         </button>
-        <button className="py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+        <button className="py-3 bg-[#1e3a8a] text-white rounded-lg font-medium hover:bg-[#172f71] transition-colors flex items-center justify-center gap-2">
           <Calendar className="w-5 h-5" />
           Schedule Post
         </button>
-        <button className="py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <button className="py-3 bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] text-white rounded-lg font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
           <Send className="w-5 h-5" />
           Publish Now
         </button>
@@ -146,7 +146,7 @@ export function SocialPublishing() {
                   {draft.platform} • Last edited {draft.lastEdited}
                 </p>
               </div>
-              <button className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700">
+              <button className="px-4 py-2 text-sm font-medium text-[#1e3a8a] hover:text-[#172f71]">
                 Edit
               </button>
             </div>
@@ -156,3 +156,4 @@ export function SocialPublishing() {
     </div>
   );
 }
+

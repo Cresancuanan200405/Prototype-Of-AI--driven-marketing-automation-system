@@ -12,7 +12,7 @@ export function Profile() {
       {/* Profile Card */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
         {/* Cover */}
-        <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600"></div>
+        <div className="h-32 bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8]"></div>
 
         {/* Profile Info */}
         <div className="px-8 pb-8">
@@ -80,7 +80,7 @@ export function Profile() {
         <div className="space-y-4">
           <div className="flex items-center justify-between p-4 border border-gray-200 rounded-xl">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#1e3a8a] to-[#172f71] flex items-center justify-center">
                 <svg className="w-6 h-6" fill="white" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
@@ -119,7 +119,7 @@ export function Profile() {
           </div>
         </div>
 
-        <button className="mt-4 w-full py-3 border-2 border-dashed border-gray-300 text-gray-600 rounded-xl font-medium hover:border-blue-500 hover:text-blue-600 transition-colors">
+        <button className="mt-4 w-full py-3 border-2 border-dashed border-gray-300 text-gray-600 rounded-xl font-medium hover:border-[#1e3a8a] hover:text-[#1e3a8a] transition-colors">
           + Connect Another Account
         </button>
       </div>
@@ -145,3 +145,4 @@ export function Profile() {
     </div>
   );
 }
+

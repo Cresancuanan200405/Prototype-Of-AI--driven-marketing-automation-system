@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Sparkles } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 
 export function Register() {
   return (
@@ -9,10 +9,10 @@ export function Register() {
         <div className="w-full max-w-md space-y-8">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 bg-gradient-to-br from-[#1e3a8a] to-[#6b21a8] rounded-xl flex items-center justify-center">
+              <span className="text-sm font-bold text-white">AM</span>
             </div>
-            <span className="text-2xl font-bold text-gray-900">AI Marketing</span>
+            <span className="text-2xl font-bold text-gray-900">AdMatrix</span>
           </div>
 
           {/* Header */}
@@ -24,7 +24,7 @@ export function Register() {
           {/* Progress Indicator */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-medium">
+              <div className="w-8 h-8 rounded-full bg-[#1e3a8a]/50 text-white flex items-center justify-center text-sm font-medium">
                 1
               </div>
               <span className="text-sm text-gray-600">Account</span>
@@ -48,7 +48,7 @@ export function Register() {
                 id="fullName"
                 type="text"
                 placeholder="John Doe"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
               />
             </div>
 
@@ -60,7 +60,7 @@ export function Register() {
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
               />
             </div>
 
@@ -72,7 +72,7 @@ export function Register() {
                 id="password"
                 type="password"
                 placeholder="Create a strong password"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
               />
             </div>
 
@@ -87,21 +87,21 @@ export function Register() {
                 id="confirmPassword"
                 type="password"
                 placeholder="Re-enter your password"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1e3a8a]"
               />
             </div>
 
             <button
               type="button"
               onClick={() => (window.location.href = "/onboarding/industry")}
-              className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
+              className="w-full py-3 px-4 bg-gradient-to-r from-[#1e3a8a] to-[#6b21a8] text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
             >
               Create account
             </button>
 
             <p className="text-center text-sm text-gray-600">
               Already have an account?{" "}
-              <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+              <Link to="/login" className="text-[#1e3a8a] hover:text-[#172f71] font-medium">
                 Sign in
               </Link>
             </p>
@@ -110,12 +110,12 @@ export function Register() {
       </div>
 
       {/* Right Side - Illustration */}
-      <div className="hidden lg:flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-12">
+      <div className="hidden lg:flex items-center justify-center bg-gradient-to-br from-[#1e3a8a] via-[#6b21a8] to-[#059669] p-12">
         <div className="max-w-lg text-white space-y-6">
-          <Sparkles className="w-16 h-16" />
+          <BadgeCheck className="w-16 h-16" />
           <h2 className="text-4xl font-bold">Join thousands of businesses</h2>
           <p className="text-lg text-blue-100">
-            Save time and grow faster with AI-powered marketing automation. No technical skills
+            Save time and grow faster with a unified marketing workflow platform. No technical skills
             required.
           </p>
           <div className="grid grid-cols-2 gap-4 pt-6">
@@ -141,3 +141,4 @@ export function Register() {
     </div>
   );
 }
+
