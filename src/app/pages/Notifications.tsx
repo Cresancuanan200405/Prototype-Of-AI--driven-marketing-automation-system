@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Bell, CheckCircle, AlertCircle, TrendingUp, Clock } from "lucide-react";
 
-const notifications = [
+const initialNotifications = [
   {
+    id: 1,
     type: "success",
     icon: CheckCircle,
     title: "Post Published Successfully",
@@ -10,6 +12,7 @@ const notifications = [
     unread: true,
   },
   {
+    id: 2,
     type: "alert",
     icon: AlertCircle,
     title: "Missed Posting Opportunity",
@@ -18,6 +21,7 @@ const notifications = [
     unread: true,
   },
   {
+    id: 3,
     type: "info",
     icon: TrendingUp,
     title: "Engagement Milestone Reached",
@@ -26,6 +30,7 @@ const notifications = [
     unread: false,
   },
   {
+    id: 4,
     type: "warning",
     icon: Clock,
     title: "Scheduled Post Reminder",
@@ -49,6 +54,14 @@ function getNotificationColors(type: string) {
 }
 
 export function Notifications() {
+  const [notifications, setNotifications] = useState(initialNotifications);
+
+  const unreadCount = notifications.filter((n) => n.unread).length;
+
+  const handleMarkAllRead = () => {
+    setNotifications((prev) => prev.map((n) => ({ ...n, unread: false })));
+  };
+
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
@@ -56,18 +69,22 @@ export function Notifications() {
           <h1 className="text-2xl font-bold text-foreground tracking-tight">Notifications</h1>
           <p className="text-sm text-muted-foreground mt-0.5">Stay updated with your marketing activities</p>
         </div>
-        <button className="px-4 py-2 text-sm font-medium text-secondary hover:underline">
+        <button
+          onClick={handleMarkAllRead}
+          disabled={unreadCount === 0}
+          className="px-4 py-2 text-sm font-medium text-secondary hover:underline disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:no-underline"
+        >
           Mark all as read
         </button>
       </div>
 
       <div className="bg-card rounded-xl border border-border divide-y divide-border">
-        {notifications.map((notification, index) => {
+        {notifications.map((notification) => {
           const Icon = notification.icon;
           const colors = getNotificationColors(notification.type);
           return (
             <div
-              key={index}
+              key={notification.id}
               className={`p-5 hover:bg-muted/50 transition-colors duration-200 ${
                 notification.unread ? "bg-secondary/[0.03]" : ""
               }`}

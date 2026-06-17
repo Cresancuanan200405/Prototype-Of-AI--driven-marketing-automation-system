@@ -292,12 +292,12 @@ export function SocialPublishing() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
-      {/* Missed Opportunities Alert — Gold */}
-      <Link to="/app/missed-posts" className="block rounded-xl border-2 border-secondary/20 bg-secondary/5 p-3 hover:bg-secondary/10 transition-colors group">
+      {/* Missed Opportunities Alert — Red Urgency */}
+      <Link to="/app/missed-posts" className="block rounded-xl border-2 border-red-300 bg-red-50 p-3 hover:bg-red-100 transition-colors group">
         <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary/10 flex-shrink-0"><AlertTriangle className="h-4 w-4 text-secondary" /></div>
-          <div className="flex-1 min-w-0"><p className="font-semibold text-secondary/80 text-xs sm:text-sm">You have 3 missed promotional opportunities this week</p></div>
-          <div className="hidden sm:flex items-center gap-1 text-xs font-medium text-secondary/70 opacity-0 group-hover:opacity-100 transition-opacity"><span>Recover now</span><span>→</span></div>
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-100 flex-shrink-0"><AlertTriangle className="h-4 w-4 text-red-600" /></div>
+          <div className="flex-1 min-w-0"><p className="font-semibold text-red-700 text-xs sm:text-sm">You have 3 missed promotional opportunities this week</p></div>
+          <div className="hidden sm:flex items-center gap-1 text-xs font-medium text-red-600 opacity-0 group-hover:opacity-100 transition-opacity"><span>Recover now</span><span>→</span></div>
         </div>
       </Link>
 

@@ -1,6 +1,6 @@
-import { ChevronLeft, ChevronRight, Plus, AlertTriangle } from "lucide-react";
-import { useState, useMemo } from "react";
-import { Link } from "react-router";
+import { ChevronLeft, ChevronRight, Plus, AlertTriangle, X } from "lucide-react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router";
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -19,6 +19,7 @@ interface CalendarDay {
   month: "prev" | "current" | "next";
   posts: CalendarPost[];
   isToday: boolean;
+  dateStr: string;
 }
 
 /* ------------------------------------------------------------------ */
@@ -26,7 +27,6 @@ interface CalendarDay {
 /* ------------------------------------------------------------------ */
 
 const MOCK_POSTS: Record<string, CalendarPost[]> = {
-  // === June 2026 — Published (first half) ===
   "2026-06-01": [{ title: "June Kickoff Special", type: "published" }],
   "2026-06-02": [{ title: "Iced Coffee Launch", type: "published" }],
   "2026-06-04": [{ title: "Behind the Scenes", type: "published" }],
@@ -34,8 +34,6 @@ const MOCK_POSTS: Record<string, CalendarPost[]> = {
   "2026-06-07": [{ title: "Weekend Brunch Promo", type: "published" }],
   "2026-06-09": [{ title: "New Pastry Flavors", type: "published" }],
   "2026-06-10": [{ title: "Midweek Motivation", type: "published" }],
-
-  // === June 2026 — Scheduled (second half) ===
   "2026-06-16": [{ title: "Summer Drink Feature", type: "scheduled" }],
   "2026-06-18": [{ title: "Throwback Thursday", type: "scheduled" }],
   "2026-06-19": [{ title: "Friday Happy Hour Deal", type: "scheduled" }],
@@ -44,17 +42,11 @@ const MOCK_POSTS: Record<string, CalendarPost[]> = {
   "2026-06-25": [{ title: "Staff Pick of the Week", type: "scheduled" }],
   "2026-06-27": [{ title: "Saturday Promo", type: "scheduled" }],
   "2026-06-30": [{ title: "End of Month Sale", type: "scheduled" }],
-
-  // === June 2026 — Holiday ===
   "2026-06-21": [{ title: "Father's Day Promo", type: "holiday" }],
   "2026-06-22": [{ title: "Father's Day Thank You", type: "holiday" }],
-
-  // === June 2026 — Missed ===
   "2026-06-03": [{ title: "Flash Sale Alert", type: "missed" }],
   "2026-06-11": [{ title: "Rainy Day Special", type: "missed" }],
   "2026-06-14": [{ title: "Sunday Promo Post", type: "missed" }],
-
-  // === July 2026 — Scheduled ===
   "2026-07-01": [{ title: "July 4th Campaign Start", type: "scheduled" }],
   "2026-07-02": [{ title: "Independence Day Promo", type: "holiday" }],
   "2026-07-04": [{ title: "July 4th Sale", type: "holiday" }],
@@ -88,13 +80,13 @@ function generateCalendarDays(year: number, month: number): CalendarDay[] {
   for (let i = startDayOfWeek - 1; i >= 0; i--) {
     const day = daysInPrevMonth - i;
     const dateStr = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-    days.push({ day, month: "prev", posts: MOCK_POSTS[dateStr] || [], isToday: false });
+    days.push({ day, month: "prev", posts: MOCK_POSTS[dateStr] || [], isToday: false, dateStr });
   }
 
   for (let day = 1; day <= daysInMonth; day++) {
     const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     const isToday = year === today.getFullYear() && month === today.getMonth() && day === today.getDate();
-    days.push({ day, month: "current", posts: MOCK_POSTS[dateStr] || [], isToday });
+    days.push({ day, month: "current", posts: MOCK_POSTS[dateStr] || [], isToday, dateStr });
   }
 
   const remaining = 42 - days.length;
@@ -102,10 +94,151 @@ function generateCalendarDays(year: number, month: number): CalendarDay[] {
     const nextMonth = month + 2 > 12 ? 1 : month + 2;
     const nextYear = month + 2 > 12 ? year + 1 : year;
     const dateStr = `${nextYear}-${String(nextMonth).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-    days.push({ day, month: "next", posts: MOCK_POSTS[dateStr] || [], isToday: false });
+    days.push({ day, month: "next", posts: MOCK_POSTS[dateStr] || [], isToday: false, dateStr });
   }
 
   return days;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Helpers                                                            */
+/* ------------------------------------------------------------------ */
+
+function getPostColor(type: string) {
+  switch (type) {
+    case "scheduled": return "bg-chart-1";
+    case "published": return "bg-chart-2";
+    case "missed": return "bg-red-500";
+    case "holiday": return "bg-chart-4";
+    default: return "bg-chart-5";
+  }
+}
+
+function getPostLabel(type: string) {
+  switch (type) {
+    case "scheduled": return "Scheduled";
+    case "published": return "Published";
+    case "missed": return "Missed";
+    case "holiday": return "Holiday Campaign";
+    default: return type;
+  }
+}
+
+function formatDate(dateStr: string) {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const date = new Date(y, m - 1, d);
+  return date.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+}
+
+/* ------------------------------------------------------------------ */
+/*  Day Detail Popup                                                   */
+/* ------------------------------------------------------------------ */
+
+function DayDetailPopup({
+  dayData,
+  onClose,
+}: {
+  dayData: CalendarDay | null;
+  onClose: () => void;
+}) {
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!dayData) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [dayData, onClose]);
+
+  if (!dayData) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
+
+      {/* Popup Card */}
+      <div
+        ref={popupRef}
+        className="relative bg-card rounded-2xl border border-border shadow-2xl w-full max-w-md max-h-[80vh] flex flex-col"
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+          <div>
+            <h3 className="text-base font-semibold text-foreground">{formatDate(dayData.dateStr)}</h3>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              {dayData.posts.length} {dayData.posts.length === 1 ? "post" : "posts"} scheduled
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto p-6">
+          {dayData.posts.length === 0 ? (
+            <div className="text-center py-8">
+              <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center mx-auto mb-3">
+                <Plus className="w-6 h-6 text-muted-foreground" />
+              </div>
+              <p className="text-sm text-muted-foreground">No posts scheduled for this day</p>
+              <p className="text-xs text-muted-foreground/60 mt-1">Click "Schedule Post" to add one</p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {dayData.posts.map((post, idx) => (
+                <div
+                  key={idx}
+                  className={`rounded-xl border p-4 ${post.type === "missed" ? "border-red-200 bg-red-50/50" : "border-border bg-muted/30"}`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full ${getPostColor(post.type)} text-white`}>
+                      {getPostLabel(post.type)}
+                    </span>
+                    {post.type === "missed" && (
+                      <span className="flex items-center gap-1 text-[11px] font-medium text-red-600">
+                        <AlertTriangle className="w-3 h-3" />
+                        Action needed
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm font-medium text-foreground">{post.title}</p>
+                  {post.type === "missed" && (
+                    <p className="text-xs text-muted-foreground mt-1.5">
+                      This post was not published on time. Visit Missed Opportunities to recover it.
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        {dayData.posts.length > 0 && (
+          <div className="px-6 py-4 border-t border-border">
+            <Link
+              to="/app/publishing"
+              onClick={onClose}
+              className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              <Plus className="w-4 h-4" />
+              Schedule New Post
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 /* ------------------------------------------------------------------ */
@@ -116,6 +249,7 @@ export function CalendarScheduler() {
   const today = new Date();
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+  const [selectedDay, setSelectedDay] = useState<CalendarDay | null>(null);
 
   const calendarDays = useMemo(
     () => generateCalendarDays(currentYear, currentMonth),
@@ -139,15 +273,11 @@ export function CalendarScheduler() {
     setCurrentMonth(today.getMonth());
   };
 
-  const getPostColor = (type: string) => {
-    switch (type) {
-      case "scheduled": return "bg-chart-1";
-      case "published": return "bg-chart-2";
-      case "missed": return "bg-red-500";
-      case "holiday": return "bg-chart-4";
-      default: return "bg-chart-5";
-    }
+  const handleDayClick = (dayData: CalendarDay) => {
+    setSelectedDay(dayData);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="space-y-6">
@@ -159,10 +289,10 @@ export function CalendarScheduler() {
         </div>
         <div className="flex items-center gap-3">
           {missedCount > 0 && (
-            <Link to="/app/missed-posts" className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-red-300 bg-red-50 text-red-700 text-sm font-medium hover:bg-red-100 transition-colors">
+            <button onClick={() => navigate("/app/missed-posts")} className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-red-300 bg-red-50 text-red-700 text-sm font-medium hover:bg-red-100 transition-colors">
               <AlertTriangle className="w-4 h-4" />
               <span>{missedCount} missed</span>
-            </Link>
+            </button>
           )}
           <Link to="/app/publishing" className="px-5 py-2.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:opacity-90 transition-opacity flex items-center gap-2">
             <Plus className="w-4 h-4" />
@@ -198,7 +328,8 @@ export function CalendarScheduler() {
           {calendarDays.map((dayData, index) => (
             <div
               key={index}
-              className={`min-h-[5.5rem] p-2 rounded-lg border-2 transition-colors ${
+              onClick={() => handleDayClick(dayData)}
+              className={`min-h-[5.5rem] p-2 rounded-lg border-2 transition-colors cursor-pointer ${
                 dayData.month === "current"
                   ? "bg-card border-border hover:border-primary/30"
                   : "bg-muted/50 border-border/50"
@@ -215,13 +346,12 @@ export function CalendarScheduler() {
               </div>
               <div className="space-y-1">
                 {dayData.posts.map((post, idx) => (
-                  <Link
+                  <span
                     key={idx}
-                    to={post.type === "missed" ? "/app/missed-posts" : "/app/publishing"}
-                    className={`text-[11px] px-2 py-1 rounded ${getPostColor(post.type)} text-white truncate block hover:opacity-80 transition-opacity`}
+                    className={`text-[11px] px-2 py-1 rounded ${getPostColor(post.type)} text-white truncate block`}
                   >
                     {post.title}
-                  </Link>
+                  </span>
                 ))}
               </div>
             </div>
@@ -237,6 +367,8 @@ export function CalendarScheduler() {
         </div>
       </div>
 
+      {/* Day Detail Popup */}
+      <DayDetailPopup dayData={selectedDay} onClose={() => setSelectedDay(null)} />
     </div>
   );
 }

@@ -1,12 +1,27 @@
-import { User, Lock, Bell, Palette, Link2, Code } from "lucide-react";
+import { useState } from "react";
+import {
+  User,
+  Lock,
+  Bell,
+  Palette,
+  Link2,
+  Code,
+  AlertTriangle,
+} from "lucide-react";
 
 export function Settings() {
+  const [saved, setSaved] = useState(false);
+
+  const handleSave = () => {
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  };
+
   return (
     <div className="max-w-4xl mx-auto space-y-6">
-      {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-foreground tracking-tight">Settings</h1>
-        <p className="text-sm text-muted-foreground mt-0.5">Manage your account and application preferences</p>
+        <p className="text-sm text-muted-foreground mt-0.5">Manage your account, preferences, and integrations</p>
       </div>
 
       {/* Account Settings */}
@@ -34,8 +49,11 @@ export function Settings() {
               className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
-          <button className="px-6 py-2.5 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity duration-200">
-            Save Changes
+          <button
+            onClick={handleSave}
+            className="px-6 py-2.5 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity duration-200"
+          >
+            {saved ? "Saved!" : "Save Changes"}
           </button>
         </div>
       </div>
@@ -133,25 +151,6 @@ export function Settings() {
         </div>
       </div>
 
-      {/* Social Media Integrations */}
-      <div className="bg-card rounded-xl border border-border p-6">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-9 h-9 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
-            <Link2 className="w-5 h-5" />
-          </div>
-          <h2 className="text-base font-semibold text-foreground">Social Media Integrations</h2>
-        </div>
-        <p className="text-sm text-muted-foreground mb-4">
-          Manage your connected social media accounts from the Profile page
-        </p>
-        <button
-          onClick={() => (window.location.href = "/profile")}
-          className="px-6 py-2.5 border border-border text-foreground rounded-lg font-medium hover:bg-muted transition-colors duration-200"
-        >
-          Go to Profile
-        </button>
-      </div>
-
       {/* Theme Customization */}
       <div className="bg-card rounded-xl border border-border p-6">
         <div className="flex items-center gap-3 mb-6">
@@ -189,6 +188,22 @@ export function Settings() {
         </p>
         <button className="px-6 py-2.5 bg-primary text-primary-foreground rounded-lg font-medium hover:opacity-90 transition-opacity duration-200">
           Generate API Key
+        </button>
+      </div>
+
+      {/* Danger Zone */}
+      <div className="bg-card rounded-xl border-2 border-red-200 p-6">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-9 h-9 rounded-lg bg-red-100 text-red-600 flex items-center justify-center">
+            <AlertTriangle className="w-5 h-5" />
+          </div>
+          <h2 className="text-base font-semibold text-red-700">Danger Zone</h2>
+        </div>
+        <p className="text-sm text-muted-foreground mb-4">
+          Once you delete your account, there is no going back. Please be certain.
+        </p>
+        <button className="px-6 py-2.5 border-2 border-red-300 text-red-600 rounded-lg font-medium hover:bg-red-50 transition-colors duration-200">
+          Delete Account
         </button>
       </div>
     </div>

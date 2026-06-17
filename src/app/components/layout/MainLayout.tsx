@@ -13,11 +13,9 @@ import {
   Sparkles,
   Calendar,
   AlertTriangle,
-  Target,
   Library,
   PartyPopper,
   Plus,
-  Brain,
 } from "lucide-react";
 import BrandMark from "./BrandMark";
 import { AppBreadcrumbs } from "./AppBreadcrumbs";
@@ -48,7 +46,6 @@ const planNav: NavItem[] = [
 
 const analyzeNav: NavItem[] = [
   { name: "Analytics", path: "/app/analytics", icon: BarChart3 },
-  { name: "Sales Intelligence", path: "/app/sales-intelligence", icon: Brain },
 ];
 
 
@@ -225,35 +222,6 @@ export function MainLayout() {
               </>
             )}
 
-            {/* Missed Opportunities — Red urgency accent */}
-            <div className="pt-3 pb-1">
-              <div className="border-t border-sidebar-border/50" />
-            </div>
-            <Link
-              to="/app/missed-posts"
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
-                isActive("/app/missed-posts")
-                  ? "bg-red-900/20 text-red-400"
-                  : "text-red-400/80 hover:bg-red-900/10 hover:text-red-300"
-              }`}
-            >
-              <div className="relative flex-shrink-0">
-                <AlertTriangle className="w-5 h-5" />
-              </div>
-              {sidebarOpen && (
-                <>
-                  <span className="text-sm font-medium truncate">
-                    Missed Opportunities
-                  </span>
-                  <span className="ml-auto bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
-                    3
-                  </span>
-                </>
-              )}
-              {!sidebarOpen && (
-                <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-              )}
-            </Link>
           </nav>
         </div>
       </aside>
@@ -321,7 +289,7 @@ export function MainLayout() {
                         Profile
                       </button>
                       <button
-                        onClick={() => { setAvatarOpen(false); navigate("/app/profile?tab=settings"); }}
+                        onClick={() => { setAvatarOpen(false); navigate("/app/settings"); }}
                         className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-muted/50 transition-colors"
                       >
                         <Settings className="w-4 h-4 text-muted-foreground" />
@@ -374,23 +342,30 @@ export function MainLayout() {
 
                     {/* Notification List */}
                     <div className="max-h-[260px] overflow-y-auto divide-y divide-border/50">
-                      {notifications.map((notif, index) => (
-                        <div
-                          key={index}
-                          className={`flex items-start gap-3 px-4 py-3 hover:bg-muted/50 transition-colors duration-150 cursor-pointer ${
-                            notif.unread && unreadCount > 0 ? "bg-secondary/[0.04]" : ""
-                          }`}
-                        >
-                          <div className="relative mt-0.5 flex-shrink-0">
-                            <div className="w-2 h-2 rounded-full bg-secondary" />
+                      {notifications.map((notif, index) => {
+                        const isAlert = notif.title.toLowerCase().includes("missed");
+                        return (
+                          <div
+                            key={index}
+                            className={`flex items-start gap-3 px-4 py-3 hover:bg-muted/50 transition-colors duration-150 cursor-pointer ${
+                              isAlert
+                                ? "bg-red-50/60 border-l-2 border-l-red-400"
+                                : notif.unread && unreadCount > 0
+                                  ? "bg-secondary/[0.04]"
+                                  : ""
+                            }`}
+                          >
+                            <div className={`relative mt-0.5 flex-shrink-0 ${isAlert ? "text-red-500" : ""}`}>
+                              <div className={`w-2 h-2 rounded-full ${isAlert ? "bg-red-500" : "bg-secondary"}`} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className={`text-sm font-medium truncate ${isAlert ? "text-red-700" : "text-foreground"}`}>{notif.title}</p>
+                              <p className={`text-xs mt-0.5 line-clamp-2 ${isAlert ? "text-red-600/80" : "text-muted-foreground"}`}>{notif.message}</p>
+                              <p className={`text-[11px] mt-1 ${isAlert ? "text-red-500/70" : "text-muted-foreground/60"}`}>{notif.time}</p>
+                            </div>
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-foreground truncate">{notif.title}</p>
-                            <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{notif.message}</p>
-                            <p className="text-[11px] text-muted-foreground/60 mt-1">{notif.time}</p>
-                          </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
 
                     {/* Dropdown Footer — See All */}
