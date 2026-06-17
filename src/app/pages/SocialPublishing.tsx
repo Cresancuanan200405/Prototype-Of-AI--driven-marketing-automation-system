@@ -333,11 +333,15 @@ export function SocialPublishing() {
                     {selectedPlatforms[key as keyof typeof selectedPlatforms] && <Check className="h-4 w-4" />}
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${
-                      selectedPlatforms[key as keyof typeof selectedPlatforms] ? "bg-secondary" : "bg-muted"
-                    }`}>
-                      <Icon className={`h-5 w-5 ${selectedPlatforms[key as keyof typeof selectedPlatforms] ? "text-white" : "text-muted-foreground"}`} />
-                    </div>
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${
+                    selectedPlatforms[key as keyof typeof selectedPlatforms]
+                      ? key === "facebook"
+                        ? "bg-[#1877F2]"
+                        : "bg-gradient-to-br from-[#F77737] to-[#E4405F]"
+                      : "bg-muted"
+                  }`}>
+                    <Icon className={`h-5 w-5 ${selectedPlatforms[key as keyof typeof selectedPlatforms] ? "text-white" : "text-muted-foreground"}`} />
+                  </div>
                     <div>
                       <h4 className="font-semibold text-foreground">{label}</h4>
                       <p className="text-sm text-muted-foreground">@yourbusiness</p>

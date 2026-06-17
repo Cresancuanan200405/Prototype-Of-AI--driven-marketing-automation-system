@@ -54,6 +54,33 @@
 .bg-alert-dim { background-color: color-mix(in srgb, var(--color-destructive) 10%, transparent); }
 .text-alert { color: var(--color-destructive); }
 
+/* Success — Green */
+.bg-success { background-color: var(--color-success); }
+.bg-success-subtle { background-color: color-mix(in srgb, var(--color-success) 5%, transparent); }
+.bg-success-bg { background-color: var(--color-success-bg); }
+.border-success { border-color: color-mix(in srgb, var(--color-success) 30%, transparent); }
+.border-success-strong { border-color: color-mix(in srgb, var(--color-success) 50%, transparent); }
+.text-success { color: var(--color-success); }
+.text-success-foreground { color: var(--color-success-foreground); }
+
+/* Warning — Amber */
+.bg-warning { background-color: var(--color-warning); }
+.bg-warning-subtle { background-color: color-mix(in srgb, var(--color-warning) 5%, transparent); }
+.bg-warning-bg { background-color: var(--color-warning-bg); }
+.border-warning { border-color: color-mix(in srgb, var(--color-warning) 30%, transparent); }
+.border-warning-strong { border-color: color-mix(in srgb, var(--color-warning) 50%, transparent); }
+.text-warning { color: var(--color-warning); }
+.text-warning-foreground { color: var(--color-warning-foreground); }
+
+/* Info — Blue */
+.bg-info { background-color: var(--color-info); }
+.bg-info-subtle { background-color: color-mix(in srgb, var(--color-info) 5%, transparent); }
+.bg-info-bg { background-color: var(--color-info-bg); }
+.border-info { border-color: color-mix(in srgb, var(--color-info) 30%, transparent); }
+.border-info-strong { border-color: color-mix(in srgb, var(--color-info) 50%, transparent); }
+.text-info { color: var(--color-info); }
+.text-info-foreground { color: var(--color-info-foreground); }
+
 /* Chart color utilities mapped to theme chart tokens */
 .bg-chart-1 { background-color: var(--color-chart-1); }
 .bg-chart-2 { background-color: var(--color-chart-2); }

@@ -1,7 +1,7 @@
 import { Outlet, Link, useLocation } from "react-router";
 import {
   LayoutDashboard,
-  Megaphone,
+  Rocket,
   BarChart3,
   Bell,
   User,
@@ -10,11 +10,11 @@ import {
   Moon,
   Sun,
   Menu,
-  Sparkles,
+  BrainCircuit,
   Calendar,
   AlertTriangle,
   Library,
-  PartyPopper,
+  CalendarCheck,
   Plus,
 } from "lucide-react";
 import BrandMark from "./BrandMark";
@@ -34,14 +34,14 @@ const mainNav: NavItem[] = [
 ];
 
 const contentNav: NavItem[] = [
-  { name: "AI Generator", path: "/app/ai-generator", icon: Sparkles },
+  { name: "AI Generator", path: "/app/ai-generator", icon: BrainCircuit },
   { name: "Content Studio", path: "/app/content-studio", icon: Library },
 ];
 
 const planNav: NavItem[] = [
   { name: "Calendar", path: "/app/calendar", icon: Calendar },
-  { name: "Campaigns", path: "/app/campaigns", icon: Megaphone },
-  { name: "Holiday Marketing", path: "/app/holiday-marketing", icon: PartyPopper },
+  { name: "Campaigns", path: "/app/campaigns", icon: Rocket },
+  { name: "Holiday Marketing", path: "/app/holiday-marketing", icon: CalendarCheck },
 ];
 
 const analyzeNav: NavItem[] = [

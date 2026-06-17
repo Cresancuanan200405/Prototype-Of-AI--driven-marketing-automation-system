@@ -28,6 +28,21 @@
   --accent: #F8F3E6;
   --accent-foreground: #0B1B3A;
 
+  /* Success */
+  --success: #2E7D32;
+  --success-foreground: #ffffff;
+  --success-bg: #E8F5E9;
+
+  /* Warning */
+  --warning: #F57F17;
+  --warning-foreground: #ffffff;
+  --warning-bg: #FFF8E1;
+
+  /* Info */
+  --info: #1565C0;
+  --info-foreground: #ffffff;
+  --info-bg: #E3F2FD;
+
   /* Danger */
   --destructive: #C0392B;
   --destructive-foreground: #ffffff;
@@ -87,6 +102,18 @@
   --accent: rgba(201, 168, 76, 0.16);
   --accent-foreground: rgba(255, 255, 255, 0.92);
 
+  --success: #4CAF50;
+  --success-foreground: #0B1B3A;
+  --success-bg: rgba(76, 175, 80, 0.12);
+
+  --warning: #FFB300;
+  --warning-foreground: #0B1B3A;
+  --warning-bg: rgba(255, 179, 0, 0.12);
+
+  --info: #42A5F5;
+  --info-foreground: #0B1B3A;
+  --info-bg: rgba(66, 165, 245, 0.12);
+
   --destructive: #FF3B30;
   --destructive-foreground: #0B1B3A;
 
@@ -132,6 +159,15 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-bg: var(--warning-bg);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-bg: var(--info-bg);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);

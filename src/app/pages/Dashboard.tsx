@@ -1,10 +1,13 @@
 import {
   TrendingUp,
   Users,
+  UserPlus,
   Calendar,
+  CalendarCheck,
   ArrowUp,
   AlertTriangle,
   Lightbulb,
+  Target,
   Clock,
   TrendingDown,
 } from "lucide-react";
@@ -43,14 +46,14 @@ const stats = [
     value: "18",
     change: "+5",
     trend: "up" as const,
-    icon: Calendar,
+    icon: CalendarCheck,
   },
   {
     name: "Followers Growth",
     value: "+1,234",
     change: "+8%",
     trend: "up" as const,
-    icon: Users,
+    icon: UserPlus,
   },
 ];
 
@@ -277,11 +280,11 @@ export function Dashboard() {
           </div>
         </div>
 
-        {/* Today's Focus — 2/5 width */}
+          {/* Today's Focus — 2/5 width */}
         <div className="lg:col-span-2 bg-card rounded-xl border border-border p-6 flex flex-col">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-9 h-9 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center flex-shrink-0">
-              <Lightbulb className="w-5 h-5" />
+              <Target className="w-5 h-5" />
             </div>
             <h3 className="text-base font-semibold text-foreground">Today's Focus</h3>
           </div>
